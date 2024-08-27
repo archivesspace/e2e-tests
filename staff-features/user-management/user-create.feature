@@ -2,26 +2,25 @@ Feature: User Management - Create User
 
   Background:
     Given I am logged in as an admin
-    And I navigate to the "System" section
-    And I click on "Manage Users"
 
   Scenario: User is successfully created
+    Given I am on the Manage Users page
     When I click on "Create User"
-    And I type a "Username"
-    And I type a "Full name"
-    And I type a "Password"
-    And I retype the password in the "Confirm password" field
-    And I click on the "Create Account" button
-    Then the user should be created, and a success alert "User Created: test abc" should be shown
-    And the new user should appear in the list of user records in the repository
+    And I fill in the Username
+    And I fill in the Full name
+    And I fill in the Password
+    And I fill in the Confirm password
+    And I click on "Create Account"
+    Then the message "User Created" should be displayed
+    And the new user should appear in the search results
 
   Scenario: Fail to create a user due to missing required fields
+    Given I am on the Manage Users page
     When I click on "Create User"
-    And I do not fill in the "Username", "Full name", "Password", and "Confirm password" fields
-    And I click on the "Create Account" button
+    And I click on "Create Account"
     Then the system should display the following error messages:
-      | "Username - can't be empty"                    |
-      | "Full name - Property is required but missing" |
-      | "Password - can't be empty"                    |
-      | "Confirm password - can't be empty"            |
-      | "Confirm password - Entered value didn't match password" |
+      | Username - can't be empty |
+      | Full name - Property is required but was missing |
+      | Password - can't be empty |
+      | Confirm password - can't be empty |
+      | User not created |
