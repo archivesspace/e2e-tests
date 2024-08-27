@@ -1,21 +1,22 @@
 Feature: Accession List
   Background:
-    Given I am signed in as a system administrator
+    Given I am logged in as an admin
 
   Scenario: Show accession list
+    Given an accession has been created
     When I click on "Browse"
     And I click on "Accessions"
-    Then the accession list is displayed
+    And I search for the accession title
+    Then the accession is in the search results
 
-  Scenario: Sort accession list by descending title when clicking on Title
-    Given I have opened the "Accessions" page
+  Scenario: View an accession
+    Given an accession has been created
+    When the accession is in the search results
+    And I click on the View button
+    Then I can view the accession details page
+
+  Scenario: Sort accessions descending title
+    Given two accessions have been created
+    And the accessions are on the search results sorted by ascending title
     When I click on "Title"
-    Then the accession list is sorted by descending title
-    And The "Sort by" block at the headline of the records table shows "Title Descending"
-    And The URL contains "?sort=title_sort+desc"
-
-  Scenario: View an accession in the non-editable view
-    Given I have opened "Accessions"
-    When I click the "View" button at the right of the accession record in the list
-    Then the accession is shown in a non-editable view
-    And the sidebar should be visible
+    Then the accessions are sorted by descending title

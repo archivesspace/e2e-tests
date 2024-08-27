@@ -1,5 +1,4 @@
 Feature: User Management - Create User
-
   Background:
     Given I am logged in as an admin
 
