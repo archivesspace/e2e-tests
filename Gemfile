@@ -6,3 +6,4 @@ gem 'byebug'
 gem 'capybara'
 gem 'cucumber'
 gem 'selenium-webdriver'
+gem 'rubocop-packaging', require: false
