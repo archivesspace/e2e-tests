@@ -1,6 +1,6 @@
 Feature: Accession Management - Deleting Accession Records
   Background:
-    Given I am signed in as a system administrator
+    Given I am logged in as an admin
 
   Scenario: Successfully delete an entire accession record from the accession list
     Given I am on the "Accessions" page
