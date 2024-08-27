@@ -1,25 +1,26 @@
-Feature: Accession Management - Deleting Accession Records
+Feature: Accession Delete
   Background:
     Given I am logged in as an admin
 
-  Scenario: Successfully delete an entire accession record from the accession list
-    Given I am on the "Accessions" page
-    When I click on the checkbox to select the record
-    And I click on the red "Delete" button in the upper right corner
-    And I click on the "Delete records" button in the warning dialog
-    Then the alert "Records deleted" is shown
-    And the record is no longer shown in the list
+  Scenario: Delete an accession from the search results
+    Given an accession has been created
+    When the accession is in the search results
+    And I click on the checkbox of the accession
+    And I click on "Delete"
+    And I click on "Delete Records"
+    And the message "Records deleted" is displayed
+    And the message "No records found" is displayed
 
-  Scenario: Cancel deletion of an accession record from the toolbar in view mode
-    Given I am in view mode of an accession record
-    When I click on the red "Delete" button on the accession record toolbar
-    And I click on the "Cancel" button in the warning dialog
-    Then the accession record is not deleted
-    And it remains shown in the list
+  Scenario: Delete an accession from the view page
+    Given an accession has been created
+    And I am in the accession details page
+    When I click on "Delete"
+    And I confirm the delete action
+    Then the accession is successfully deleted
 
-  Scenario: Successfully delete an entire accession record from the toolbar in view mode
-    Given I am in view mode of an accession record
-    When I click on the red "Delete" button on the accession record toolbar
-    And I click on the "Delete records" button in the warning dialog
-    Then the alert "Records deleted" is shown
-    And it is no longer shown in the list
+  Scenario: Cancel delete from the view page
+    Given an accession has been created
+    And I am in the accession details page
+    When I click on "Delete"
+    When I click on "Cancel"
+    Then the accession is not deleted
