@@ -1,0 +1,19 @@
+When 'I fill in the Repository Short Name' do
+  @uuid = SecureRandom.uuid
+
+  fill_in 'Repository Short Name', with: "Repository Short Name #{@uuid}"
+end
+
+When 'I fill in the Repository Name' do
+  @uuid = SecureRandom.uuid
+
+  fill_in 'Repository Name', with: "Repository Name #{@uuid}"
+end
+
+Then 'the new repository should be appeared in the list of repositories' do
+  expect_record_to_be_in_search_results(@uuid)
+end
+
+Then 'the Manage Repositories button should not be present in the dropdown menu' do
+  expect(page).to_not have_text 'Manage Repositories'
+end
