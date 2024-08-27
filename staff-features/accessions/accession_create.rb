@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Given('the web browser is on the create accession page') do
   @uuid = SecureRandom.uuid
 

@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 Given 'the user is logged in as admin' do
   visit STAFF_URL
 
-  fill_in "username", with: 'admin'
-  fill_in "password", with: 'admin'
+  fill_in 'username', with: 'admin'
+  fill_in 'password', with: 'admin'
 
   click_on 'Sign In'
 
@@ -16,8 +18,8 @@ Given 'I am logged in as an admin' do
   visit "#{STAFF_URL}/logout"
   visit STAFF_URL
 
-  fill_in "username", with: 'admin'
-  fill_in "password", with: 'admin'
+  fill_in 'username', with: 'admin'
+  fill_in 'password', with: 'admin'
 
   click_on 'Sign In'
 
@@ -33,8 +35,8 @@ Given 'I am signed in as a view-only user' do
   visit "#{STAFF_URL}/logout"
   visit STAFF_URL
 
-  fill_in "username", with: 'admin'
-  fill_in "password", with: 'admin'
+  fill_in 'username', with: 'admin'
+  fill_in 'password', with: 'admin'
 
   click_on 'Sign In'
 
@@ -45,10 +47,10 @@ Given 'I am signed in as a view-only user' do
 
   visit "#{STAFF_URL}/users/new"
 
-  fill_in "user_username_", with: "view-only-user-#{@uuid}"
-  fill_in "user_name_", with: "view-only-user-#{@uuid}"
-  fill_in "user_password_", with: "view-only-user-#{@uuid}"
-  fill_in "user_confirm_password_", with: "view-only-user-#{@uuid}"
+  fill_in 'user_username_', with: "view-only-user-#{@uuid}"
+  fill_in 'user_name_', with: "view-only-user-#{@uuid}"
+  fill_in 'user_password_', with: "view-only-user-#{@uuid}"
+  fill_in 'user_confirm_password_', with: "view-only-user-#{@uuid}"
 
   find('#create_account').click
 
@@ -57,20 +59,18 @@ Given 'I am signed in as a view-only user' do
   visit "#{STAFF_URL}/logout"
   visit STAFF_URL
 
-  fill_in "username", with: "view-only-user-#{@uuid}"
-  fill_in "password", with: "view-only-user-#{@uuid}"
+  fill_in 'username', with: "view-only-user-#{@uuid}"
+  fill_in 'password', with: "view-only-user-#{@uuid}"
 
   click_on 'Sign In'
 end
 
 When 'I click on {string}' do |string|
-  begin
-    click_on string
-  rescue Capybara::Ambiguous
-    elements = all(:xpath, "//*[contains(text(), '#{string}')]")
+  click_on string
+rescue Capybara::Ambiguous
+  elements = all(:xpath, "//*[contains(text(), '#{string}')]")
 
-    elements.first.click
-  end
+  elements.first.click
 end
 
 Then 'the message {string} should be displayed' do |string|

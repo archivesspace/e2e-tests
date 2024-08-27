@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 def expect_record_to_be_in_search_results(search_term)
   fill_in 'global-search-box', with: search_term
   find('#global-search-button').click

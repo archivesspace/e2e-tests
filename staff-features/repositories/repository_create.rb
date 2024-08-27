@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 When 'I fill in the Repository Short Name' do
   @uuid = SecureRandom.uuid
 
