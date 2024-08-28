@@ -1,5 +1,4 @@
 Feature: User Management - Create User
-
   Background:
     Given I am logged in as an admin
 
@@ -11,7 +10,7 @@ Feature: User Management - Create User
     And I fill in the Password
     And I fill in the Confirm password
     And I click on "Create Account"
-    Then the message "User Created" should be displayed
+    Then the message "User Created" is displayed
     And the new user should appear in the search results
 
   Scenario: Fail to create a user due to missing required fields

@@ -73,6 +73,6 @@ rescue Capybara::Ambiguous
   elements.first.click
 end
 
-Then 'the message {string} should be displayed' do |string|
+Then 'the message {string} is displayed' do |string|
   expect(page).to have_text string
 end

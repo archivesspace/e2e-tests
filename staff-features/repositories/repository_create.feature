@@ -8,7 +8,7 @@ Feature: Repository management - Create repository
     And I fill in the Repository Short Name
     And I fill in the Repository Name
     And I click on "Save"
-    Then the message "Repository Created" should be displayed
+    Then the message "Repository Created" is displayed
     And the new repository should be appeared in the list of repositories
 
   Scenario: View-only user cannot create a repository
