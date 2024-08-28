@@ -27,13 +27,11 @@ When 'I fill in Repository Processing Note with {string}' do |value|
 end
 
 When 'I change the resource Title' do
-  uuid = SecureRandom.uuid
-
-  fill_in 'resource_title_', with: "Resource title chagned"
+  fill_in 'resource_title_', with: 'Resource title chagned'
 end
 
 When 'I change the resource Identifier' do
-  fill_in 'resource_id_0_', with: "Resource identifier chagned"
+  fill_in 'resource_id_0_', with: 'Resource identifier chagned'
 end
 
 Then 'the resource is successfully updated' do
