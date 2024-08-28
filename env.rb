@@ -4,12 +4,27 @@ require 'byebug'
 require 'capybara/cucumber'
 require 'selenium-webdriver'
 
-BASE_URL = 'https://e2e.archivesspace.org'
-PUBLIC_URL = BASE_URL.freeze
-STAFF_URL = "#{BASE_URL}/staff".freeze
+case ENV['HOST']
+when 'localhost', 'http://localhost:8080'
+  BASE_URL = 'http://localhost:8080'
+  PUBLIC_URL = 'http://localhost:8081'
+  STAFF_URL = "#{BASE_URL}".freeze
+else
+  BASE_URL = 'https://e2e.archivesspace.org'
+  PUBLIC_URL = BASE_URL.freeze
+  STAFF_URL = "#{BASE_URL}/staff".freeze
+end
+
+case ENV['HEADLESS']
+when 'true'
+  HEADLESS = '--headless'
+else
+  HEADLESS = ''
+end
 
 Capybara.register_driver :firefox do |app|
   options = Selenium::WebDriver::Firefox::Options.new
+  options.add_argument(HEADLESS)
 
   Capybara::Selenium::Driver.new(app, browser: :firefox, options:)
 end
