@@ -1,6 +1,6 @@
 Feature: User Management - Create User
   Background:
-    Given I am logged in as an admin
+    Given I am logged in as an admin user
 
   Scenario: User is successfully created
     Given I am on the Manage Users page

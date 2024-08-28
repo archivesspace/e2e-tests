@@ -14,7 +14,7 @@ Given 'the user is logged in as admin' do
   expect(element.text.strip).to eq 'admin'
 end
 
-Given 'I am logged in as an admin' do
+Given 'I am logged in as an admin user' do
   visit "#{STAFF_URL}/logout"
   visit STAFF_URL
 

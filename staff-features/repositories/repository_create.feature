@@ -1,7 +1,7 @@
 Feature: Repository management - Create repository
 
   Scenario: Successfully create a repository
-    Given I am logged in as an admin
+    Given I am logged in as an admin user
     When I click on "System"
     And I click on "Manage Repositories"
     And I click on "Create Repository"

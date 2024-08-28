@@ -1,6 +1,6 @@
 Feature: Accession Delete
   Background:
-    Given I am logged in as an admin
+    Given I am logged in as an admin user
 
   Scenario: Delete an accession from the search results
     Given an accession has been created

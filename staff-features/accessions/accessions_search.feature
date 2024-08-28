@@ -1,6 +1,6 @@
 Feature: Accessions Search
   Background:
-    Given I am logged in as an admin
+    Given I am logged in as an admin user
 
   Scenario: Search accession by title
     Given an accession has been created
