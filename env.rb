@@ -4,18 +4,18 @@ require 'byebug'
 require 'capybara/cucumber'
 require 'selenium-webdriver'
 
-case ENV['HOST']
+case ENV.fetch('HOST', nil)
 when 'localhost', 'http://localhost:8080'
   BASE_URL = 'http://localhost:8080'
   PUBLIC_URL = 'http://localhost:8081'
-  STAFF_URL = "#{BASE_URL}".freeze
+  STAFF_URL = BASE_URL
 else
   BASE_URL = 'https://e2e.archivesspace.org'
   PUBLIC_URL = BASE_URL.freeze
   STAFF_URL = "#{BASE_URL}/staff".freeze
 end
 
-case ENV['HEADLESS']
+case ENV.fetch('HEADLESS', nil)
 when 'true'
   HEADLESS = '--headless'
 else
