@@ -1,32 +1,11 @@
 # frozen_string_literal: true
 
 Given 'the user is logged in as admin' do
-  visit STAFF_URL
-
-  fill_in 'username', with: 'admin'
-  fill_in 'password', with: 'admin'
-
-  click_on 'Sign In'
-
-  expect(page).to have_content 'Welcome to ArchivesSpace'
-  expect(page).to have_content 'Your friendly archives management tool.'
-  element = find('.global-header .user-container')
-  expect(element.text.strip).to eq 'admin'
+  login_admin
 end
 
 Given 'I am logged in as an admin user' do
-  visit "#{STAFF_URL}/logout"
-  visit STAFF_URL
-
-  fill_in 'username', with: 'admin'
-  fill_in 'password', with: 'admin'
-
-  click_on 'Sign In'
-
-  expect(page).to have_content 'Welcome to ArchivesSpace'
-  expect(page).to have_content 'Your friendly archives management tool.'
-  element = find('.global-header .user-container')
-  expect(element.text.strip).to eq 'admin'
+  login_admin
 end
 
 Given 'I am signed in as a view-only user' do
@@ -71,6 +50,14 @@ rescue Capybara::Ambiguous
   elements = all(:xpath, "//*[contains(text(), '#{string}')]")
 
   elements.first.click
+end
+
+When 'I fill in {string} with {string}' do |label, value|
+  fill_in label, with: value
+end
+
+When 'I select {string} from {string}' do |option, label|
+  select option, from: label
 end
 
 Then 'the message {string} is displayed' do |string|
