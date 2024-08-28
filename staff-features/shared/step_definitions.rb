@@ -1,9 +1,5 @@
 # frozen_string_literal: true
 
-Given 'the user is logged in as admin' do
-  login_admin
-end
-
 Given 'I am logged in as an admin user' do
   login_admin
 end

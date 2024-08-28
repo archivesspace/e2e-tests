@@ -1,5 +1,4 @@
 Feature: Repository management - Create repository
-
   Scenario: Successfully create a repository
     Given I am logged in as an admin user
     When I click on "System"
@@ -10,7 +9,6 @@ Feature: Repository management - Create repository
     And I click on "Save"
     Then the message "Repository Created" is displayed
     And the new repository should be appeared in the list of repositories
-
   Scenario: View-only user cannot create a repository
     Given I am signed in as a view-only user
     When I click on "System"

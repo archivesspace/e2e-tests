@@ -1,6 +1,6 @@
 Feature: Accession Create
   Background:
-    Given the user is logged in as admin
+    Given I am logged in as an admin user
   Scenario: Accession is successfully created
     Given the web browser is on the create accession page
     When the user fills in all the required fields
