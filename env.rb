@@ -31,3 +31,15 @@ end
 
 Capybara.default_driver = :firefox
 Capybara.default_max_wait_time = 10
+
+BeforeAll do
+  connection_error = "\nNo server found running on #{STAFF_URL}.\n\n"
+
+  begin
+    response = Net::HTTP.get_response(URI(STAFF_URL))
+
+    raise connection_error if response.code != '200'
+  rescue Errno::ECONNREFUSED, Errno::ECONNRESET => e
+    raise connection_error
+  end
+end
