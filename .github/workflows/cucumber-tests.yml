@@ -1,19 +1,25 @@
-name: Cucumber Tests
+name: Cucumber
 on: push
-
 jobs:
   cucumber:
-    name: Run Cucmber Tests
+    name: Run Tests
     runs-on: ubuntu-latest
-
+    concurrency:
+      group: ci-${{ github.ref }}
+      cancel-in-progress: true
     steps:
     - name: Checkout repository
       uses: actions/checkout@v2
+    - name: Set up Docker
+      run: |
+        docker compose -f docker-compose.yml up --quiet-pull --detach
+    - name: Wait until the web server is ready
+      run: until curl -s -f -o /dev/null "http://localhost:8080"; do sleep 5; done
     - name: Set up Ruby
       uses: ruby/setup-ruby@v1
       with:
         ruby-version: '3.2.0'
-    - name: Cache gems # You can cache your gems to make the workflow run faster
+    - name: Cache gems
       uses: actions/cache@v2
       with:
         path: vendor/bundle
@@ -23,6 +29,7 @@ jobs:
     - name: Install gems
       run: |
         bundle config path vendor/bundle
-        bundle install --jobs 4 --retry 3
+        bundle install --quiet --jobs 4 --retry 3
     - name: Run tests
-      run: bundle exec cucumber HEADLESS=true
+      run: |
+        bundle exec cucumber HEADLESS=true HOST=localhost staff-features/
