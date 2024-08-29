@@ -19,6 +19,29 @@ def login_admin
   expect(page).to have_content 'Your friendly archives management tool.'
   element = find('.global-header .user-container')
   expect(element.text.strip).to eq 'admin'
+
+  # Ensure the system has at least one repository
+  begin
+    element = find('.alert.alert-info.with-hide-alert')
+
+    if element.text == 'To create your first Repository, click the System menu above and then Manage Repositories.'
+      click_on 'System'
+      click_on 'Manage Repositories'
+      click_on 'Create Repository'
+
+      fill_in 'repository_repository__repo_code_', with: 'repository_test'
+      fill_in 'repository_repository__name_', with: 'Repository Test'
+      find('#repository_repository__publish_').check
+      click_on 'Save'
+
+      expect(find('.alert.alert-success.with-hide-alert').text).to eq 'Repository Created'
+      expect(find('.alert.alert-info.with-hide-alert').text).to eq 'Repository is Currently Selected'
+
+      visit STAFF_URL
+    end
+  rescue Capybara::ElementNotFound
+    # Continue
+  end
 end
 
 def create_resource(uuid)
