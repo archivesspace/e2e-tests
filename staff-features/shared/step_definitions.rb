@@ -4,7 +4,7 @@ Given 'I am logged in as an admin user' do
   login_admin
 end
 
-Given 'I am signed in as a view-only user' do
+Given 'I am logged in as a view-only user' do
   @uuid = SecureRandom.uuid
 
   visit "#{STAFF_URL}/logout"
@@ -40,12 +40,60 @@ Given 'I am signed in as a view-only user' do
   click_on 'Sign In'
 end
 
-When 'I click on {string}' do |string|
-  click_on string
-rescue Capybara::Ambiguous
-  elements = all(:xpath, "//*[contains(text(), '#{string}')]")
+When 'I click on Delete' do
+  click_on_string 'Delete'
+end
 
-  elements.first.click
+When 'I click on Cancel' do
+  click_on_string 'Cancel'
+end
+
+When 'I click on Delete Records' do
+  click_on_string 'Delete Records'
+end
+
+When 'I click on Browse' do
+  click_on_string 'Browse'
+end
+
+When 'I click on Accessions' do
+  click_on_string 'Accessions'
+end
+
+When 'I click on System' do
+  click_on_string 'System'
+end
+
+When 'I click on Manage Repositories' do
+  click_on_string 'Manage Repositories'
+end
+
+When 'I click on Create Repository' do
+  click_on_string 'Create Repository'
+end
+
+When 'I click on Save' do
+  click_on_string 'Save'
+end
+
+When 'I click on Save Resource' do
+  click_on_string 'Save Resource'
+end
+
+When 'I click on Revert Changes' do
+  click_on_string 'Revert Changes'
+end
+
+When 'I click on Create User' do
+  click_on_string 'Create User'
+end
+
+When 'I click on Create Account' do
+  click_on_string 'Create Account'
+end
+
+When 'I click on Title' do
+  click_on_string 'Title'
 end
 
 When 'I fill in {string} with {string}' do |label, value|

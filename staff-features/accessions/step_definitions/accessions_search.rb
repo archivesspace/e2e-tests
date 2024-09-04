@@ -16,7 +16,7 @@ When 'I search for the accession title' do
   end
 end
 
-When 'the accession is in the search results' do
+Given 'the accession is in the search results' do
   visit "#{STAFF_URL}/accessions"
 
   fill_in 'filter-text', with: @uuid
