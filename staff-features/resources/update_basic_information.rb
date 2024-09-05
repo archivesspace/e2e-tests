@@ -40,8 +40,6 @@ Then 'the resource is successfully updated' do
 end
 
 Then 'Resource Type has value Records' do
-  # search(@uuid)
-  # click_on 'Edit'
   element = find('#resource_resource_type_')
   expect(element.value).to eq 'records'
 end

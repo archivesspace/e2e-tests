@@ -90,3 +90,11 @@ def expect_record_to_not_be_in_search_results(search_term)
   expect(search_result_rows.length).to eq 0
   expect(find('.alert.alert-info.with-hide-alert').text).to eq 'No records found'
 end
+
+def click_on_string(string)
+  click_on string
+rescue Capybara::Ambiguous
+  elements = all(:xpath, "//*[contains(text(), '#{string}')]")
+
+  elements.first.click
+end
