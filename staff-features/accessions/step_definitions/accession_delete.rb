@@ -30,7 +30,7 @@ When 'I confirm the delete action' do
   end
 end
 
-Then 'the accession is successfully deleted' do
+Then 'the accession is deleted' do
   expect_record_to_not_be_in_search_results(@uuid)
 end
 

@@ -1,7 +1,7 @@
-Feature: User Management - Create User
+Feature: Create User
   Background:
     Given I am logged in as an admin user
-  Scenario: User is successfully created
+  Scenario: User is created
     Given I am on the Manage Users page
     When I click on Create User
     And I fill in the Username
@@ -11,7 +11,7 @@ Feature: User Management - Create User
     And I click on Create Account
     Then the message "User Created" is displayed
     And the new user should appear in the search results
-  Scenario: Fail to create a user due to missing required fields
+  Scenario: User is not created because required fields are missing
     Given I am on the Manage Users page
     When I click on Create User
     And I click on Create Account

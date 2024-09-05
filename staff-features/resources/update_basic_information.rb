@@ -34,7 +34,7 @@ When 'I change the resource Identifier' do
   fill_in 'resource_id_0_', with: 'Resource identifier chagned'
 end
 
-Then 'the resource is successfully updated' do
+Then 'the resource is updated' do
   element = find('.alert.alert-success.with-hide-alert')
   expect(element.text).to eq "Resource Resource #{@uuid} updated"
 end
