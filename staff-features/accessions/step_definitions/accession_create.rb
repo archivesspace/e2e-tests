@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-Given('the web browser is on the create accession page') do
+Given('I am on the New Accession page') do
   @uuid = SecureRandom.uuid
 
   click_on 'Create'

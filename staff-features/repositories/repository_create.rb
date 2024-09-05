@@ -12,10 +12,10 @@ When 'I fill in the Repository Name' do
   fill_in 'Repository Name', with: "Repository Name #{@uuid}"
 end
 
-Then 'the new repository should be appeared in the list of repositories' do
+Then 'the repository is created' do
   expect_record_to_be_in_search_results(@uuid)
 end
 
-Then 'the Manage Repositories button should not be present in the dropdown menu' do
+Then 'the Manage Repositories button should not be in the dropdown menu' do
   expect(page).to_not have_text 'Manage Repositories'
 end

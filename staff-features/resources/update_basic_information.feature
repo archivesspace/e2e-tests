@@ -9,7 +9,7 @@ Feature: Update Resource Basic Information
     When I check Restrictions Apply?
     When I fill in Repository Processing Note with "Repository Processing Note"
     When I click on Save Resource
-    Then the resource is successfully updated
+    Then the resource is updated
     Then Resource Type has value Records
     Then Publish? is checked
     Then Restrictions Apply? is checked

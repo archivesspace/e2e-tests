@@ -14,14 +14,14 @@ When('I fill in Identifier with a unique id') do
   fill_in 'Identifier', with: @uuid
 end
 
-Then('a digital object is created') do
+Then('the digital object is created') do
   expect(find('h2').text).to eq "Digital Object Title #{@uuid} Digital Object"
   expect(find('.alert.alert-success.with-hide-alert').text).to eq "Digital Object Digital Object Title #{@uuid} Created"
 
   expect_record_to_be_in_search_results(@uuid)
 end
 
-Then ('a digital object is not created') do
+Then ('the digital object is not created') do
   expect(find('h2').text).to eq 'New Digital Object Digital Object'
 
   expect_record_to_not_be_in_search_results(@uuid)
