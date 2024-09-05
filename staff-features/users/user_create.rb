@@ -26,9 +26,3 @@ end
 And 'the new user should appear in the search results' do
   expect_record_to_be_in_search_results(@uuid)
 end
-
-Then 'the system should display the following error messages:' do |messages|
-  messages.raw.each do |message|
-    expect(page).to have_text message[0]
-  end
-end
