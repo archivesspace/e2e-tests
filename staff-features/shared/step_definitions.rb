@@ -100,10 +100,20 @@ When 'I fill in {string} with {string}' do |label, value|
   fill_in label, with: value
 end
 
+When 'I fill in {string} with {string}' do |label, value|
+  fill_in label, with: value
+end
+
 When 'I select {string} from {string}' do |option, label|
   select option, from: label
 end
 
 Then 'the message {string} is displayed' do |string|
   expect(page).to have_text string
+end
+
+Then 'the following error messages are displayed:' do |messages|
+  messages.raw.each do |message|
+    expect(page).to have_text message[0]
+  end
 end

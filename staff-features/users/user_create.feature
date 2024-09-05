@@ -15,7 +15,7 @@ Feature: User Management - Create User
     Given I am on the Manage Users page
     When I click on Create User
     And I click on Create Account
-    Then the system should display the following error messages:
+    Then the following error messages are displayed:
       | Username - can't be empty |
       | Full name - Property is required but was missing |
       | Password - can't be empty |
