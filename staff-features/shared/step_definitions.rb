@@ -56,12 +56,32 @@ When 'the user selects {string} from {string}' do |option, label|
   select option, from: label
 end
 
+When 'the user checks {string}' do |label|
+  check label
+end
+
 Then 'the {string} message is displayed' do |string|
   expect(page).to have_text string
+end
+
+Then('the {string} updated message is displayed') do |string|
+  expect(find('.alert.alert-success.with-hide-alert').text).to match /^#{string}.*updated$/
 end
 
 Then 'the following error messages are displayed:' do |messages|
   messages.raw.each do |message|
     expect(page).to have_text message[0]
   end
+end
+
+Then 'the {string} has value {string}' do |label, value|
+  expect(page).to have_field(label, with: value)
+end
+
+Then 'the {string} has selected value {string}' do |label, value|
+  expect(page).to have_select(label, selected: value)
+end
+
+Then 'the {string} is checked' do |label|
+  expect(page).to have_field(label, checked: true)
 end
