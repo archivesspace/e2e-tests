@@ -8,7 +8,7 @@ Feature: Update Resource Basic Information
     When the user checks Publish?
     When the user checks Restrictions Apply?
     When the user fills in Repository Processing Note with "Repository Processing Note"
-    When the user clicks on Save Resource
+    When the user clicks on 'Save Resource'
     Then the resource is updated
     Then Resource Type has value Records
     Then Publish? is checked
@@ -18,6 +18,6 @@ Feature: Update Resource Basic Information
     Given the user is on the resource edit page
     When the user changes the resource Title
     When the user changes the resource Identifier
-    When the user clicks on Revert Changes
+    When the user clicks on 'Revert Changes'
     Then the resource Title does not change
     Then the resource Identifier does not change

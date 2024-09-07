@@ -40,60 +40,8 @@ Given 'the user is logged in as a view-only user' do
   click_on 'Sign In'
 end
 
-When 'the user clicks on Delete' do
-  click_on_string 'Delete'
-end
-
-When 'the user clicks on Cancel' do
-  click_on_string 'Cancel'
-end
-
-When 'the user clicks on Delete Records' do
-  click_on_string 'Delete Records'
-end
-
-When 'the user clicks on Browse' do
-  click_on_string 'Browse'
-end
-
-When 'the user clicks on Accessions' do
-  click_on_string 'Accessions'
-end
-
-When 'the user clicks on System' do
-  click_on_string 'System'
-end
-
-When 'the user clicks on Manage Repositories' do
-  click_on_string 'Manage Repositories'
-end
-
-When 'the user clicks on Create Repository' do
-  click_on_string 'Create Repository'
-end
-
-When 'the user clicks on Save' do
-  click_on_string 'Save'
-end
-
-When 'the user clicks on Save Resource' do
-  click_on_string 'Save Resource'
-end
-
-When 'the user clicks on Revert Changes' do
-  click_on_string 'Revert Changes'
-end
-
-When 'the user clicks on Create User' do
-  click_on_string 'Create User'
-end
-
-When 'the user clicks on Create Account' do
-  click_on_string 'Create Account'
-end
-
-When 'the user clicks on Title' do
-  click_on_string 'Title'
+When 'the user clicks on {string}' do |string|
+  click_on_string string
 end
 
 When 'the user fills in {string} with {string}' do |label, value|

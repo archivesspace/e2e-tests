@@ -5,11 +5,11 @@ Feature: Create Digital Object
     Given the user is on the New Digital Object page
     When the user fills in Title with a unique id
     And the user fills in Identifier with a unique id
-    And the user clicks on Save
+    And the user clicks on 'Save'
     Then the digital object is created
   Scenario: Digital Object is not created because required fields are missing
     Given the user is on the New Digital Object page
-    When the user clicks on Save
+    When the user clicks on 'Save'
     Then the following error messages are displayed:
       | Title - Property is required but was missing |
       | Identifier - Property is required but was missing |
