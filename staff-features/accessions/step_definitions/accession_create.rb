@@ -7,12 +7,8 @@ Given('the user is on the New Accession page') do
   click_on 'Accession'
 end
 
-When('the user fills in all the required fields') do
-  fill_in 'accession_id_0_', with: "Accession #{@uuid}"
-end
-
-When('the user does not fill in all the required fields') do
-  fill_in 'accession_id_0_', with: ''
+When 'the user fills in Identifier' do
+  fill_in 'Identifier', with: @uuid
 end
 
 Then('a new accession is created') do
