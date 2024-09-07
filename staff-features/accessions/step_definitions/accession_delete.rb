@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-Given 'I am in the accession details page' do
+Given 'the user is on the accession details page' do
   visit "#{STAFF_URL}/accessions"
 
   fill_in 'filter-text', with: @uuid
@@ -16,7 +16,7 @@ Given 'I am in the accession details page' do
   end
 end
 
-When 'I click on the checkbox of the accession' do
+When 'the user clicks on the checkbox of the accession' do
   table_row = find('tr', text: @uuid, match: :first)
 
   within table_row do
@@ -24,7 +24,7 @@ When 'I click on the checkbox of the accession' do
   end
 end
 
-When 'I confirm the delete action' do
+When 'the user confirms the delete action' do
   within '#confirmChangesModal' do
     click_on 'Delete'
   end

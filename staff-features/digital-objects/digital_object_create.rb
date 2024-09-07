@@ -1,16 +1,16 @@
 # frozen_string_literal: true
 
-Given('I am on the New Digital Object page') do
+Given('the user is on the New Digital Object page') do
   @uuid = SecureRandom.uuid
 
   visit "#{STAFF_URL}/digital_objects/new"
 end
 
-When('I fill in Title with a unique id') do
+When('the user fills in Title with a unique id') do
   fill_in 'Title', with: "Digital Object Title #{@uuid}"
 end
 
-When('I fill in Identifier with a unique id') do
+When('the user fills in Identifier with a unique id') do
   fill_in 'Identifier', with: @uuid
 end
 

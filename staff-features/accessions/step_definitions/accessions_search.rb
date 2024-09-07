@@ -8,7 +8,7 @@ Given 'an accession has been created' do
   click_on 'Save'
 end
 
-When 'I search for the accession title' do
+When 'the user searches for the accession title' do
   fill_in 'filter-text', with: @uuid
 
   within '.search-filter' do
@@ -26,7 +26,7 @@ Given 'the accession is in the search results' do
   end
 end
 
-When 'I click on the View button' do
+When 'the user clicks on the View button' do
   table_row = find('tr', text: @uuid, match: :first)
 
   within table_row do
@@ -34,7 +34,7 @@ When 'I click on the View button' do
   end
 end
 
-Then 'I can view the accession details page' do
+Then 'the user can view the accession details page' do
   title = find('h2')
 
   expect(title.text).to eq "Accession #{@uuid} Accession"

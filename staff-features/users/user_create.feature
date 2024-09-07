@@ -1,20 +1,20 @@
 Feature: Create User
   Background:
-    Given I am logged in as an admin user
+    Given the user is logged in as an administrator
   Scenario: User is created
-    Given I am on the Manage Users page
-    When I click on Create User
-    And I fill in the Username
-    And I fill in the Full name
-    And I fill in the Password
-    And I fill in the Confirm password
-    And I click on Create Account
+    Given the user is on the Manage Users page
+    When the user clicks on Create User
+    And the user fills in the Username
+    And the user fills in the Full name
+    And the user fills in the Password
+    And the user fills in the Confirm password
+    And the user clicks on Create Account
     Then the message "User Created" is displayed
     And the new user should appear in the search results
   Scenario: User is not created because required fields are missing
-    Given I am on the Manage Users page
-    When I click on Create User
-    And I click on Create Account
+    Given the user is on the Manage Users page
+    When the user clicks on Create User
+    And the user clicks on Create Account
     Then the following error messages are displayed:
       | Username - can't be empty |
       | Full name - Property is required but was missing |
