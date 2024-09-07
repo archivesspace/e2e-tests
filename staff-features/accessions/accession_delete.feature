@@ -7,8 +7,8 @@ Feature: Accession Delete
     When the user clicks on the checkbox of the accession
     And the user clicks on 'Delete'
     And the user clicks on 'Delete Records'
-    And the message 'Records deleted' is displayed
-    And the message 'No records found' is displayed
+    And the 'Records deleted' message is displayed
+    And the 'No records found' message is displayed
   Scenario: Accession is deleted from the view page
     Given an accession has been created
     And the user is on the accession details page

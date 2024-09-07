@@ -7,7 +7,7 @@ Feature: Create repository
     And the user fills in the Repository Short Name
     And the user fills in the Repository Name
     And the user clicks on 'Save'
-    Then the message 'Repository Created' is displayed
+    Then the 'Repository Created' message is displayed
     And the repository is created
   Scenario: Repository is not created from a view-only user
     Given the user is logged in as a view-only user

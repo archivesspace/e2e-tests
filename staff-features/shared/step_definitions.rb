@@ -44,8 +44,8 @@ When 'the user clicks on {string}' do |string|
   click_on_string string
 end
 
-When 'the user fills in {string} with {string}' do |label, value|
-  fill_in label, with: value
+When 'the user fills in Identifier' do
+  fill_in 'Identifier', with: @uuid
 end
 
 When 'the user fills in {string} with {string}' do |label, value|
@@ -56,7 +56,7 @@ When 'the user selects {string} from {string}' do |option, label|
   select option, from: label
 end
 
-Then 'the message {string} is displayed' do |string|
+Then 'the {string} message is displayed' do |string|
   expect(page).to have_text string
 end
 

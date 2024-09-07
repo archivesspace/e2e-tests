@@ -7,10 +7,6 @@ Given('the user is on the New Accession page') do
   click_on 'Accession'
 end
 
-When 'the user fills in Identifier' do
-  fill_in 'Identifier', with: @uuid
-end
-
 Then('a new accession is created') do
   expect(find('h2').text).to eq "Accession #{@uuid} Accession"
   expect(find('.alert.alert-success.with-hide-alert').text).to eq 'Accession created'
