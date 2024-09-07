@@ -64,8 +64,12 @@ Then 'the {string} message is displayed' do |string|
   expect(page).to have_text string
 end
 
+Then('the {string} created message is displayed') do |string|
+  expect(find('.alert.alert-success.with-hide-alert').text).to match /^#{string}.*created$/i
+end
+
 Then('the {string} updated message is displayed') do |string|
-  expect(find('.alert.alert-success.with-hide-alert').text).to match /^#{string}.*updated$/
+  expect(find('.alert.alert-success.with-hide-alert').text).to match /^#{string}.*updated$/i
 end
 
 Then 'the following error messages are displayed:' do |messages|
