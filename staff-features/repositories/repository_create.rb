@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 
-When 'I fill in the Repository Short Name' do
+When 'the user fills in the Repository Short Name' do
   @uuid = SecureRandom.uuid
 
   fill_in 'Repository Short Name', with: "Repository Short Name #{@uuid}"
 end
 
-When 'I fill in the Repository Name' do
+When 'the user fills in the Repository Name' do
   @uuid = SecureRandom.uuid
 
   fill_in 'Repository Name', with: "Repository Name #{@uuid}"

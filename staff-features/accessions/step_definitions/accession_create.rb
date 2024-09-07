@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-Given('I am on the New Accession page') do
+Given('the user is on the New Accession page') do
   @uuid = SecureRandom.uuid
 
   click_on 'Create'
@@ -13,10 +13,6 @@ end
 
 When('the user does not fill in all the required fields') do
   fill_in 'accession_id_0_', with: ''
-end
-
-When('the user clicks on Save') do
-  click_button 'Save'
 end
 
 Then('a new accession is created') do

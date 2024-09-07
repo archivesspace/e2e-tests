@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
-Given 'I am logged in as an admin user' do
+Given 'the user is logged in as an administrator' do
   login_admin
 end
 
-Given 'I am logged in as a view-only user' do
+Given 'the user is logged in as a view-only user' do
   @uuid = SecureRandom.uuid
 
   visit "#{STAFF_URL}/logout"
@@ -40,71 +40,71 @@ Given 'I am logged in as a view-only user' do
   click_on 'Sign In'
 end
 
-When 'I click on Delete' do
+When 'the user clicks on Delete' do
   click_on_string 'Delete'
 end
 
-When 'I click on Cancel' do
+When 'the user clicks on Cancel' do
   click_on_string 'Cancel'
 end
 
-When 'I click on Delete Records' do
+When 'the user clicks on Delete Records' do
   click_on_string 'Delete Records'
 end
 
-When 'I click on Browse' do
+When 'the user clicks on Browse' do
   click_on_string 'Browse'
 end
 
-When 'I click on Accessions' do
+When 'the user clicks on Accessions' do
   click_on_string 'Accessions'
 end
 
-When 'I click on System' do
+When 'the user clicks on System' do
   click_on_string 'System'
 end
 
-When 'I click on Manage Repositories' do
+When 'the user clicks on Manage Repositories' do
   click_on_string 'Manage Repositories'
 end
 
-When 'I click on Create Repository' do
+When 'the user clicks on Create Repository' do
   click_on_string 'Create Repository'
 end
 
-When 'I click on Save' do
+When 'the user clicks on Save' do
   click_on_string 'Save'
 end
 
-When 'I click on Save Resource' do
+When 'the user clicks on Save Resource' do
   click_on_string 'Save Resource'
 end
 
-When 'I click on Revert Changes' do
+When 'the user clicks on Revert Changes' do
   click_on_string 'Revert Changes'
 end
 
-When 'I click on Create User' do
+When 'the user clicks on Create User' do
   click_on_string 'Create User'
 end
 
-When 'I click on Create Account' do
+When 'the user clicks on Create Account' do
   click_on_string 'Create Account'
 end
 
-When 'I click on Title' do
+When 'the user clicks on Title' do
   click_on_string 'Title'
 end
 
-When 'I fill in {string} with {string}' do |label, value|
+When 'the user fills in {string} with {string}' do |label, value|
   fill_in label, with: value
 end
 
-When 'I fill in {string} with {string}' do |label, value|
+When 'the user fills in {string} with {string}' do |label, value|
   fill_in label, with: value
 end
 
-When 'I select {string} from {string}' do |option, label|
+When 'the user selects {string} from {string}' do |option, label|
   select option, from: label
 end
 

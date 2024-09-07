@@ -8,29 +8,29 @@ Given 'a resource has been created' do
   create_resource(@uuid)
 end
 
-Given 'I am on the resource edit page' do
+Given 'the user is on the resource edit page' do
   search(@uuid)
 
   click_on 'Edit'
 end
 
-When 'I check Publish?' do
+When 'the user checks Publish?' do
   find('#resource_publish_').check
 end
 
-When 'I check Restrictions Apply?' do
+When 'the user checks Restrictions Apply?' do
   find('#resource_restrictions_').check
 end
 
-When 'I fill in Repository Processing Note with {string}' do |value|
+When 'the user fills in Repository Processing Note with {string}' do |value|
   fill_in 'Repository Processing Note', with: value
 end
 
-When 'I change the resource Title' do
+When 'the user changes the resource Title' do
   fill_in 'resource_title_', with: 'Resource title chagned'
 end
 
-When 'I change the resource Identifier' do
+When 'the user changes the resource Identifier' do
   fill_in 'resource_id_0_', with: 'Resource identifier chagned'
 end
 
