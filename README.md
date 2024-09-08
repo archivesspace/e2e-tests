@@ -30,3 +30,12 @@ Then, to run the tests, open another terminal, and run:
 ```
 bundle exec cucumber HOST=localhost staff-features/
 ```
+
+### Linters
+```
+bundle exec cuke_linter
+```
+
+```
+bundle exec rubocop
+```
