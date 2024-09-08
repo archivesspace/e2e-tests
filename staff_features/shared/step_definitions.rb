@@ -46,7 +46,7 @@ Then('the {string} updated message is displayed') do |string|
   expect(find('.alert.alert-success.with-hide-alert').text).to match(/^#{string}.*updated$/i)
 end
 
-Then 'the following error messages are displayed:' do |messages|
+Then 'the following error messages are displayed' do |messages|
   messages.raw.each do |message|
     expect(page).to have_text message[0]
   end
