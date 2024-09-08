@@ -1,6 +1,6 @@
 Feature: Create User
   Background:
-    Given the user is logged in as an administrator
+    Given an administrator user is logged in
   Scenario: User is created
     When the user clicks on 'System'
     And the user clicks on 'Manage Users'

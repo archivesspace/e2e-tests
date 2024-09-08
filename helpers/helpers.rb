@@ -44,6 +44,22 @@ def login_admin
   end
 end
 
+def find_user_table_row_in_manage_user_access_page(username)
+  while true do
+    begin
+      return find 'tr', text: username
+    rescue Capybara::ElementNotFound
+      # Pass to proceed to the next page.
+    end
+
+    begin
+      find('a[title="Next"]').click
+    rescue Capybara::ElementNotFound
+      raise "User #{username} was not found in the manage user access page."
+    end
+  end
+end
+
 def create_resource(uuid)
   fill_in 'resource_title_', with: "Resource #{uuid}"
   fill_in 'resource_id_0_', with: "Resource #{uuid}"

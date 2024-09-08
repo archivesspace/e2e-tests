@@ -1,6 +1,6 @@
 Feature: Create Digital Object
   Background:
-    Given the user is logged in as an administrator
+    Given an administrator user is logged in
   Scenario: Digital Object is created
     Given the user is on the New Digital Object page
     When the user fills in 'Title' with 'Alabama: Mobile: Government Street [Cochran photos]'

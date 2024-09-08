@@ -1,6 +1,6 @@
 Feature: Accession Create
   Background:
-    Given the user is logged in as an administrator
+    Given an administrator user is logged in
   Scenario: Accession is created
     Given the user is on the New Accession page
     When the user fills in Identifier

@@ -1,6 +1,6 @@
 Feature: Create repository
-  Scenario: Repository is created from an admin user
-    Given the user is logged in as an administrator
+  Scenario: Repository can be created from an admin user
+    Given an administrator user is logged in
     When the user clicks on 'System'
     And the user clicks on 'Manage Repositories'
     And the user clicks on 'Create Repository'
@@ -8,8 +8,7 @@ Feature: Create repository
     And the user fills in the Repository Name
     And the user clicks on 'Save'
     Then the 'Repository Created' message is displayed
-    And the repository is created
-  Scenario: Repository is not created from a view-only user
-    Given the user is logged in as a view-only user
+  Scenario: Repository cannot be created from an archivist user
+    Given an archivist user is logged in
     When the user clicks on 'System'
-    Then the Manage Repositories button should not be in the dropdown menu
+    Then the dropdown menu does not have the Manage Repositories option

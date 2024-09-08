@@ -1,6 +1,6 @@
 Feature: Update Resource Basic Information
   Background:
-    Given the user is logged in as an administrator
+    Given an administrator user is logged in
     And a resource has been created
   Scenario: Successfully update resource basic information
     Given the user is on the resource edit page

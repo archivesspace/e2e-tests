@@ -1,6 +1,6 @@
 Feature: Accessions Search
   Background:
-    Given the user is logged in as an administrator
+    Given an administrator user is logged in
   Scenario: Search accession by title
     Given an accession has been created
     When the user clicks on 'Browse'
