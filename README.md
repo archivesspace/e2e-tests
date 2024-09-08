@@ -28,7 +28,7 @@ You can check if the staff interface is running on `http://localhost:8080`.
 
 Then, to run the tests, open another terminal, and run:
 ```
-bundle exec cucumber HOST=localhost staff-features/
+bundle exec cucumber HOST=localhost staff_features/
 ```
 
 ### Linters

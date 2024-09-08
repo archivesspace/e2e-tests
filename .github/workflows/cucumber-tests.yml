@@ -35,4 +35,4 @@ jobs:
         bundle exec rubocop
     - name: Run tests
       run: |
-        bundle exec cucumber HEADLESS=true HOST=localhost staff-features/
+        bundle exec cucumber HEADLESS=true HOST=localhost staff_features/
