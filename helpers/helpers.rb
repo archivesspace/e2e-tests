@@ -44,8 +44,47 @@ def login_admin
   end
 end
 
+def login_archivist
+  uuid = SecureRandom.uuid
+
+  login_admin
+
+  visit "#{STAFF_URL}/users/new"
+
+  fill_in 'user_username_', with: "archivist-user-#{uuid}"
+  fill_in 'user_name_', with: "archivist-user-#{uuid}"
+  fill_in 'user_password_', with: "archivist-user-#{uuid}"
+  fill_in 'user_confirm_password_', with: "archivist-user-#{uuid}"
+
+  find('#create_account').click
+
+  expect(page).to have_text "User Created: archivist-user-#{uuid}"
+
+  visit "#{STAFF_URL}/users/manage_access"
+
+  find_user_element = find_user_table_row_in_manage_user_access_page("archivist-user-#{uuid}")
+
+  within find_user_element do
+    click_on 'Edit Groups'
+  end
+
+  check 'repository-archivists'
+
+  click_on 'Update Account'
+
+  expect(page).to have_text 'User Saved'
+
+  visit "#{STAFF_URL}/logout"
+  visit STAFF_URL
+
+  fill_in 'username', with: "archivist-user-#{uuid}"
+  fill_in 'password', with: "archivist-user-#{uuid}"
+
+  click_on 'Sign In'
+end
+
 def find_user_table_row_in_manage_user_access_page(username)
-  while true do
+  loop do
     begin
       return find 'tr', text: username
     rescue Capybara::ElementNotFound

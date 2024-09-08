@@ -39,7 +39,7 @@ BeforeAll do
     response = Net::HTTP.get_response(URI(STAFF_URL))
 
     raise connection_error if response.code != '200'
-  rescue Errno::ECONNREFUSED, Errno::ECONNRESET => e
+  rescue Errno::ECONNREFUSED, Errno::ECONNRESET
     raise connection_error
   end
 end

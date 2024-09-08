@@ -5,53 +5,7 @@ Given 'an administrator user is logged in' do
 end
 
 Given 'an archivist user is logged in' do
-  @uuid = SecureRandom.uuid
-
-  visit "#{STAFF_URL}/logout"
-  visit STAFF_URL
-
-  fill_in 'username', with: 'admin'
-  fill_in 'password', with: 'admin'
-
-  click_on 'Sign In'
-
-  expect(page).to have_content 'Welcome to ArchivesSpace'
-  expect(page).to have_content 'Your friendly archives management tool.'
-  element = find('.global-header .user-container')
-  expect(element.text.strip).to eq 'admin'
-
-  visit "#{STAFF_URL}/users/new"
-
-  fill_in 'user_username_', with: "archivist-user-#{@uuid}"
-  fill_in 'user_name_', with: "archivist-user-#{@uuid}"
-  fill_in 'user_password_', with: "archivist-user-#{@uuid}"
-  fill_in 'user_confirm_password_', with: "archivist-user-#{@uuid}"
-
-  find('#create_account').click
-
-  expect(page).to have_text "User Created: archivist-user-#{@uuid}"
-
-  visit "#{STAFF_URL}/users/manage_access"
-
-  find_user_element = find_user_table_row_in_manage_user_access_page("archivist-user-#{@uuid}")
-
-  within find_user_element do
-    click_on 'Edit Groups'
-  end
-
-  check 'repository-archivists'
-
-  click_on 'Update Account'
-
-  expect(page).to have_text 'User Saved'
-
-  visit "#{STAFF_URL}/logout"
-  visit STAFF_URL
-
-  fill_in 'username', with: "archivist-user-#{@uuid}"
-  fill_in 'password', with: "archivist-user-#{@uuid}"
-
-  click_on 'Sign In'
+  login_archivist
 end
 
 When 'the user clicks on {string}' do |string|
@@ -79,11 +33,11 @@ Then 'the {string} message is displayed' do |string|
 end
 
 Then('the {string} created message is displayed') do |string|
-  expect(find('.alert.alert-success.with-hide-alert').text).to match /^#{string}.*created$/i
+  expect(find('.alert.alert-success.with-hide-alert').text).to match(/^#{string}.*created$/i)
 end
 
 Then('the {string} updated message is displayed') do |string|
-  expect(find('.alert.alert-success.with-hide-alert').text).to match /^#{string}.*updated$/i
+  expect(find('.alert.alert-success.with-hide-alert').text).to match(/^#{string}.*updated$/i)
 end
 
 Then 'the following error messages are displayed:' do |messages|
