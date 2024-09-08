@@ -12,6 +12,12 @@ When 'the user clicks on {string}' do |string|
   click_on_string string
 end
 
+When 'the user clicks on {string} in the confirm popup' do |string|
+  within '#confirmChangesModal' do
+    click_on_string string
+  end
+end
+
 When 'the user fills in Identifier' do
   fill_in 'Identifier', with: @uuid
 end
