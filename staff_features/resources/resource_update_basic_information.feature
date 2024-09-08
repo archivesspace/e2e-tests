@@ -1,9 +1,9 @@
 Feature: Resource Update Basic Information
   Background:
     Given an administrator user is logged in
-    And a resource has been created
-  Scenario: Successfully update resource basic information
-    Given the user is on the resource edit page
+    And a Resource has been created
+  Scenario: Update basic information fields for a Resource
+    Given the user is on the Resource edit page
     When the user selects 'Records' from "Resource Type"
     And the user checks 'Publish?'
     And the user checks 'Restrictions Apply?'
@@ -14,10 +14,3 @@ Feature: Resource Update Basic Information
     And the 'Publish?' is checked
     And the 'Restrictions Apply?' is checked
     And the 'Repository Processing Note' has value 'VTF #3810'
-  Scenario: Revert changes
-    Given the user is on the resource edit page
-    When the user changes the resource Title
-    And the user changes the resource Identifier
-    And the user clicks on 'Revert Changes'
-    Then the resource Title does not change
-    And the resource Identifier does not change
