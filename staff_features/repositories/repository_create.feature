@@ -1,4 +1,4 @@
-Feature: Create repository
+Feature: Repository Create
   Scenario: Repository can be created from an admin user
     Given an administrator user is logged in
     When the user clicks on 'System'

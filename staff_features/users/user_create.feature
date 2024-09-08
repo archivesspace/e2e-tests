@@ -1,4 +1,4 @@
-Feature: Create User
+Feature: User Create
   Background:
     Given an administrator user is logged in
   Scenario: User is created

@@ -1,4 +1,4 @@
-Feature: Update Resource Basic Information
+Feature: Resource Update Basic Information
   Background:
     Given an administrator user is logged in
     And a resource has been created

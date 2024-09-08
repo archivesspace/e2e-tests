@@ -1,4 +1,4 @@
-Feature: Create Digital Object
+Feature: Digital Object Create
   Background:
     Given an administrator user is logged in
   Scenario: Digital Object is created
