@@ -29,7 +29,11 @@ When 'the user clicks on the checkbox of the Accession' do
     check 'multiselect-item'
   end
 
-  expect(find('button', text: 'Delete').disabled?).to eq false
+  if find('button', text: 'Delete').disabled?
+    sleep 1
+
+    expect(find('button', text: 'Delete').disabled?).to eq false
+  end
 end
 
 When 'the user confirms the delete action' do
