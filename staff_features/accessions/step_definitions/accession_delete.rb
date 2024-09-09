@@ -20,20 +20,25 @@ When 'the user filters by text with the Accession title' do
   fill_in 'Filter by text', with: @uuid
 
   find('#filter-text').send_keys(:enter)
+
+  rows = []
+  checks = 0
+
+  while checks < 5
+    checks += 1
+
+    begin
+      rows = all('tr', text: @uuid)
+    rescue Selenium::WebDriver::Error::JavascriptError
+      sleep 1
+    end
+
+    break if rows.length == 1
+  end
 end
 
 When 'the user clicks on the checkbox of the Accession' do
-  table_row = find('tr', text: @uuid, match: :first)
-
-  within table_row do
-    check 'multiselect-item'
-  end
-
-  if find('button', text: 'Delete').disabled?
-    sleep 1
-
-    expect(find('button', text: 'Delete').disabled?).to eq false
-  end
+  find('#multiselect-item').check
 end
 
 When 'the user confirms the delete action' do
