@@ -12,7 +12,7 @@ jobs:
       uses: actions/checkout@v2
     - name: Set up Docker
       run: |
-        docker compose -f docker-compose.yml up --quiet-pull --detach
+        docker compose -f docker-compose.yml up --quiet-pull
     - name: Wait until the web server is ready
       run: until curl -s -f -o /dev/null "http://localhost:8080"; do sleep 5; done
     - name: Set up Ruby
