@@ -48,7 +48,7 @@ When 'the user filters by text with the common title keyword used by both Access
   expect(search_result_rows[1]).to have_text @accession_b_uuid
 end
 
-Then 'the two Accessions are sorted by descending title' do
+Then 'the two Accessions are displayed sorted by descending title' do
   search_result_rows = all('#tabledSearchResults tbody tr')
 
   expect(search_result_rows.length).to eq 2
