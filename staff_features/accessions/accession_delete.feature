@@ -6,7 +6,7 @@ Feature: Accession Delete
      When the user clicks on 'Browse'
       And the user clicks on 'Accessions'
       And the user filters by text with the Accession title
-      And the user clicks on the checkbox of the Accession
+      And the user checks the checkbox of the Accession
       And the user clicks on 'Delete'
       And the user clicks on 'Delete Records'
      Then the 'Records deleted' message is displayed

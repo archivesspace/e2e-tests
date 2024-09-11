@@ -18,4 +18,4 @@ Feature: Accessions Search
     Given two Accessions have been created with a common keyword in their title
      When the user filters by text with the common title keyword used by both Accessions
       And the user clicks on 'Title'
-     Then the two Accessions are sorted by descending title
+     Then the two Accessions are displayed sorted by descending title

@@ -37,7 +37,7 @@ When 'the user filters by text with the Accession title' do
   end
 end
 
-When 'the user clicks on the checkbox of the Accession' do
+When 'the user checks the checkbox of the Accession' do
   find('#multiselect-item').check
 end
 

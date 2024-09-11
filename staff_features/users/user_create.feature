@@ -5,10 +5,10 @@ Feature: User Create
      When the user clicks on 'System'
       And the user clicks on 'Manage Users'
       And the user clicks on 'Create User'
-      And the user fills in the Username
-      And the user fills in the Full name
-      And the user fills in the Password
-      And the user fills in the Confirm password
+      And the user fills in 'Username'
+      And the user fills in 'Full name'
+      And the user fills in 'Password'
+      And the user fills in 'Confirm password'
       And the user clicks on 'Create Account'
      Then the 'User Created' message is displayed
   Scenario: User is not created because required fields are missing

@@ -18,8 +18,10 @@ When 'the user clicks on {string} in the confirm popup' do |string|
   end
 end
 
-When 'the user fills in Identifier' do
-  fill_in 'Identifier', with: @uuid
+When 'the user fills in {string}' do |label|
+  @uuid = SecureRandom.uuid if @uuid.nil?
+
+  fill_in label, with: @uuid
 end
 
 When 'the user fills in {string} with {string}' do |label, value|
