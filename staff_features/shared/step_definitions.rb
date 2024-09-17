@@ -2,6 +2,8 @@
 
 Given 'an administrator user is logged in' do
   login_admin
+
+  ensure_test_repository_exists
 end
 
 Given 'an archivist user is logged in' do
