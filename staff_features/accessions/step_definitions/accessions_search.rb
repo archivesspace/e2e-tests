@@ -30,7 +30,7 @@ Given 'two Accessions have been created with a common keyword in their title' do
   click_on 'Save'
 end
 
-When 'the user filters by text with the common title keyword used by both Accessions' do
+Given 'the two Accessions are displayed sorted by ascending title' do
   visit "#{STAFF_URL}/accessions"
 
   fill_in 'filter-text', with: @shared_accession_uuid
