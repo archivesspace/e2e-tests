@@ -14,6 +14,12 @@ Given 'the user is on the Accession view page' do
   within table_row do
     click_on 'View'
   end
+
+  input = find('input#uri')
+  expect(input.value).to include 'repositories'
+  expect(input.value).to include 'accession'
+
+  @accession_id = input.value.split('/').pop
 end
 
 When 'the user filters by text with the Accession title' do
@@ -39,6 +45,16 @@ end
 
 When 'the user checks the checkbox of the Accession' do
   find('#multiselect-item').check
+
+  within '#tabledSearchResults' do
+    row = find('tr.selected')
+
+    input = row.find('input')
+    expect(input.value).to include 'repositories'
+    expect(input.value).to include 'accession'
+
+    @accession_id = input.value.split('/').pop
+  end
 end
 
 When 'the user confirms the delete action' do
@@ -53,4 +69,13 @@ end
 
 Then 'the Accessions page is displayed' do
   expect(find('h2').text).to have_text 'Accessions'
+end
+
+Then 'the Accession is deleted' do
+  expect(@accession_id).to_not eq nil
+
+  visit "#{STAFF_URL}/accessions/#{@accession_id}/edit"
+
+  expect(find('h2').text).to eq 'Record Not Found'
+  expect(page).to have_text "The record you've tried to access may no longer exist or you may not have permission to view it."
 end
