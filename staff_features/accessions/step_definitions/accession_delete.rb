@@ -77,5 +77,7 @@ Then 'the Accession is deleted' do
   visit "#{STAFF_URL}/accessions/#{@accession_id}/edit"
 
   expect(find('h2').text).to eq 'Record Not Found'
-  expect(page).to have_text "The record you've tried to access may no longer exist or you may not have permission to view it."
+
+  expected_text = "The record you've tried to access may no longer exist or you may not have permission to view it."
+  expect(page).to have_text expected_text
 end
