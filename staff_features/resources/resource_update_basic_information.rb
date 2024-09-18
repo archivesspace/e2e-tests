@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
 Given 'a Resource has been created' do
-  @uuid = SecureRandom.uuid
-
   visit "#{STAFF_URL}/resources/new"
 
   create_resource(@uuid)

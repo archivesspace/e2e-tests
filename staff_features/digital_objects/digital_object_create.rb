@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
 Given('the user is on the New Digital Object page') do
-  @uuid = SecureRandom.uuid
-
   visit "#{STAFF_URL}/digital_objects/new"
 end
 

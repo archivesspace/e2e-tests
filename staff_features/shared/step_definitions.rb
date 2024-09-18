@@ -1,5 +1,9 @@
 # frozen_string_literal: true
 
+Before do
+  @uuid = SecureRandom.uuid
+end
+
 Given 'an administrator user is logged in' do
   login_admin
 

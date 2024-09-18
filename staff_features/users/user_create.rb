@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
 When 'the user fills in the Username' do
-  @uuid = SecureRandom.uuid
-
   fill_in 'Username', with: "Username #{@uuid}"
 end
 
