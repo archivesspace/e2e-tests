@@ -16,6 +16,7 @@ Feature: Accessions Search
      Then the Accession view page is displayed
   Scenario: Sort Accessions by title
     Given two Accessions have been created with a common keyword in their title
+      And the two Accessions are displayed sorted by ascending title
      When the user filters by text with the common title keyword used by both Accessions
       And the user clicks on 'Title'
      Then the two Accessions are displayed sorted by descending title

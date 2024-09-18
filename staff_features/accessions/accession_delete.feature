@@ -10,6 +10,7 @@ Feature: Accession Delete
       And the user clicks on 'Delete'
       And the user clicks on 'Delete Records'
      Then the 'Records deleted' message is displayed
+      And the Accession is deleted
   Scenario: Accession is deleted from the view page
     Given the user is on the Accession view page
      When the user clicks on 'Delete'

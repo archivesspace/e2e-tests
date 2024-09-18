@@ -10,5 +10,4 @@ Feature: Repository Create
      Then the 'Repository Created' message is displayed
   Scenario: Repository cannot be created from an archivist user
     Given an archivist user is logged in
-     When the user clicks on 'System'
-     Then the 'Manage Repositories' option is not displayed in the dropdown menu
+     Then the archivist user cannot manage repositories
