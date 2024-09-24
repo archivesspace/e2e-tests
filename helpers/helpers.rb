@@ -58,6 +58,15 @@ def login_archivist
   fill_in 'password', with: "archivist-user-#{uuid}"
 
   click_on 'Sign In'
+
+  begin
+    element = find('.alert.alert-danger.with-hide-alert')
+    if element.text == 'Login attempt failed'
+      raise "Login failed for user: archivist-user-#{uuid}"
+    end
+  rescue Capybara::ElementNotFound
+    # Pass on successful login
+  end
 end
 
 def ensure_test_repository_exists
