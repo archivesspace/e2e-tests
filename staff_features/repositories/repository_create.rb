@@ -11,10 +11,10 @@ Then 'the archivist user cannot manage repositories' do
 
   rows = all('#tabledSearchResults tbody tr')
 
-  expect(rows.length > 0).to eq true
+  expect(rows.length.positive?).to eq true
 
   within rows[0] do
-    click_on "View"
+    click_on 'View'
   end
 
   respository_id = current_url.split('/').pop

@@ -61,9 +61,7 @@ def login_archivist
 
   begin
     element = find('.alert.alert-danger.with-hide-alert')
-    if element.text == 'Login attempt failed'
-      raise "Login failed for user: archivist-user-#{uuid}"
-    end
+    raise "Login failed for user: archivist-user-#{uuid}" if element.text == 'Login attempt failed'
   rescue Capybara::ElementNotFound
     # Pass on successful login
   end
