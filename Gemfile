@@ -1,8 +1,11 @@
 # frozen_string_literal: true
 
-source "https://rubygems.org"
+source 'https://rubygems.org'
 
 gem 'byebug'
 gem 'capybara'
 gem 'cucumber'
+gem 'cuke_linter'
+gem 'rspec-expectations'
+gem 'rubocop-packaging', require: false
 gem 'selenium-webdriver'
