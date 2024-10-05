@@ -10,7 +10,7 @@ Feature: User Create
       And the user fills in 'Password'
       And the user fills in 'Confirm password'
       And the user clicks on 'Create Account'
-     Then the 'User Created' message is displayed
+     Then the 'User' created message is displayed
   Scenario: User is not created because required fields are missing
      When the user clicks on 'System'
       And the user clicks on 'Manage Users'
