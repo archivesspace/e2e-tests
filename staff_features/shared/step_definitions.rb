@@ -8,6 +8,7 @@ Given 'an administrator user is logged in' do
   login_admin
 
   ensure_test_repository_exists
+  ensure_test_user_exists
 end
 
 Given 'an archivist user is logged in' do
@@ -52,6 +53,10 @@ end
 
 Then('the {string} updated message is displayed') do |string|
   expect(find('.alert.alert-success.with-hide-alert').text).to match(/^#{string}.*updated$/i)
+end
+
+Then('the {string} deleted message is displayed') do |string|
+  expect(find('.alert.alert-success.with-hide-alert').text).to match(/^#{string}.*deleted$/i)
 end
 
 Then 'the following error messages are displayed' do |messages|

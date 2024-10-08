@@ -64,7 +64,7 @@ When 'the user confirms the delete action' do
 end
 
 Then 'the user is still on the Accession view page' do
-  expect(find('h2').text).to eq "Accession #{@uuid} Accession"
+  expect(find('h2').text).to eq "Accession Title #{@uuid} Accession"
 end
 
 Then 'the Accessions page is displayed' do
