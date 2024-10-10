@@ -29,6 +29,13 @@ Capybara.register_driver :firefox do |app|
   Capybara::Selenium::Driver.new(app, browser: :firefox, options:)
 end
 
+Capybara.register_driver :firefox_alternative_session do |app|
+  options = Selenium::WebDriver::Firefox::Options.new
+  options.add_argument(HEADLESS)
+
+  Capybara::Selenium::Driver.new(app, browser: :firefox, options:)
+end
+
 Capybara.default_driver = :firefox
 Capybara.default_max_wait_time = 10
 

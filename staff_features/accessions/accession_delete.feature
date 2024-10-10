@@ -16,7 +16,7 @@ Feature: Accession Delete
      When the user clicks on 'Delete'
       And the user clicks on 'Delete' in the confirm popup
      Then the Accessions page is displayed
-      And the 'Accession deleted' message is displayed
+      And the 'Accession' deleted message is displayed
       And the Accession is deleted
   Scenario: Cancel Accession delete from the view page
     Given the user is on the Accession view page
