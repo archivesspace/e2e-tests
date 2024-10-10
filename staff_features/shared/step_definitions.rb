@@ -31,6 +31,10 @@ When 'the user fills in {string}' do |label|
   fill_in label, with: @uuid
 end
 
+When 'the user clears the {string} field' do |label|
+  fill_in label, with: ''
+end
+
 When 'the user fills in {string} with {string}' do |label, value|
   fill_in label, with: value
 end

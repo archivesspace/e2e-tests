@@ -50,7 +50,7 @@ Feature: Accession Edit
        | Failed to save your changes - This record has been updated by another user. Please refresh the page to access the latest version.|
   Scenario: Accession update fails due to missing required field
     Given the Accession is opened in edit mode
-     When the user fills in 'Identifier' with ''
+     When the user clears the 'Identifier' field
       And the user clicks on 'Save'
      Then the following error message is displayed
        | Identifier - Property is required but was missing |
