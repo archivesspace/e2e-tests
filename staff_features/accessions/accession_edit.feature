@@ -31,7 +31,7 @@ Feature: Accession Edit
     Given the Accession is opened in edit mode
      When the user fills in 'Date' with '2024-13-15'
       And the user clicks on 'Save'
-     Then the following error messages are displayed
+     Then the following error message is displayed
        | Accession Date - Not a valid date  |
       And the Accession Date field has the original value
   Scenario: Accession update succeeds for User A with a warning for other user editing it
@@ -52,6 +52,6 @@ Feature: Accession Edit
     Given the Accession is opened in edit mode
      When the user fills in 'Identifier' with ''
       And the user clicks on 'Save'
-     Then the following error messages are displayed
+     Then the following error message is displayed
        | Identifier - Property is required but was missing |
       And the Identifier field has the original value

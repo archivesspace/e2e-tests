@@ -65,6 +65,14 @@ Then 'the following error messages are displayed' do |messages|
   end
 end
 
+Then 'the following error message is displayed' do |messages|
+  expect(messages.raw.length).to eq 1
+
+  messages.raw.each do |message|
+    expect(page).to have_text message[0]
+  end
+end
+
 Then 'the {string} has value {string}' do |label, value|
   expect(page).to have_field(label, with: value)
 end
