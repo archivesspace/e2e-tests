@@ -107,6 +107,22 @@ def ensure_test_user_exists
   visit STAFF_URL
 end
 
+def ensure_test_agent_exists
+  visit STAFF_URL
+
+  fill_in 'global-search-box', with: 'test_agent'
+  find('#global-search-button').click
+
+  begin
+    find 'tr', text: 'test_agent'
+  rescue Capybara::ElementNotFound
+    visit "#{STAFF_URL}/agents/agent_person/new"
+    check 'Publish'
+    fill_in 'Primary Part of Name', with: 'test_agent'
+    click_on 'Save'
+  end
+end
+
 def find_user_table_row_in_manage_user_access_page(username)
   loop do
     begin
