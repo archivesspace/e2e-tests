@@ -22,7 +22,7 @@ Feature: Add Event to an Accession
       And the user fills in 'Role'
       And the user clicks on 'Cancel'
      Then the Event is not created
-  Scenario: Add Event fails due to missing required field
+  Scenario: Add Event fails due to missing all required fields
     Given the Accession is opened in Add Event mode
      When the user clicks on 'Save'
      Then the following error messages are displayed
@@ -30,3 +30,18 @@ Feature: Add Event to an Accession
        | Begin - is required unless an expression or an end date is given |
        | Agents - Property is required but was missing |
        | Role - Property is required but was missing |
+  Scenario: Add Event fails due to missing required fields - only 'Expression' is completed
+    Given the Accession is opened in Add Event mode
+     When the user fills in 'Expression'
+      And the user clicks on 'Save'
+     Then the following error messages are displayed
+      | Agents - Property is required but was missing |
+      | Role - Property is required but was missing |
+  Scenario: Add Event fails due to invalid date format
+    Given the Accession is opened in Add Event mode
+     When the user fills in 'Begin' with '2024-13-15'
+      And the user fills in 'Agents'
+      And the user fills in 'Role'
+      And the user clicks on 'Save'
+    Then the following error message is displayed
+      | Begin - Not a valid date |
