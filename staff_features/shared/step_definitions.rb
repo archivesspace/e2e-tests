@@ -8,6 +8,7 @@ Given 'an administrator user is logged in' do
   login_admin
 
   ensure_test_repository_exists
+  ensure_test_agent_exists
 end
 
 Given 'an archivist user is logged in' do
@@ -16,6 +17,12 @@ end
 
 When 'the user clicks on {string}' do |string|
   click_on_string string
+end
+
+When 'the user clicks on {string} again' do |string|
+  elements = all(:xpath, "//*[contains(text(), '#{string}')]")
+
+  elements[1].click
 end
 
 When 'the user clicks on {string} in the confirm popup' do |string|
@@ -70,4 +77,12 @@ end
 
 Then 'the {string} is checked' do |label|
   expect(page).to have_field(label, checked: true)
+end
+
+Then 'the following error message is displayed' do |messages|
+  expect(messages.raw.length).to eq 1
+
+  messages.raw.each do |message|
+    expect(page).to have_text message[0]
+  end
 end
