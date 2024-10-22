@@ -19,10 +19,11 @@ When 'the user clicks on {string}' do |string|
   click_on_string string
 end
 
-When 'the user clicks on {string} again' do |string|
-  elements = all(:xpath, "//*[contains(text(), '#{string}')]")
-
-  elements[1].click
+When 'the user clicks on {string} in the dropdown menu' do |string|
+  within '.dropdown-menu' do
+    elements = all(:xpath, "//*[contains(text(), '#{string}')]")
+    elements[1].click
+  end
 end
 
 When 'the user clicks on {string} in the confirm popup' do |string|
@@ -41,8 +42,28 @@ When 'the user fills in {string} with {string}' do |label, value|
   fill_in label, with: value
 end
 
+When 'the user fills in {string} with {string} in the {string} form' do |label, value, form_title|
+  section_title = find('h3', text: form_title)
+  section = section_title.ancestor('section')
+  expect(section[:id]).to_not eq nil
+
+  within section do
+    fill_in label, with: value
+  end
+end
+
 When 'the user selects {string} from {string}' do |option, label|
   select option, from: label
+end
+
+When 'the user selects {string} from {string} in the {string} form' do |option, label, form_title|
+  section_title = find('h3', text: form_title)
+  section = section_title.ancestor('section')
+  expect(section[:id]).to_not eq nil
+
+  within section do
+    select option, from: label
+  end
 end
 
 When 'the user checks {string}' do |label|
