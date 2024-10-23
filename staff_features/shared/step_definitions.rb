@@ -18,6 +18,12 @@ When 'the user clicks on {string}' do |string|
   click_on_string string
 end
 
+When 'the user clicks on {string} in the spawn dropdown menu' do |string|
+  within '#spawn-dropdown' do
+    click_on_string string
+  end
+end
+
 When 'the user clicks on {string} in the confirm popup' do |string|
   within '#confirmChangesModal' do
     click_on_string string
@@ -34,8 +40,28 @@ When 'the user fills in {string} with {string}' do |label, value|
   fill_in label, with: value
 end
 
+When 'the user fills in {string} with {string} in the {string} form' do |label, value, form_title|
+  section_title = find('h3', text: form_title)
+  section = section_title.ancestor('section')
+  expect(section[:id]).to_not eq nil
+
+  within section do
+    fill_in label, with: value
+  end
+end
+
 When 'the user selects {string} from {string}' do |option, label|
   select option, from: label
+end
+
+When 'the user selects {string} from {string} in the {string} form' do |option, label, form_title|
+  section_title = find('h3', text: form_title)
+  section = section_title.ancestor('section')
+  expect(section[:id]).to_not eq nil
+
+  within section do
+    select option, from: label
+  end
 end
 
 When 'the user checks {string}' do |label|
@@ -54,6 +80,12 @@ Then('the {string} updated message is displayed') do |string|
   expect(find('.alert.alert-success.with-hide-alert').text).to match(/^#{string}.*updated$/i)
 end
 
+Then('the following info message is displayed') do |messages|
+  messages.raw.each do |message|
+    expect(page).to have_text message[0]
+  end
+end
+
 Then 'the following error messages are displayed' do |messages|
   messages.raw.each do |message|
     expect(page).to have_text message[0]
@@ -70,4 +102,12 @@ end
 
 Then 'the {string} is checked' do |label|
   expect(page).to have_field(label, checked: true)
+end
+
+Then 'the following error message is displayed' do |messages|
+  expect(messages.raw.length).to eq 1
+
+  messages.raw.each do |message|
+    expect(page).to have_text message[0]
+  end
 end
