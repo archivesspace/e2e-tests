@@ -17,7 +17,7 @@ Feature: Spawning a new accession record from an existing accession record
       And the new accession record is not linked to the original accession
   Scenario: Successfully spawn a new accession record from an existing accession record - linked
     Given the user is on the New Accession page spawned from the original accession
-     When the user fills in 'Identifier' with a unique identifier
+     When the user fills in 'Identifier' with 'a unique identifier' in the 'Basic Information' form
       And the user adds links to the original accession in the 'Related Accessions' form
       And the user clicks on 'Save'
      Then the Accession is created
