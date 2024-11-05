@@ -122,11 +122,11 @@ When 'User A clicks on {string}' do |string|
 end
 
 When 'User A changes the {string} field' do |field|
-  fill_in field, with: SecureRandom.uuid
+  fill_in field, with: SecureRandom.uuid, match: :first
 end
 
 When 'User B changes the {string} field' do |field|
-  @user_b_session.fill_in field, with: SecureRandom.uuid
+  @user_b_session.fill_in field, with: SecureRandom.uuid, match: :first
 end
 
 When 'User B clicks on {string}' do |string|

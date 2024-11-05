@@ -27,7 +27,7 @@ Feature: Accession Edit
      Then the Accession Title field has the original value
   Scenario: Accession update fails due to invalid date input
     Given the Accession is opened in edit mode
-     When the user fills in 'Date' with '2024-13-15'
+     When the user fills in 'Accession Date' with '2024-13-15'
       And the user clicks on 'Save'
      Then the following error message is displayed
        | Accession Date - Not a valid date  |

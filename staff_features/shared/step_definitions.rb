@@ -10,6 +10,8 @@ Given 'an administrator user is logged in' do
   ensure_test_repository_exists
   ensure_test_user_exists
   ensure_test_agent_exists
+  ensure_test_subject_exists
+  ensure_test_classification_exists
 end
 
 Given 'an archivist user is logged in' do
@@ -42,15 +44,15 @@ end
 When 'the user fills in {string}' do |label|
   @uuid = SecureRandom.uuid if @uuid.nil?
 
-  fill_in label, with: @uuid
+  fill_in label, with: @uuid, match: :first
 end
 
 When 'the user clears the {string} field' do |label|
-  fill_in label, with: ''
+  fill_in label, with: '', match: :first
 end
 
 When 'the user fills in {string} with {string}' do |label, value|
-  fill_in label, with: value
+  fill_in label, with: value, match: :first
 end
 
 When 'the user fills in {string} with {string} in the {string} form' do |label, value, form_title|
@@ -64,7 +66,7 @@ When 'the user fills in {string} with {string} in the {string} form' do |label, 
 end
 
 When 'the user selects {string} from {string}' do |option, label|
-  select option, from: label
+  select option, from: label, match: :first
 end
 
 When 'the user selects {string} from {string} in the {string} form' do |option, label, form_title|
@@ -78,15 +80,15 @@ When 'the user selects {string} from {string} in the {string} form' do |option, 
 end
 
 When 'the user checks {string}' do |label|
-  check label
+  check label, match: :first
 end
 
 When 'the user changes the {string} field to {string}' do |field, value|
-  fill_in field, with: value
+  fill_in field, with: value, match: :first
 end
 
 When 'the user changes the {string} field' do |field|
-  fill_in field, with: SecureRandom.uuid
+  fill_in field, with: SecureRandom.uuid, match: :first
 end
 
 Then('the {string} created message is displayed') do |string|

@@ -1,9 +1,5 @@
 # frozen_string_literal: true
 
-Given 'an Accession has been created' do
-  create_accession(@uuid)
-end
-
 Then 'the Accession is in the search results' do
   expect(page).to have_css('tr', text: @uuid)
 end

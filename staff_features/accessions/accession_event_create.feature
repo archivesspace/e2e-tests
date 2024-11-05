@@ -13,7 +13,7 @@ Feature: Accession Event Create
       And the user fills in 'Begin' with '2020-01-01' in the 'Event Date/Time' form
       And the user links an Agent
       And the user clicks on 'Save'
-     Then the 'Event Created' message is displayed
+     Then the 'Event' created message is displayed
   Scenario: Accession Event is not created due to missing required fields
     Given the New Event page is open for an Accession
      When the user selects 'Single' from 'Type' in the 'Event Date/Time' form
