@@ -55,7 +55,7 @@ Then 'the Accession is opened in the edit mode' do
 end
 
 Then 'the field {string} has value {string}' do |field, value|
-  expect(page).to have_field(field, with: value)
+  expect(page).to have_field(field, with: value, match: :first)
 end
 
 Then 'the Accession Title field has the original value' do
@@ -67,7 +67,7 @@ end
 Then 'the Accession Date field has the original value' do
   visit "#{STAFF_URL}/accessions/#{@accession_id}/edit"
 
-  expect(page).to have_field('Accession Date', with: ORIGINAL_ACCESSION_DATE)
+  expect(find('#accession_accession_date_').value).to eq ORIGINAL_ACCESSION_DATE
 end
 
 When 'the Accession Identifier field has the original value' do

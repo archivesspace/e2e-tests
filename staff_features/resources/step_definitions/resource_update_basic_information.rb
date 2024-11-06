@@ -7,9 +7,7 @@ Given 'a Resource has been created' do
 end
 
 Given 'the user is on the Resource edit page' do
-  search(@uuid)
-
-  click_on 'Edit'
+  visit "#{STAFF_URL}/resources/#{@resource_id}/edit"
 end
 
 Then 'Repository Processing Note has value {string}' do |value|

@@ -63,10 +63,15 @@ When 'the user clicks on {string} in the transfer form' do |string|
 end
 
 When 'the user clicks on {string} in the dropdown menu' do |string|
-  dropdown_menu = find('.dropdown-menu')
+  within '.dropdown-menu' do |dropdown_menu|
+    elements = dropdown_menu.all(:xpath, ".//*[contains(text(), '#{string}')]")
 
-  within dropdown_menu do
-    click_on_string string
+    elements.each do |element|
+      if (element.tag_name == 'button' || element.tag_name == 'a') && element.text == string
+        element.click
+        break
+      end
+    end
   end
 end
 

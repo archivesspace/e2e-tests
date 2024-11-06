@@ -197,6 +197,25 @@ def create_resource(uuid)
   find('button', text: 'Save Resource', match: :first).click
 
   expect(page).to have_text "Resource Resource #{uuid} created"
+
+  uri_parts = current_url.split('/')
+  uri_parts.pop
+  @resource_id = uri_parts.pop
+
+  create_resource_archival_object(uuid)
+end
+
+def create_resource_archival_object(uuid)
+  click_on 'Add Child'
+
+  expect(page).to have_css '#archival_object_title_'
+
+  fill_in 'Title', with: "Archival Object #{uuid}"
+  fill_in 'Component Unique Identifier', with: uuid
+  select 'Class', from: 'Level of Description'
+
+  find('button', text: 'Save Archival Object', match: :first).click
+  expect(page).to have_text "Archival Object Archival Object #{uuid} on Resource Resource #{uuid} created"
 end
 
 def create_accession(uuid)
