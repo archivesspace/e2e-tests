@@ -9,14 +9,14 @@ Feature: Accession Delete
       And the user checks the checkbox of the Accession
       And the user clicks on 'Delete'
       And the user clicks on 'Delete Records'
-     Then the 'Records deleted' message is displayed
+     Then the 'Records' deleted message is displayed
       And the Accession is deleted
   Scenario: Accession is deleted from the view page
     Given the user is on the Accession view page
      When the user clicks on 'Delete'
       And the user clicks on 'Delete' in the confirm popup
      Then the Accessions page is displayed
-      And the 'Accession deleted' message is displayed
+      And the 'Accession' deleted message is displayed
       And the Accession is deleted
   Scenario: Cancel Accession delete from the view page
     Given the user is on the Accession view page

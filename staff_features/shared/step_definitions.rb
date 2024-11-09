@@ -8,6 +8,7 @@ Given 'an administrator user is logged in' do
   login_admin
 
   ensure_test_repository_exists
+  ensure_test_user_exists
 end
 
 Given 'an archivist user is logged in' do
@@ -30,6 +31,10 @@ When 'the user fills in {string}' do |label|
   fill_in label, with: @uuid
 end
 
+When 'the user clears the {string} field' do |label|
+  fill_in label, with: ''
+end
+
 When 'the user fills in {string} with {string}' do |label, value|
   fill_in label, with: value
 end
@@ -42,19 +47,35 @@ When 'the user checks {string}' do |label|
   check label
 end
 
-Then 'the {string} message is displayed' do |string|
-  expect(page).to have_text string
+When 'the user changes the {string} field to {string}' do |field, value|
+  fill_in field, with: value
+end
+
+When 'the user changes the {string} field' do |field|
+  fill_in field, with: SecureRandom.uuid
 end
 
 Then('the {string} created message is displayed') do |string|
-  expect(find('.alert.alert-success.with-hide-alert').text).to match(/^#{string}.*created$/i)
+  expect(find('.alert.alert-success.with-hide-alert').text).to match(/^#{string}.*created.*$/i)
 end
 
 Then('the {string} updated message is displayed') do |string|
   expect(find('.alert.alert-success.with-hide-alert').text).to match(/^#{string}.*updated$/i)
 end
 
+Then('the {string} deleted message is displayed') do |string|
+  expect(find('.alert.alert-success.with-hide-alert').text).to match(/^#{string}.*deleted$/i)
+end
+
 Then 'the following error messages are displayed' do |messages|
+  messages.raw.each do |message|
+    expect(page).to have_text message[0]
+  end
+end
+
+Then 'the following error message is displayed' do |messages|
+  expect(messages.raw.length).to eq 1
+
   messages.raw.each do |message|
     expect(page).to have_text message[0]
   end

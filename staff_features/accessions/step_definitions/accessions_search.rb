@@ -1,9 +1,7 @@
 # frozen_string_literal: true
 
 Given 'an Accession has been created' do
-  visit "#{STAFF_URL}/accessions/new"
-  fill_in 'accession_id_0_', with: "Accession #{@uuid}"
-  click_on 'Save'
+  create_accession(@uuid)
 end
 
 Then 'the Accession is in the search results' do
@@ -11,7 +9,7 @@ Then 'the Accession is in the search results' do
 end
 
 Then 'the Accession view page is displayed' do
-  expect(find('h2').text).to eq "Accession #{@uuid} Accession"
+  expect(find('h2').text).to eq "Accession Title #{@uuid} Accession"
 end
 
 Given 'two Accessions have been created with a common keyword in their title' do

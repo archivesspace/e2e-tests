@@ -67,9 +67,8 @@ def login_archivist
   end
 end
 
+# Ensure the system has at least one repository
 def ensure_test_repository_exists
-  # Ensure the system has at least one repository
-
   element = find('.alert.alert-info.with-hide-alert')
 
   if element.text == 'To create your first Repository, click the System menu above and then Manage Repositories.'
@@ -89,6 +88,23 @@ def ensure_test_repository_exists
   end
 rescue Capybara::ElementNotFound
   # Continue
+end
+
+def ensure_test_user_exists
+  visit "#{STAFF_URL}/users/new"
+
+  fill_in 'user_username_', with: 'test'
+  fill_in 'user_name_', with: 'test'
+  fill_in 'user_password_', with: 'test'
+  fill_in 'user_confirm_password_', with: 'test'
+  check 'user_is_admin_'
+
+  click_on 'Create Account', match: :first
+
+  raise 'Could not create test user' if page.has_text?('User not created') &&
+                                        !page.has_text?("Username - Username 'test' is already in use")
+
+  visit STAFF_URL
 end
 
 def find_user_table_row_in_manage_user_access_page(username)
@@ -132,6 +148,17 @@ def create_resource(uuid)
   find('button', text: 'Save Resource', match: :first).click
 
   expect(page).to have_text "Resource Resource #{uuid} created"
+end
+
+def create_accession(uuid)
+  visit "#{STAFF_URL}/accessions/new"
+
+  fill_in 'accession_id_0_', with: "Accession #{@uuid}"
+  fill_in 'Title', with: "Accession Title #{@uuid}"
+  fill_in 'Accession Date', with: ORIGINAL_ACCESSION_DATE
+
+  click_on 'Save'
+  expect(page).to have_text "Accession Accession Title #{uuid} created"
 end
 
 def expect_record_to_be_in_search_results(search_term)

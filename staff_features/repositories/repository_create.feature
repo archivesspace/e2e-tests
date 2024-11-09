@@ -7,7 +7,7 @@ Feature: Repository Create
       And the user fills in 'Repository Short Name'
       And the user fills in 'Repository Name'
       And the user clicks on 'Save'
-     Then the 'Repository Created' message is displayed
+     Then the 'Repository' created message is displayed
   Scenario: Repository cannot be created from an archivist user
     Given an archivist user is logged in
      Then the archivist user cannot manage repositories
