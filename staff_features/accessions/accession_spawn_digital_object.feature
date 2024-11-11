@@ -1,36 +1,15 @@
-Feature: Digital Object Spawn from an Accession
+Feature: Accession spawn Digital Object
   Background:
     Given an administrator user is logged in
-      And the "Spawn description for Digital Object instances from linked record" setting is enabled in the Preferences
+      And the "Spawn description for Digital Object instances from linked record" setting is enabled in the Repository Preferences
       And an Accession has been created
       And the Accession is opened in edit mode
-  Scenario: Accession is linked to the spawned Digital Object
-     When the user scrolls to the "Instances" section
-      And the user clicks on "Add Digital Object"
-      And the user selects "Create"
+  Scenario: Digital Object form is prefilled with Accession data
+     When the user clicks on "Add Digital Object" in the "Instances" form
+      And the user clicks on the first dropdown in the "Instances" form
+      And the user clicks on "Create" in the dropdown menu in the "Instances" form
      Then the Create Digital Object modal is displayed
-      And the following Digital Object forms have the same values as the Accession:
-       | Title                               |
-       | Date expression                     |
-       | Date Begin                          |
-       | Date End                            |
-       | Languages                           |
-       | Digital Object Note Type            |
-       | Summary                             |
-       | Bibliography                        |
-       | Biographical/Historical             |
-       | Conditions Governing Access         |
-       | Conditions Governing Use            |
-       | Custodial History                   |
-       | Dimensions                          |
-       | Existence and Location of Copies    |
-       | Existence and Location of Originals |
-       | General Note                        |
-       | Physical Description                |
-       | Immediate Source of Acquisition     |
-       | Language of Materials               |
-       | Legal Status                        |
-       | Preferred Citation                  |
-       | Processing Information              |
-       | Related Materials                   |
-       | Summary                             |
+      And the Digital Object title is filled in with the Accession Title
+      And the following Digital Object forms have the same values as the Accession
+       | Languages  |
+       | Dates      |
