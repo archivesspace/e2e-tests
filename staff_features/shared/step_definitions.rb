@@ -92,3 +92,7 @@ end
 Then 'the {string} is checked' do |label|
   expect(page).to have_field(label, checked: true)
 end
+
+Then 'the {string} section is displayed' do |section_heading|
+  expect(all('section > h3').map(&:text)).to include(section_heading)
+end
