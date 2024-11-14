@@ -135,6 +135,12 @@ When 'the user fills in {string} with {string}' do |label, value|
   fill_in label, with: value, match: :first
 end
 
+When 'the user fills in {string} with {string} in the modal' do |label, value|
+  within '.modal-content' do
+    fill_in label, with: value, match: :first
+  end
+end
+
 When 'the user fills in {string} with {string} in the {string} form' do |label, value, form_title|
   section_title = find('h3', text: form_title)
   section = section_title.ancestor('section')
@@ -165,6 +171,12 @@ end
 
 When 'the user selects {string} from {string}' do |option, label|
   select option, from: label, match: :first
+end
+
+When 'the user selects {string} from {string} in the modal' do |option, label|
+  within '.modal-content' do
+    select option, from: label
+  end
 end
 
 When 'the user selects {string} from {string} in the {string} form' do |option, label, form_title|
