@@ -18,14 +18,55 @@ Given 'an archivist user is logged in' do
   login_archivist
 end
 
+Given 'a Repository with name {string} has been created' do |repository_name|
+  visit "#{STAFF_URL}/repositories"
+
+  fill_in 'filter-text', with: repository_name
+
+  within '.search-filter' do
+    find('button').click
+  end
+
+  begin
+    find('tr', text: repository_name, match: :first)
+  rescue Capybara::ElementNotFound
+    visit "#{STAFF_URL}/repositories/new"
+    fill_in 'Repository Short Name', with: repository_name
+    fill_in 'Repository Name', with: repository_name
+
+    click_on 'Save'
+  end
+end
+
 When 'the user clicks on {string}' do |string|
   click_on_string string
 end
 
+When 'the user clicks on {string} in the record toolbar' do |string|
+  within '.record-toolbar' do
+    click_on_string string
+  end
+end
+
+When 'the user clicks on {string} in the modal' do |string|
+  within '.modal-content' do
+    click_on_string string
+  end
+end
+
+When 'the user clicks on {string} in the transfer form' do |string|
+  dropdown_menu = find('.transfer-form')
+
+  within dropdown_menu do
+    click_on_string string
+  end
+end
+
 When 'the user clicks on {string} in the dropdown menu' do |string|
-  within '.dropdown-menu' do |dropdown_menu|
-    elements = dropdown_menu.all(:xpath, "//*[contains(text(), '#{string}')]")
-    elements[1].click
+  dropdown_menu = find('.dropdown-menu')
+
+  within dropdown_menu do
+    click_on_string string
   end
 end
 
@@ -101,6 +142,12 @@ end
 
 Then('the {string} deleted message is displayed') do |string|
   expect(find('.alert.alert-success.with-hide-alert').text).to match(/^#{string}.*deleted$/i)
+end
+
+Then 'the following message is displayed' do |messages|
+  messages.raw.each do |message|
+    expect(page).to have_text message[0]
+  end
 end
 
 Then 'only the following info message is displayed' do |messages|
