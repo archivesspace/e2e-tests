@@ -27,6 +27,12 @@ When 'the user clicks on {string} in the dropdown menu' do |string|
   end
 end
 
+When 'the user clicks on {string} in the spawn dropdown menu' do |string|
+  within '#spawn-dropdown' do
+    click_on_string string
+  end
+end
+
 When 'the user clicks on {string} in the confirm popup' do |string|
   within '#confirmChangesModal' do
     click_on_string string
@@ -93,6 +99,14 @@ end
 
 Then('the {string} deleted message is displayed') do |string|
   expect(find('.alert.alert-success.with-hide-alert').text).to match(/^#{string}.*deleted$/i)
+end
+
+Then 'only the following info message is displayed' do |messages|
+  expect(messages.raw.length).to eq 1
+
+  messages.raw.each do |message|
+    expect(page).to have_text message[0]
+  end
 end
 
 Then 'the following error messages are displayed' do |messages|
