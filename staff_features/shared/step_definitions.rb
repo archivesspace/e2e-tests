@@ -9,6 +9,7 @@ Given 'an administrator user is logged in' do
 
   ensure_test_repository_exists
   ensure_test_user_exists
+  ensure_test_agent_exists
 end
 
 Given 'an archivist user is logged in' do
@@ -17,6 +18,13 @@ end
 
 When 'the user clicks on {string}' do |string|
   click_on_string string
+end
+
+When 'the user clicks on {string} in the dropdown menu' do |string|
+  within '.dropdown-menu' do |dropdown_menu|
+    elements = dropdown_menu.all(:xpath, "//*[contains(text(), '#{string}')]")
+    elements[1].click
+  end
 end
 
 When 'the user clicks on {string} in the confirm popup' do |string|
@@ -39,8 +47,28 @@ When 'the user fills in {string} with {string}' do |label, value|
   fill_in label, with: value
 end
 
+When 'the user fills in {string} with {string} in the {string} form' do |label, value, form_title|
+  section_title = find('h3', text: form_title)
+  section = section_title.ancestor('section')
+  expect(section[:id]).to_not eq nil
+
+  within section do
+    fill_in label, with: value
+  end
+end
+
 When 'the user selects {string} from {string}' do |option, label|
   select option, from: label
+end
+
+When 'the user selects {string} from {string} in the {string} form' do |option, label, form_title|
+  section_title = find('h3', text: form_title)
+  section = section_title.ancestor('section')
+  expect(section[:id]).to_not eq nil
+
+  within section do
+    select option, from: label
+  end
 end
 
 When 'the user checks {string}' do |label|
@@ -91,6 +119,14 @@ end
 
 Then 'the {string} is checked' do |label|
   expect(page).to have_field(label, checked: true)
+end
+
+Then 'only the following error message is displayed' do |messages|
+  expect(messages.raw.length).to eq 1
+
+  messages.raw.each do |message|
+    expect(page).to have_text message[0]
+  end
 end
 
 Then 'the {string} section is displayed' do |section_heading|
