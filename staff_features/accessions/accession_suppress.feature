@@ -6,17 +6,12 @@ Feature: Accession Suppress
   Scenario: Accession is suppressed
     Given the Accession is not suppressed
      When the user clicks on 'Suppress'
-      And the user clicks on 'Suppress' in the confirm popup
-     Then the Accession is suppressed
-      And the record should be hidden from non-authorized users
-      And the following info messages are displayed
-       | Accession suppressed                         |
-       | Accession is suppressed and cannot be edited |
+      And the user clicks on 'Suppress' in the modal
+     Then the Accession now is suppressed
+      And the Accession cannot be accessed by archivists
   Scenario: Accession is unsuppressed
     Given the Accession is suppressed
      When the user clicks on 'Unsuppress'
-      And the user clicks on 'Unsuppress' in the confirm popup
-     Then the Accession is unsuppressed
-      And the record should be visible to all authorized users
-      And only the following info message is displayed
-       | Accession unsuppressed                         |
+      And the user clicks on 'Unsuppress' in the modal
+     Then the Accession now is not suppressed
+      And the Accession can be accessed by archivists

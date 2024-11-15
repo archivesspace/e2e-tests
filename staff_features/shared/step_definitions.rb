@@ -81,12 +81,6 @@ When 'the user clicks on {string} in the spawn dropdown menu' do |string|
   end
 end
 
-When 'the user clicks on {string} in the confirm popup' do |string|
-  within '#confirmChangesModal' do
-    click_on_string string
-  end
-end
-
 When 'the user clicks on the first dropdown in the {string} form' do |form_title|
   section_title = find('h3', text: form_title)
   section = section_title.ancestor('section')
