@@ -39,6 +39,12 @@ When 'the user clicks on {string} in the confirm popup' do |string|
   end
 end
 
+When 'the user clicks on {string} in the modal' do |string|
+  within '.modal-content' do
+    click_on_string string
+  end
+end
+
 When 'the user fills in {string}' do |label|
   @uuid = SecureRandom.uuid if @uuid.nil?
 
