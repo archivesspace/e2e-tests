@@ -1,4 +1,4 @@
-Feature: Resources View
+Feature: Resource View
   Background:
     Given an administrator user is logged in
   Scenario: Search Resource by title
@@ -22,12 +22,10 @@ Feature: Resources View
   Scenario: Sort Resources by identifier
     Given two Resources have been created with a common keyword in their title
       And the two Resources are displayed sorted by ascending title
-      And the two Resources are displayed not sorted by Identifier
      When the user clicks on 'Identifier'
-     Then the two Resources are displayed sorted by ascending Identifier
+     Then the two Resources are displayed sorted by ascending identifier
   Scenario: Sort Resources by level
     Given two Resources have been created with a common keyword in their title
       And the two Resources are displayed sorted by ascending title
-      And the two Resources are displayed not sorted by Level
      When the user clicks on 'Level'
      Then the two Resources are displayed sorted by ascending level
