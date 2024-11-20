@@ -123,6 +123,39 @@ def ensure_test_agent_exists
   end
 end
 
+def ensure_test_subject_exists
+  visit STAFF_URL
+
+  fill_in 'global-search-box', with: 'test_subject'
+  find('#global-search-button').click
+
+  begin
+    find 'tr', text: 'test_subject'
+  rescue Capybara::ElementNotFound
+    visit "#{STAFF_URL}/subjects/new"
+    select 'Art & Architecture Thesaurus', from: 'subject_source_'
+    fill_in 'subject_terms__0__term_', with: 'test_subject_term'
+    select 'Cultural context', from: 'subject_terms__0__term_type_'
+    click_on 'Save'
+  end
+end
+
+def ensure_test_classification_exists
+  visit STAFF_URL
+
+  fill_in 'global-search-box', with: 'test_classification'
+  find('#global-search-button').click
+
+  begin
+    find 'tr', text: 'test_classification'
+  rescue Capybara::ElementNotFound
+    visit "#{STAFF_URL}/classifications/new"
+    fill_in 'classification_identifier_', with: 'test_classification'
+    fill_in 'classification_title_', with: 'test_classification'
+    click_on 'Save'
+  end
+end
+
 def find_user_table_row_in_manage_user_access_page(username)
   loop do
     begin
