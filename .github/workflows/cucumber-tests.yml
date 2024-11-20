@@ -38,4 +38,4 @@ jobs:
         bundle exec cucumber --dry-run --strict
     - name: Run tests
       run: |
-        bundle exec cucumber --strict HEADLESS=true HOST=localhost staff_features/
+        bundle exec cucumber --strict HEADLESS=true HOST=localhost staff_features
