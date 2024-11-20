@@ -12,7 +12,7 @@ When 'the user filters by text with the Resource title' do
     checks += 1
 
     begin
-      rows = all('tr', text: @uuid)
+      rows = all('tr', text: "Resource #{@uuid}")
     rescue Selenium::WebDriver::Error::JavascriptError
       sleep 1
     end
