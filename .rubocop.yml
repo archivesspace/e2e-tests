@@ -18,9 +18,6 @@ Layout/LineLength:
 Layout/ElseAlignment:
   Enabled: false
 
-Layout/LineLength:
-  Max: 174
-
 Style/ConditionalAssignment:
   Enabled: false
 
