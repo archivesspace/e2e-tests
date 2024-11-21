@@ -33,6 +33,9 @@ jobs:
     - name: Run rubocop
       run: |
         bundle exec rubocop
+    - name: Cucumber strict dry run to check for not implemented steps
+      run: |
+        bundle exec cucumber --dry-run --strict
     - name: Run tests
       run: |
-        bundle exec cucumber HEADLESS=true HOST=localhost staff_features/
+        bundle exec cucumber --strict HEADLESS=true HOST=localhost staff_features/
