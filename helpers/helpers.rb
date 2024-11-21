@@ -197,10 +197,6 @@ def create_resource(uuid)
   find('button', text: 'Save Resource', match: :first).click
 
   expect(page).to have_text "Resource Resource #{uuid} created"
-
-  url_parts = current_url.split('/')
-  url_parts.pop
-  @resource_id = url_parts.pop
 end
 
 def create_accession(uuid)
