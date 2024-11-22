@@ -31,21 +31,21 @@ Feature: Resource Edit
      Then the following error message is displayed
        | Begin - Not a valid date |
       And the Resource Begin field has the original value
-
   Scenario: Delete required sub-record of a Resource fails
-    Given the Resource created has only 1 language
-      And the Resource is opened in edit mode
-     When the user clicks on 'Remove sub-record' at 'Languages' field
+    Given the Resource is opened in edit mode
+      And the Resource has one Language
+     When the user clicks on remove icon in the 'Languages' form
       And the user clicks on 'Confirm Removal'
       And the user clicks on 'Save'
      Then the following error messages are displayed
       | Languages - At least 1 item(s) is required |
       | Must contain at least one Language         |
-      And the Resource Language field has the original value
-  Scenario Delete sub-record of a Resource successfully
-    Given the Resource created has at least 1 Notes
-      And the Resource is opened in edit mode
-     When the user clicks on 'Remove sub-record' at 'Notes' field
+      And the Resource has one Language with the original values
+  Scenario: Delete sub-record of a Resource
+    Given the Resource is opened in edit mode
+      And the Resource has one Note
+     When the user clicks on remove icon in the 'Notes' form
       And the user clicks on 'Confirm Removal'
       And the user clicks on 'Save'
      Then the 'Resource' updated message is displayed
+      And the Resource does not have Notes
