@@ -241,3 +241,21 @@ rescue Capybara::Ambiguous
 
   elements.first.click
 end
+
+def wait_for_ajax
+  Timeout.timeout(Capybara.default_max_wait_time) do
+    javascript_error_tries = 0
+
+    begin
+      sleep 1 until page.evaluate_script('jQuery.active')&.zero?
+    rescue Selenium::WebDriver::Error::JavascriptError => e
+      raise e if javascript_error_tries == 5
+
+      puts "\n\n\nError: #{e.message}\n\n\n"
+
+      javascript_error_tries += 1
+      sleep 10
+      retry
+    end
+  end
+end

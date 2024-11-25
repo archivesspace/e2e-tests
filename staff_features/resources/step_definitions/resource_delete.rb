@@ -3,6 +3,8 @@
 Given 'the user is on the Resource view page' do
   visit "#{STAFF_URL}/resources/#{@resource_id}"
 
+  wait_for_ajax
+
   expect(current_url).to_not include 'edit'
 
   url_parts = current_url.split('/')
