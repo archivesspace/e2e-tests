@@ -3,7 +3,20 @@
 Given 'the user is on the Resource view page' do
   visit "#{STAFF_URL}/resources/#{@resource_id}"
 
-  expect(current_url).to include "/resources/#{@resource_id}"
+  expect(current_url).to_not include 'edit'
+
+  url_parts = current_url.split('/')
+
+  last_parts_after_hash = url_parts.last.split('#')
+  last_parts_after_hash.pop
+  expect(last_parts_after_hash.length).to eq 1
+  resource_id = last_parts_after_hash.pop
+
+  url_parts.pop
+  entity = url_parts.pop
+
+  expect(entity).to eq 'resources'
+  expect(resource_id).to eq @resource_id
 end
 
 When 'the user checks the checkbox of the Resource' do
