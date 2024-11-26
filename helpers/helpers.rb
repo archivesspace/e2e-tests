@@ -140,6 +140,22 @@ def ensure_test_subject_exists
   end
 end
 
+def ensure_test_accession_exists
+  visit STAFF_URL
+
+  fill_in 'global-search-box', with: 'test_accession'
+  find('#global-search-button').click
+
+  begin
+    find 'tr', text: 'test_accession'
+  rescue Capybara::ElementNotFound
+    visit "#{STAFF_URL}/accessions/new"
+    fill_in 'accession_id_0_', with: 'test_accession'
+    fill_in 'accession_title_', with: 'test_accession'
+    click_on 'Save'
+  end
+end
+
 def ensure_test_classification_exists
   visit STAFF_URL
 
@@ -255,4 +271,20 @@ rescue Capybara::Ambiguous
   elements = all(:xpath, "//*[contains(text(), '#{string}')]")
 
   elements.first.click
+end
+
+def wait_for_ajax
+  Timeout.timeout(Capybara.default_max_wait_time) do
+    javascript_error_tries = 0
+
+    begin
+      sleep 1 until page.evaluate_script('jQuery.active')&.zero?
+    rescue Selenium::WebDriver::Error::JavascriptError => e
+      raise e if javascript_error_tries == 5
+
+      javascript_error_tries += 1
+      sleep 3
+      retry
+    end
+  end
 end
