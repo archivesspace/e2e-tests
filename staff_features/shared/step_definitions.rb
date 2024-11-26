@@ -13,6 +13,7 @@ Given 'an administrator user is logged in' do
   ensure_test_user_exists
   ensure_test_agent_exists
   ensure_test_subject_exists
+  ensure_test_accession_exists
   ensure_test_classification_exists
 end
 
@@ -42,6 +43,8 @@ end
 
 When 'the user clicks on {string}' do |string|
   click_on_string string
+
+  wait_for_ajax if current_url.include? "resources/#{@resource_id}/edit"
 end
 
 When 'the user clicks on {string} in the record toolbar' do |string|
@@ -210,6 +213,8 @@ end
 
 Then('the {string} created message is displayed') do |string|
   expect(find('.alert.alert-success.with-hide-alert').text).to match(/^#{string}.*created.*$/i)
+
+  @created_archival_object_id = extract_created_record_id(string)
 end
 
 Then('the {string} updated message is displayed') do |string|
@@ -226,6 +231,10 @@ Then 'the following message is displayed' do |messages|
   messages.raw.each do |message|
     expect(page).to have_text message[0]
   end
+end
+
+Then('the {string} duplicated message is displayed') do |string|
+  expect(find('.alert.alert-success.with-hide-alert').text).to match(/^#{string}.*duplicated.*$/i)
 end
 
 Then 'only the following info message is displayed' do |messages|
