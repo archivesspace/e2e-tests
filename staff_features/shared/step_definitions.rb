@@ -106,6 +106,24 @@ When 'the user fills in {string} with {string} in the {string} form' do |label, 
   end
 end
 
+When 'the user fills in {string} with {string} and selects {string} in the {string} form' do |label, value, selected_value, form_title|
+  section_title = find('h3', text: form_title)
+  section = section_title.ancestor('section')
+  expect(section[:id]).to_not eq nil
+
+  within section do
+    fill_in label, with: value
+
+    dropdown_items = all('li.dropdown-item a', text: selected_value).select do |entry|
+      entry.text == selected_value
+    end
+
+    expect(dropdown_items.length).to eq 1
+    expect(dropdown_items[0].text).to eq selected_value
+    dropdown_items[0].click
+  end
+end
+
 When 'the user selects {string} from {string}' do |option, label|
   select option, from: label, match: :first
 end
@@ -174,6 +192,10 @@ end
 
 Then 'the {string} has value {string}' do |label, value|
   expect(page).to have_field(label, with: value)
+end
+
+Then 'the {string} has a unique value' do |label|
+  expect(page).to have_field(label, with: @uuid, match: :first)
 end
 
 Then 'the {string} has selected value {string}' do |label, value|
