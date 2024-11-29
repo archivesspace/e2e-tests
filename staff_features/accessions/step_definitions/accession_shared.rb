@@ -32,8 +32,13 @@ Given 'an Accession has been created' do
 
   click_on 'Add Language'
   fill_in 'Language', with: 'English'
-  dropdown_items = all('.typeahead.typeahead-long.dropdown-menu')
-  dropdown_items.first.click
+  dropdown_items = all('.typeahead.typeahead-long.dropdown-menu li')
+  dropdown_item = dropdown_items.select do |item|
+    item.text == 'English'
+  end
+  expect(dropdown_item.length).to eq 1
+  dropdown_item[0].click
+
   fill_in 'Script', with: 'adlam'
   dropdown_items = all('.typeahead.typeahead-long.dropdown-menu')
   dropdown_items.first.click

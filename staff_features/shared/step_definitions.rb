@@ -87,6 +87,40 @@ When 'the user clicks on {string} in the confirm popup' do |string|
   end
 end
 
+When 'the user clicks on the first dropdown in the {string} form' do |form_title|
+  section_title = find('h3', text: form_title)
+  section = section_title.ancestor('section')
+  expect(section[:id]).to_not eq nil
+
+  within section do
+    find('.dropdown-toggle', match: :first).click
+  end
+end
+
+When 'the user clicks on {string} in the {string} form' do |string, form_title|
+  section_title = find('h3', text: form_title)
+  section = section_title.ancestor('section')
+  expect(section[:id]).to_not eq nil
+
+  within section do
+    click_on string
+  end
+end
+
+When 'the user clicks on {string} in the dropdown menu in the {string} form' do |string, form_title|
+  section_title = find('h3', text: form_title)
+  section = section_title.ancestor('section')
+  expect(section[:id]).to_not eq nil
+
+  within section do
+    dropdown_menu = find('.dropdown-menu')
+
+    within dropdown_menu do
+      click_on string
+    end
+  end
+end
+
 When 'the user fills in {string}' do |label|
   @uuid = SecureRandom.uuid if @uuid.nil?
 
