@@ -23,10 +23,6 @@ Given 'the Resource is opened in the view mode' do
   visit "#{STAFF_URL}/resources/#{@resource_id}"
 end
 
-Given 'the Resource is opened in edit mode' do
-  visit "#{STAFF_URL}/resources/#{@resource_id}/edit"
-end
-
 Given 'the Resource has one Language' do
   languages = all('#resource_lang_materials_ .subrecord-form-list .subrecord-form-wrapper')
 

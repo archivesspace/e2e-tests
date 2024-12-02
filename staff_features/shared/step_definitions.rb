@@ -83,12 +83,6 @@ When 'the user clicks on {string} in the spawn dropdown menu' do |string|
   end
 end
 
-When 'the user clicks on {string} in the confirm popup' do |string|
-  within '#confirmChangesModal' do
-    click_on_string string
-  end
-end
-
 When 'the user clicks on the first dropdown in the {string} form' do |form_title|
   section_title = find('h3', text: form_title)
   section = section_title.ancestor('section')
@@ -226,6 +220,10 @@ end
 
 Then('the {string} deleted message is displayed') do |string|
   expect(find('.alert.alert-success.with-hide-alert').text).to match(/^#{string}.*deleted$/i)
+end
+
+Then('the {string} published message is displayed') do |string|
+  expect(find('.alert.alert-success.with-hide-alert').text).to match(/#{string} .* its subrecords and components have been published.*$/i)
 end
 
 Then 'the following message is displayed' do |messages|
