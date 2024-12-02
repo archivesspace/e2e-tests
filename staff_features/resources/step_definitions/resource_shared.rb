@@ -1,5 +1,9 @@
 # frozen_string_literal: true
 
+Given 'the Resource is opened in the view mode' do
+  visit "#{STAFF_URL}/resources/#{@resource_id}"
+end
+
 Given 'the Resource is opened in edit mode' do
   visit "#{STAFF_URL}/resources/#{@resource_id}/edit"
   wait_for_ajax

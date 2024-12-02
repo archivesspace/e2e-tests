@@ -192,7 +192,7 @@ def create_resource(uuid)
   find('#resource_publish_').check
   select 'Class', from: 'resource_level_'
   element = find('#resource_lang_materials__0__language_and_script__language_')
-  element.send_keys('AU')
+  element.send_keys(ORIGINAL_LANGUAGE)
   element.send_keys(:tab)
 
   select 'Single', from: 'resource_dates__0__date_type_'
