@@ -175,6 +175,7 @@ end
 def create_resource(uuid)
   fill_in 'resource_title_', with: "Resource #{uuid}"
   fill_in 'resource_id_0_', with: "Resource #{uuid}"
+  find('#resource_publish_').check
   select 'Class', from: 'resource_level_'
   element = find('#resource_lang_materials__0__language_and_script__language_')
   element.send_keys('AU')
