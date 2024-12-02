@@ -50,6 +50,7 @@ Given 'an Accession has been created' do
   click_on 'Add Extent'
   fill_in 'Number', with: @uuid
   select 'Cassettes', from: 'accession_extents__0__extent_type_'
+  @accession_number_of_extents = 1
 
   click_on 'Add Agent Link'
   select 'Creator', from: 'accession_linked_agents__0__role_'
@@ -113,4 +114,17 @@ Given 'the Accession is opened in edit mode' do
   end
 
   click_on 'Edit'
+end
+
+Then 'a new Extent is added to the Accession with the following values' do |form_values_table|
+  extents = all('#accession_extents_ .subrecord-form-list li')
+
+  expect(extents.length).to eq @accession_number_of_extents + 1
+
+  created_extend = extents.last
+
+  form_values_hash = form_values_table.rows_hash
+  form_values_hash.each do |field, value|
+    expect(created_extend.find_field(field).value).to eq value.downcase.gsub(' ', '_')
+  end
 end
