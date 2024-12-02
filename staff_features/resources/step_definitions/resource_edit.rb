@@ -19,10 +19,6 @@ Given 'the Resource appears in the search results list' do
   end
 end
 
-Given 'the Resource is opened in the view mode' do
-  visit "#{STAFF_URL}/resources/#{@resource_id}"
-end
-
 Given 'the Resource has one Language' do
   languages = all('#resource_lang_materials_ .subrecord-form-list .subrecord-form-wrapper')
 

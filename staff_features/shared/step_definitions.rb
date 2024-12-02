@@ -200,6 +200,10 @@ When 'the user checks {string}' do |label|
   check label, match: :first
 end
 
+When 'the user unchecks {string}' do |label|
+  uncheck label, match: :first
+end
+
 When 'the user changes the {string} field to {string}' do |field, value|
   fill_in field, with: value, match: :first
 end
@@ -223,7 +227,11 @@ Then('the {string} deleted message is displayed') do |string|
 end
 
 Then('the {string} published message is displayed') do |string|
-  expect(find('.alert.alert-success.with-hide-alert').text).to match(/#{string} .* its subrecords and components have been published.*$/i)
+  expect(find('.alert.alert-success.with-hide-alert').text).to match(/#{string} .* subrecords and components have been published.*$/i)
+end
+
+Then('the {string} unpublished message is displayed') do |string|
+  expect(find('.alert.alert-success.with-hide-alert').text).to match(/#{string} .* subrecords and components have been unpublished.*$/i)
 end
 
 Then 'the following message is displayed' do |messages|
