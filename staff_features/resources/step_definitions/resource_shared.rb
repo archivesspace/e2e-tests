@@ -1,9 +1,10 @@
 # frozen_string_literal: true
 
 When 'the user filters by text with the Resource title' do
-  fill_in 'Filter by text', with: @uuid
+  expect(find('h2').text).to eq 'Resources'
 
-  find('#filter-text').send_keys(:enter)
+  fill_in 'Filter by text', with: @uuid
+  find('.search-filter button').click
 
   rows = []
   checks = 0
@@ -12,7 +13,7 @@ When 'the user filters by text with the Resource title' do
     checks += 1
 
     begin
-      rows = all('tr', text: @uuid)
+      rows = all('tr', text: "Resource #{@uuid}")
     rescue Selenium::WebDriver::Error::JavascriptError
       sleep 1
     end
