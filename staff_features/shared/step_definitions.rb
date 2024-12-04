@@ -13,6 +13,7 @@ Given 'an administrator user is logged in' do
   ensure_test_user_exists
   ensure_test_agent_exists
   ensure_test_subject_exists
+  ensure_test_accession_exists
   ensure_test_classification_exists
 end
 
@@ -232,6 +233,10 @@ end
 
 Then('the {string} unpublished message is displayed') do |string|
   expect(find('.alert.alert-success.with-hide-alert').text).to match(/#{string} .* subrecords and components have been unpublished.*$/i)
+end
+
+Then('the {string} merged message is displayed') do |string|
+  expect(find('.alert.alert-success.with-hide-alert').text).to eq("#{string} Merged")
 end
 
 Then 'the following message is displayed' do |messages|
