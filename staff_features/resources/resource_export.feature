@@ -6,7 +6,7 @@ Feature: Resource Export
   Scenario: Resource export records in EAD
      When the user clicks on 'Export'
       And the user clicks on 'Download EAD' in the dropdown menu
-     Then the ead.xml file is downloaded
+     Then the ead xml file is downloaded
   Scenario: Resource export records in MARCXML
      When the user clicks on 'Export'
       And the user clicks on 'Download MARCXML' in the dropdown menu
@@ -27,4 +27,3 @@ Feature: Resource Export
      When the user clicks on 'Export'
       And the user clicks on 'Generate PDF' in the dropdown menu
      Then a new 'print to pdf' job is opened in a new tab
-    
