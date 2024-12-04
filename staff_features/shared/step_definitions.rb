@@ -11,6 +11,7 @@ Given 'an administrator user is logged in' do
   ensure_test_user_exists
   ensure_test_agent_exists
   ensure_test_subject_exists
+  ensure_test_accession_exists
   ensure_test_classification_exists
 end
 
