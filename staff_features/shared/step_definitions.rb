@@ -81,7 +81,7 @@ When 'the user clicks on {string} in the spawn dropdown menu' do |string|
   end
 end
 
-When 'the user clicks on {string} in the confirm popup' do |string|
+When 'the user clicks on {string} in the confirm modal' do |string|
   within '#confirmChangesModal' do
     click_on_string string
   end
@@ -211,6 +211,10 @@ end
 
 Then('the {string} deleted message is displayed') do |string|
   expect(find('.alert.alert-success.with-hide-alert').text).to match(/^#{string}.*deleted$/i)
+end
+
+Then('the {string} merged message is displayed') do |string|
+  expect(find('.alert.alert-success.with-hide-alert').text).to eq("#{string} Merged")
 end
 
 Then 'the following message is displayed' do |messages|
