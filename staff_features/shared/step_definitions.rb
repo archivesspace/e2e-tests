@@ -191,6 +191,8 @@ end
 When 'the user selects {string} from {string} in the modal' do |option, label|
   wait_for_ajax
 
+  expect(page).to have_css '#date_calculator_form'
+
   using_wait_time(15) do
     within '.modal-content' do
       select option, from: label
