@@ -191,8 +191,10 @@ end
 When 'the user selects {string} from {string} in the modal' do |option, label|
   wait_for_ajax
 
-  within '.modal-content' do
-    select option, from: label
+  using_wait_time(15) do
+    within '.modal-content' do
+      select option, from: label
+    end
   end
 end
 
