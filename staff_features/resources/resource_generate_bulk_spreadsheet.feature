@@ -1,4 +1,4 @@
-Feature: Resource generate Bulk Archival Object Spreadsheet
+Feature: Resource generate bulk spreadsheet
   Background:
     Given an administrator user is logged in
       And a Resource has been created
@@ -6,9 +6,9 @@ Feature: Resource generate Bulk Archival Object Spreadsheet
   Scenario: Resource Bulk archival object updater page is displayed
      When the user clicks on 'More'
       And the user clicks on 'Generate Bulk Archival Object Spreadsheet'
-     Then the bulk archival object updater page is displayed
+     Then the Generate Bulk Archival Object Spreadsheet page is displayed
   Scenario: Resource Bulk Archival Object Spreadsheet is downloaded
-    Given the user is on the Bulk archival object updater page
-     When the user selects 'Record' from 'Records'
+    Given the user is on the Generate Bulk Archival Object Spreadsheet page
+     When the user selects the Archival Object
       And the user clicks on 'Download Spreadsheet'
      Then the Bulk Update Resource spreadsheet is downloaded
