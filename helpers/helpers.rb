@@ -182,6 +182,7 @@ def create_resource(uuid)
 
   select 'Single', from: 'resource_dates__0__date_type_'
   fill_in 'resource_dates__0__begin_', with: ORIGINAL_RESOURCE_DATE
+  @resource_number_of_dates = 1
 
   fill_in 'resource_extents__0__number_', with: '10'
   select 'Cassettes', from: 'resource_extents__0__extent_type_'

@@ -51,6 +51,8 @@ When 'the user clicks on {string} in the record toolbar' do |string|
 end
 
 When 'the user clicks on {string} in the modal' do |string|
+  wait_for_ajax
+
   within '.modal-content' do
     click_on_string string
   end
@@ -187,6 +189,8 @@ When 'the user selects {string} from {string}' do |option, label|
 end
 
 When 'the user selects {string} from {string} in the modal' do |option, label|
+  wait_for_ajax
+
   within '.modal-content' do
     select option, from: label
   end
