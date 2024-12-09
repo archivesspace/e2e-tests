@@ -121,10 +121,10 @@ Then 'a new Extent is added to the Accession with the following values' do |form
 
   expect(extents.length).to eq @accession_number_of_extents + 1
 
-  created_extend = extents.last
+  created_extent = extents.last
 
   form_values_hash = form_values_table.rows_hash
   form_values_hash.each do |field, value|
-    expect(created_extend.find_field(field).value).to eq value.downcase.gsub(' ', '_')
+    expect(created_extent.find_field(field).value).to eq value.downcase.gsub(' ', '_')
   end
 end

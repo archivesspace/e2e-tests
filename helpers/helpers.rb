@@ -185,6 +185,7 @@ def create_resource(uuid)
 
   fill_in 'resource_extents__0__number_', with: '10'
   select 'Cassettes', from: 'resource_extents__0__extent_type_'
+  @resource_number_of_extents = 1
 
   element = find('#resource_finding_aid_language_')
   element.send_keys('ENG')

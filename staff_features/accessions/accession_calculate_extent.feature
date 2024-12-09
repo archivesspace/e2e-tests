@@ -13,6 +13,6 @@ Feature: Calculate Extent of an accession
      And the user clicks on 'Save'
     Then the 'Accession' updated message is displayed
      And a new Extent is added to the Accession with the following values
-      | Portion      | Whole           |
-      | Number       | 123456789       |
-      | Type         | Cassettes       |
+       | Portion      | Whole           |
+       | Number       | 123456789       |
+       | Type         | Cassettes       |
