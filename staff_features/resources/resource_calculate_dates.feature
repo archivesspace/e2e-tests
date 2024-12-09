@@ -7,7 +7,7 @@ Feature: Resource calculate dates
      When the user clicks on 'More'
       And the user clicks on 'Calculate Dates'
       And the user clicks on 'Calculate Date Record' in the modal
-      And the user selects 'Single' from 'Type' in the modal
+      And the user selects 'Single' from 'Type' in the date calculator result in the modal
       And the user fills in 'Begin' with '2022' in the modal
       And the user clicks on 'Create Date Record' in the modal
       And the user clicks on 'Save'

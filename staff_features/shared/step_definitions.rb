@@ -188,22 +188,22 @@ When 'the user selects {string} from {string}' do |option, label|
   select option, from: label, match: :first
 end
 
-When 'the user selects {string} from {string} in the modal' do |option, label|
+When 'the user selects {string} from {string} in the date calculator result in the modal' do |option, label|
   wait_for_ajax
 
-  expect(page).to have_css '#date-calculator-result'
+  expect(page).to have_css '#date_calculator_create_date_form'
 
-  sleep 10;
+  within '#date_calculator_create_date_form' do
+    select option, from: label
+  end
+end
+
+When 'the user selects {string} from {string} in the modal' do |option, label|
+  wait_for_ajax
 
   within '#date-calculator-result' do
     select option, from: label
   end
-
-  # using_wait_time(15) do
-  #   within '.modal-content' do
-  #     select option, from: label
-  #   end
-  # end
 end
 
 When 'the user selects {string} from {string} in the {string} form' do |option, label, form_title|
