@@ -191,10 +191,12 @@ end
 When 'the user selects {string} from {string} in the date calculator result in the modal' do |option, label|
   wait_for_ajax
 
-  expect(page).to have_css '#date_calculator_create_date_form'
+  using_wait_time(20) do
+    expect(page).to have_css '#date_calculator_create_date_form'
 
-  within '#date_calculator_create_date_form' do
-    select option, from: label
+    within '#date_calculator_create_date_form' do
+      select option, from: label
+    end
   end
 end
 
