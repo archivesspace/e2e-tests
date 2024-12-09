@@ -182,6 +182,7 @@ def create_resource(uuid)
 
   select 'Single', from: 'resource_dates__0__date_type_'
   fill_in 'resource_dates__0__begin_', with: ORIGINAL_RESOURCE_DATE
+  @resource_number_of_dates = 1
 
   fill_in 'resource_extents__0__number_', with: '10'
   select 'Cassettes', from: 'resource_extents__0__extent_type_'
@@ -222,6 +223,12 @@ def create_resource_archival_object(uuid)
   fill_in 'Title', with: "Archival Object #{uuid}"
   fill_in 'Component Unique Identifier', with: uuid
   select 'Class', from: 'Level of Description'
+
+  click_on 'Add Date'
+  within '#archival_object_dates_' do
+    select 'Single', from: 'Type'
+    fill_in 'Begin', with: '2020-01-01'
+  end
 
   find('button', text: 'Save Archival Object', match: :first).click
   expect(page).to have_text "Archival Object Archival Object #{uuid} on Resource Resource #{uuid} created"
