@@ -83,8 +83,8 @@ When 'the user clicks on {string} in the spawn dropdown menu' do |string|
   end
 end
 
-When 'the user clicks on {string} in the confirm popup' do |string|
-  within '#confirmChangesModal' do
+When 'the user clicks on {string} in the modal' do |string|
+  within '.modal-content' do
     click_on_string string
   end
 end
