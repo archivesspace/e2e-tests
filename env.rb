@@ -26,6 +26,15 @@ Capybara.register_driver :firefox do |app|
   options = Selenium::WebDriver::Firefox::Options.new
   options.add_argument(HEADLESS)
 
+  profile = Selenium::WebDriver::Firefox::Profile.new
+  profile['webdriver.log.level'] = 'ALL'
+  profile['browser.download.dir'] = Dir.tmpdir
+  profile['browser.download.folderList'] = 2
+  profile['browser.helperApps.alwaysAsk.force'] = false
+  profile['browser.helperApps.neverAsk.saveToDisk'] = 'application/msword, application/csv, application/pdf, application/xml,  application/ris, text/csv, image/png, application/pdf, text/html, text/plain, application/zip, application/x-zip, application/x-zip-compressed'
+  profile['pdfjs.disabled'] = true
+  options.profile = profile
+
   Capybara::Selenium::Driver.new(app, browser: :firefox, options:)
 end
 
