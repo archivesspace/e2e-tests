@@ -193,6 +193,8 @@ When 'the user selects {string} from {string} in the modal' do |option, label|
 
   expect(page).to have_css '#date-calculator-result'
 
+  sleep 10;
+
   within '#date-calculator-result' do
     select option, from: label
   end
