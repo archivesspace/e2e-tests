@@ -51,6 +51,8 @@ When 'the user clicks on {string} in the record toolbar' do |string|
 end
 
 When 'the user clicks on {string} in the modal' do |string|
+  wait_for_ajax
+
   within '.modal-content' do
     click_on_string string
   end
@@ -186,8 +188,22 @@ When 'the user selects {string} from {string}' do |option, label|
   select option, from: label, match: :first
 end
 
+When 'the user selects {string} from {string} in the date calculator result in the modal' do |option, label|
+  wait_for_ajax
+
+  using_wait_time(20) do
+    expect(page).to have_css '#date_calculator_create_date_form'
+
+    within '#date_calculator_create_date_form' do
+      select option, from: label
+    end
+  end
+end
+
 When 'the user selects {string} from {string} in the modal' do |option, label|
-  within '.modal-content' do
+  wait_for_ajax
+
+  within '#date-calculator-result' do
     select option, from: label
   end
 end
