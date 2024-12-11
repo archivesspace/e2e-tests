@@ -203,6 +203,8 @@ def create_resource(uuid)
     page.execute_script("$('#resource_notes__0__content__0_').data('CodeMirror').setValue('#{@uuid}')")
   end
 
+  @resource_number_of_instances = 0
+
   find('button', text: 'Save Resource', match: :first).click
 
   expect(page).to have_text "Resource Resource #{uuid} created"
