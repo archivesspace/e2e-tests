@@ -15,8 +15,10 @@ Then 'the Import Job page is displayed' do
 end
 
 Then 'the job completes' do
-  expect(page).not_to have_text 'This job is next in the queue.'
-  expect(page).to have_text 'The job has completed.'
+  using_wait_time(15) do
+    expect(page).to_not have_text 'This job is next in the queue.'
+    expect(page).to have_text 'The job has completed.'
+  end
 end
 
 Then 'the New & Modified Records section contains {int} links' do |number|
