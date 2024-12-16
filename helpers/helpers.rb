@@ -173,6 +173,8 @@ def find_user_table_row_in_manage_user_access_page(username)
 end
 
 def create_resource(uuid)
+  visit "#{STAFF_URL}/resources/new"
+
   fill_in 'resource_title_', with: "Resource #{uuid}"
   fill_in 'resource_id_0_', with: "Resource #{uuid}"
   select 'Class', from: 'resource_level_'
@@ -258,4 +260,20 @@ rescue Capybara::Ambiguous
   elements = all(:xpath, "//*[contains(text(), '#{string}')]")
 
   elements.first.click
+end
+
+def wait_for_ajax
+  Timeout.timeout(Capybara.default_max_wait_time) do
+    javascript_error_tries = 0
+
+    begin
+      sleep 1 until page.evaluate_script('jQuery.active')&.zero?
+    rescue Selenium::WebDriver::Error::JavascriptError => e
+      raise e if javascript_error_tries == 5
+
+      javascript_error_tries += 1
+      sleep 3
+      retry
+    end
+  end
 end
