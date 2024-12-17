@@ -14,7 +14,7 @@ Feature: Accession Delete
   Scenario: Accession is deleted from the view page
     Given the user is on the Accession view page
      When the user clicks on 'Delete'
-      And the user clicks on 'Delete' in the confirm popup
+      And the user clicks on 'Delete' in the modal
      Then the Accessions page is displayed
       And the 'Accession' deleted message is displayed
       And the Accession is deleted
