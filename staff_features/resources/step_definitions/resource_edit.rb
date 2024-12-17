@@ -25,6 +25,7 @@ end
 
 Given 'the Resource is opened in edit mode' do
   visit "#{STAFF_URL}/resources/#{@resource_id}/edit"
+  wait_for_ajax
 end
 
 Given 'the Resource has one Language' do
