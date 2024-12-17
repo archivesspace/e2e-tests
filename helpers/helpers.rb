@@ -181,7 +181,7 @@ def create_resource(uuid)
   element.send_keys(:tab)
 
   select 'Single', from: 'resource_dates__0__date_type_'
-  fill_in 'resource_dates__0__begin_', with: '2024'
+  fill_in 'resource_dates__0__begin_', with: ORIGINAL_RESOURCE_DATE
 
   fill_in 'resource_extents__0__number_', with: '10'
   select 'Cassettes', from: 'resource_extents__0__extent_type_'
@@ -193,6 +193,15 @@ def create_resource(uuid)
   element = find('#resource_finding_aid_script_')
   element.send_keys('Latin')
   element.send_keys(:tab)
+
+  click_on 'Add Note'
+  within '#resource_notes_' do
+    note_type = find('.top-level-note-type')
+    note_type.select 'Abstract'
+    fill_in 'Label', with: @uuid
+    check 'Publish'
+    page.execute_script("$('#resource_notes__0__content__0_').data('CodeMirror').setValue('#{@uuid}')")
+  end
 
   find('button', text: 'Save Resource', match: :first).click
 
@@ -255,4 +264,20 @@ rescue Capybara::Ambiguous
   elements = all(:xpath, "//*[contains(text(), '#{string}')]")
 
   elements.first.click
+end
+
+def wait_for_ajax
+  Timeout.timeout(Capybara.default_max_wait_time) do
+    javascript_error_tries = 0
+
+    begin
+      sleep 1 until page.evaluate_script('jQuery.active')&.zero?
+    rescue Selenium::WebDriver::Error::JavascriptError => e
+      raise e if javascript_error_tries == 5
+
+      javascript_error_tries += 1
+      sleep 3
+      retry
+    end
+  end
 end

@@ -5,6 +5,8 @@ Before do
 end
 
 Given 'an administrator user is logged in' do
+  visit "#{STAFF_URL}/logout"
+
   login_admin
 
   ensure_test_repository_exists
@@ -135,6 +137,17 @@ When 'the user fills in {string} with {string} in the modal' do |label, value|
   end
 end
 
+When 'the user clicks on remove icon in the {string} form' do |form_title|
+  section_title = find('h3', text: form_title)
+  section = section_title.ancestor('section')
+  expect(section[:id]).to_not eq nil
+
+  within section do
+    find('.subrecord-form-remove').click
+    expect(page).to have_text 'Confirm Removal'
+  end
+end
+
 When 'the user fills in {string} with {string} in the {string} form' do |label, value, form_title|
   section_title = find('h3', text: form_title)
   section = section_title.ancestor('section')
@@ -200,6 +213,8 @@ Then('the {string} created message is displayed') do |string|
 end
 
 Then('the {string} updated message is displayed') do |string|
+  wait_for_ajax
+
   expect(find('.alert.alert-success.with-hide-alert').text).to match(/^#{string}.*updated$/i)
 end
 
