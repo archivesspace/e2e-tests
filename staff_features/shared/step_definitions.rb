@@ -42,6 +42,7 @@ end
 
 When 'the user clicks on {string}' do |string|
   click_on_string string
+  wait_for_ajax
 end
 
 When 'the user clicks on {string} in the record toolbar' do |string|
