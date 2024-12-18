@@ -81,3 +81,20 @@ Then 'the Resource does not have Notes' do
   notes = all('#resource_notes_ .subrecord-form-wrapper')
   expect(notes.length).to eq 0
 end
+
+Then 'a new Instance is added to the Resource with the following values' do |form_values_table|
+  instances = all('#resource_instances_ .subrecord-form-list li.subrecord-form-wrapper')
+
+  expect(instances.length).to eq @resource_number_of_instances + 1
+
+  instance = instances.last
+
+  form_values_hash = form_values_table.rows_hash
+  form_values_hash.each do |field, value|
+    if field == 'Top Container'
+      expect(find('.top_container').text).to eq value
+    else
+      expect(instance.find_field(field, visible: true).value).to eq value.downcase.gsub(' ', '_')
+    end
+  end
+end
