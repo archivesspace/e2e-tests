@@ -25,8 +25,7 @@ Feature: Digital Object View
      When the user clicks on 'Digital Object ID'
      Then the two Digital Objects are displayed sorted by ascending Digital Object ID
   Scenario: Digital Objects table download CSV
-    Given a Digital Object has been created
-     When the user clicks on 'Browse'
-      And the user clicks on 'Digital Objects'
+    Given two Digital Objects have been created with a common keyword in their title
+      And the two Digital Objects are displayed in the search results
      When the user clicks on 'Download CSV'
-     Then a CSV file is downloaded prefilled with Digital Object title and Digital Object ID
+     Then a CSV file is downloaded with the the two Digital Objects
