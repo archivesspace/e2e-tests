@@ -222,6 +222,10 @@ Then('the {string} deleted message is displayed') do |string|
   expect(find('.alert.alert-success.with-hide-alert').text).to match(/^#{string}.*deleted$/i)
 end
 
+Then('the {string} published message is displayed') do |string|
+  expect(find('.alert.alert-success.with-hide-alert').text).to match(/#{string} .* its subrecords and components have been published.*$/i)
+end
+
 Then 'the following message is displayed' do |messages|
   messages.raw.each do |message|
     expect(page).to have_text message[0]
