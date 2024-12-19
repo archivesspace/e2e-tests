@@ -3,7 +3,7 @@ Feature: Resource Tree navigate
     Given an administrator user is logged in
       And a Resource with two Archival Objects has been created
   Scenario: View the Resource Record tree
-     When the user opens the Resource in edit mode
+     When the Resource is opened in edit mode
      Then the Resource is displayed as the top level of the navigation tree
       And the Resource is highlighted in the tree
       And only the top-level Archival Objects are displayed

@@ -55,12 +55,6 @@ Given 'the Resource is opened in edit mode' do
   wait_for_ajax
 end
 
-When 'the user opens the Resource in edit mode' do
-  visit "#{STAFF_URL}/resources/#{@resource_id}/edit"
-
-  wait_for_ajax
-end
-
 Then 'the Resource is displayed as the top level of the navigation tree' do
   rows = all('#tree-container .table .table-row', visible: :all)
 
