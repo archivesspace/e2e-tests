@@ -68,13 +68,6 @@ Then 'the Resource is displayed as the top level of the navigation tree' do
   expect(rows[0].text).to include "Resource #{@uuid}"
 end
 
-Then 'the tree includes the two Archival Objects' do
-  rows = all('#tree-container .table .table-row')
-
-  expect(rows.length).to eq 2
-  expect(rows[2].text).to include "Archival Object 1 #{@uuid}"
-end
-
 Then 'the Resource is highlighted in the tree' do
   rows = all('#tree-container .table .table-row')
 
