@@ -38,6 +38,7 @@ Given 'a Resource with two Archival Objects has been created' do
   fill_in 'Title', with: "Archival Object 1 #{@uuid}"
   select 'Class', from: 'Level of Description'
   click_on 'Save'
+  wait_for_ajax
   expect(page).to have_text "Archival Object Archival Object 1 #{@uuid} on Resource Resource #{@uuid} created"
 
   click_on 'Add Child'
@@ -45,8 +46,8 @@ Given 'a Resource with two Archival Objects has been created' do
   fill_in 'Title', with: "Archival Object 2 #{@uuid}"
   select 'Class', from: 'Level of Description'
   click_on 'Save'
-  expect(page).to have_text "Archival Object Archival Object 2 #{@uuid} created as child of Archival Object 1 #{@uuid} on Resource Resource #{@uuid}"
   wait_for_ajax
+  expect(page).to have_text "Archival Object Archival Object 2 #{@uuid} created as child of Archival Object 1 #{@uuid} on Resource Resource #{@uuid}"
 end
 
 Given 'the Resource is opened in edit mode' do
