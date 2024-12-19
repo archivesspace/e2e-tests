@@ -103,10 +103,12 @@ end
 Then 'only the top-level Archival Objects are displayed' do
   rows = all('#tree-container .table .table-row')
 
+  tries = 0
   loop do
-    break if rows.length == 2
+    break if rows.length == 2 || tries == 3
 
     sleep 1
+    tries += 1
     rows = all('#tree-container .table .table-row')
   end
 
