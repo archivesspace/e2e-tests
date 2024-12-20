@@ -1,7 +1,7 @@
 version: "3"
 services:
   app:
-    image: archivesspace/archivesspace:latest
+    image: archivesspace/archivesspace:4.0.0-RC1
     container_name: archivesspace
     restart: on-failure
     ports:
