@@ -85,9 +85,11 @@ end
 Then 'the expand arrows are disabled' do
   arrows = all('.expandme')
 
-  arrows.each do |arrow|
-    expect(arrow[:class]).to include 'disabled'
-  end
+  expect(arrows.length).to eq 1
+
+  expect(arrows[0][:class]).to include 'disabled'
+  arrows[0].click
+  expect(page).to have_text "Archival Object 2 #{@uuid}"
 end
 
 Then 'all Archival Objects are displayed' do
