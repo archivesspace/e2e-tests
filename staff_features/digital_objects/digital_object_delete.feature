@@ -14,10 +14,10 @@ Feature: Digital Object Delete
   Scenario: Digital Object is deleted from the view page
     Given the user is on the Digital Object view page
      When the user clicks on 'Delete'
-      And the user clicks on 'Delete' in the confirm popup
+      And the user clicks on 'Delete' in the modal
      Then the Digital Objects page is displayed
       And the 'Digital Object' deleted message is displayed
-     And the Digital Object is deleted
+      And the Digital Object is deleted
   Scenario: Cancel Digital Object delete from the view page
     Given the user is on the Digital Object view page
      When the user clicks on 'Delete'
@@ -26,8 +26,7 @@ Feature: Digital Object Delete
   Scenario: Digital Object is deleted from the edit page
     Given the user is on the Digital Object edit page
      When the user clicks on 'Delete'
-      And the user clicks on 'Delete' in the confirm popup
+      And the user clicks on 'Delete' in the modal
      Then the Digital Objects page is displayed
       And the 'Digital Object' deleted message is displayed
       And the Digital Object is deleted
-    

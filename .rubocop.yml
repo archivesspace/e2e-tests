@@ -6,9 +6,6 @@ AllCops:
 Metrics/AbcSize:
   Max: 50
 
-Metrics/BlockLength:
-  Max: 80
-
 Layout/LineLength:
   Max: 200
 
@@ -17,9 +14,6 @@ Metrics/MethodLength:
 
 Metrics/BlockLength:
   Max: 90
-
-Layout/LineLength:
-  Max: 180
 
 Layout/ElseAlignment:
   Enabled: false
