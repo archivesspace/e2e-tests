@@ -86,8 +86,22 @@ def ensure_test_repository_exists
 
     visit STAFF_URL
   end
+
+  select_test_repository
 rescue Capybara::ElementNotFound
-  # Continue
+  select_test_repository
+end
+
+def select_test_repository
+  click_on 'Select Repository'
+  within '.dropdown-menu' do
+    find('select').select 'repository_test'
+    click_on 'Select Repository'
+  end
+  expect(find('.alert.alert-success').text).to eq 'The Repository repository_test is now active'
+
+  click_on 'repository_test'
+  @repository_id = current_url.split('/').pop
 end
 
 def ensure_test_user_exists
@@ -175,6 +189,7 @@ end
 def create_resource(uuid)
   fill_in 'resource_title_', with: "Resource #{uuid}"
   fill_in 'resource_id_0_', with: "Resource #{uuid}"
+  find('#resource_publish_').check
   select 'Class', from: 'resource_level_'
   element = find('#resource_lang_materials__0__language_and_script__language_')
   element.send_keys('AU')
