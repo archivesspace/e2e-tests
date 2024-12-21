@@ -1,17 +1,5 @@
 # frozen_string_literal: true
 
-Given 'a Digital Object has been created' do
-  visit "#{STAFF_URL}/digital_objects/new"
-
-  fill_in 'digital_object_title_', with: "Digital Object Title #{@uuid}"
-  fill_in 'digital_object_digital_object_id_', with: "Digital Object Title #{@uuid}"
-
-  click_on 'Save'
-  wait_for_ajax
-
-  expect(page).to have_text "Digital Object Digital Object Title #{@uuid} Created"
-end
-
 Given 'two Digital Objects have been created with a common keyword in their title' do
   @shared_digital_object_uuid = SecureRandom.uuid
   @digital_object_a_uuid = SecureRandom.uuid
@@ -50,27 +38,6 @@ Then 'the two Digital Objects are displayed sorted by descending title' do
   expect(search_result_rows.length).to eq 2
   expect(search_result_rows[1]).to have_text @digital_object_a_uuid
   expect(search_result_rows[0]).to have_text @digital_object_b_uuid
-end
-
-When 'the user filters by text with the Digital Object title' do
-  fill_in 'Filter by text', with: @uuid
-
-  find('#filter-text').send_keys(:enter)
-
-  rows = []
-  checks = 0
-
-  while checks < 5
-    checks += 1
-
-    begin
-      rows = all('tr', text: @uuid)
-    rescue Selenium::WebDriver::Error::JavascriptError
-      sleep 1
-    end
-
-    break if rows.length == 1
-  end
 end
 
 Then 'the Digital Object is in the search results' do

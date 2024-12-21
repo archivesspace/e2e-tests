@@ -320,3 +320,41 @@ end
 Then 'the {string} section is displayed' do |section_heading|
   expect(all('section > h3').map(&:text)).to include(section_heading)
 end
+
+Given 'the Pre-populate Records option is checked in Repository Preferences' do
+  visit "#{STAFF_URL}/repositories/new"
+
+  fill_in 'repository_repository__repo_code_', with: 'repository_test_resource_edit_default_values'
+  fill_in 'repository_repository__name_', with: 'Repository Test Resource Edit Default Values'
+  find('#repository_repository__publish_').check
+  click_on 'Save'
+
+  message = find('.alert')
+
+  # Attempting to create a repository with the values above,
+  # may result in a success message or one of the following errors.
+  repository_exists = message.text == 'Repository Short Name - The repository short name must be unique within this ArchivesSpace'
+  repository_created = message.text == 'Repository Created'
+  agent_records_message = message.text == 'Agent records cannot be identical'
+  expect(repository_exists || repository_created || agent_records_message).to eq true
+
+  visit STAFF_URL
+
+  click_on 'Select Repository'
+  within '.dropdown-menu' do
+    find('select').select 'repository_test_resource_edit_default_values'
+
+    click_on 'Select Repository'
+  end
+
+  expect(page).to have_text 'The Repository repository_test_resource_edit_default_values is now active'
+
+  find('#user-menu-dropdown').click
+  within '.dropdown-menu' do
+    click_on 'Repository Preferences (admin)'
+  end
+
+  find('#preference_defaults__default_values_').check
+
+  click_on 'Save'
+end
