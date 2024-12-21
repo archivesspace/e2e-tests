@@ -11,28 +11,28 @@ Feature: Digital Object Edit
      When the user clicks on 'Edit'
      Then the Digital Object is opened in the edit mode
   Scenario Outline: Digital Object is successfully updated
-    Given the Digital Object is opened in the edit mode
+    Given the Digital Object is opened in edit mode
      When the user changes the '<Field>' field to '<NewValue>'
       And the user clicks on 'Save'
      Then the 'Digital Object' updated message is displayed
       And the field '<Field>' has value '<NewValue>'
-       Examples:
-       | Field               | NewValue                    |
-       | Title               | Updated Test Digital Object |
-       | Digital Object Type | Mixed Materials             |
+        Examples:
+          | Field               | NewValue                    |
+          | Title               | Updated Test Digital Object |
+          | Digital Object Type | Mixed Materials             |
   Scenario: Digital Object is not updated after changes are reverted
-    Given the Digital Object is opened in the edit mode
+    Given the Digital Object is opened in edit mode
      When the user changes the 'Title' field
       And the user clicks on 'Revert Changes'
      Then the Digital Object Title field has the original value
   Scenario: Digital Object update fails due to invalid date input
-    Given the Digital Object is opened in the edit mode
-     When the user fills in 'Begin' at 'Dates' form with '2024-13-15'
+    Given the Digital Object is opened in edit mode
+     When the user fills in 'Begin' with '2024-13-15' in the 'Dates' form
       And the user clicks on 'Save'
      Then the following error message is displayed
        | Begin - Not a valid date |
   Scenario: Digital Object update fails due to missing required field
-    Given the Digital Object is opened in the edit mode
+    Given the Digital Object is opened in edit mode
      When the user clears the 'Identifier' field
       And the user clicks on 'Save'
      Then the following error message is displayed

@@ -59,3 +59,44 @@ Then 'the user is still on the Digital Object view page' do
   expect(find('h2').text).to eq "Digital Object Title #{@uuid} Digital Object"
   expect(current_url).to include "#{STAFF_URL}/digital_objects/#{@digital_object_id}"
 end
+
+Given 'the Digital Object appears in the search results list' do
+  visit "#{STAFF_URL}/digital_objects"
+
+  fill_in 'filter-text', with: "Digital Object Identifier #{@uuid}"
+
+  within '.search-filter' do
+    find('button').click
+  end
+
+  search_result_rows = all('#tabledSearchResults tbody tr')
+  expect(search_result_rows.length).to eq 1
+end
+
+Then 'the Digital Object is opened in the edit mode' do
+  wait_for_ajax
+  expect(current_url).to include 'edit'
+  expect(@digital_object_id).to eq current_url.split('::digital_object_').pop
+end
+
+Given 'the Digital Object is opened in the view mode' do
+  visit "#{STAFF_URL}/digital_objects/#{@digital_object_id}"
+end
+
+Given 'the Digital Object is opened in edit mode' do
+  visit "#{STAFF_URL}/digital_objects/#{@digital_object_id}/edit"
+
+  wait_for_ajax
+end
+
+Then 'the Digital Object Title field has the original value' do
+  visit "#{STAFF_URL}/digital_objects/#{@digital_object_id}/edit"
+
+  expect(page).to have_field('Title', with: "Digital Object Title #{@uuid}")
+end
+
+Then 'the Digital Object Identifier field has the original value' do
+  visit "#{STAFF_URL}/digital_objects/#{@digital_object_id}/edit"
+
+  expect(page).to have_field('Identifier', with: "Digital Object Identifier #{@uuid}")
+end

@@ -55,7 +55,9 @@ Then 'the Accession is opened in the edit mode' do
 end
 
 Then 'the field {string} has value {string}' do |field, value|
-  expect(page).to have_field(field, with: value, match: :first)
+  element = find_field(field, match: :first)
+
+  expect(element.value.downcase.gsub(' ', '_')).to eq value.downcase.gsub(' ', '_')
 end
 
 Then 'the Accession Title field has the original value' do
