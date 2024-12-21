@@ -209,6 +209,8 @@ When 'the user changes the {string} field' do |field|
 end
 
 Then('the {string} created message is displayed') do |string|
+  wait_for_ajax if current_url.include? 'resources'
+
   expect(find('.alert.alert-success.with-hide-alert').text).to match(/^#{string}.*created.*$/i)
 end
 
