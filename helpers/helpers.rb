@@ -154,6 +154,22 @@ def ensure_test_subject_exists
   end
 end
 
+def ensure_test_accession_exists
+  visit STAFF_URL
+
+  fill_in 'global-search-box', with: 'test_accession'
+  find('#global-search-button').click
+
+  begin
+    find 'tr', text: 'test_accession'
+  rescue Capybara::ElementNotFound
+    visit "#{STAFF_URL}/accessions/new"
+    fill_in 'accession_id_0_', with: 'test_accession'
+    fill_in 'accession_title_', with: 'test_accession'
+    click_on 'Save'
+  end
+end
+
 def ensure_test_classification_exists
   visit STAFF_URL
 
