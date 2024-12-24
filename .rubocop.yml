@@ -7,7 +7,7 @@ Metrics/AbcSize:
   Max: 50
 
 Layout/LineLength:
-  Max: 200
+  Max: 300
 
 Metrics/MethodLength:
   Max: 50
