@@ -140,6 +140,12 @@ When 'the user fills in {string} with {string} in the modal' do |label, value|
   end
 end
 
+When 'the user fills in {string} with a unique identifier in the modal' do |label|
+  within '.modal-content' do
+    fill_in label, with: @uuid, match: :first
+  end
+end
+
 When 'the user clicks on remove icon in the {string} form' do |form_title|
   section_title = find('h3', text: form_title)
   section = section_title.ancestor('section')
