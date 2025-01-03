@@ -21,10 +21,6 @@ When 'the user clicks on an Archival Object in the Component Position modal' do
   end
 end
 
-Then 'the New Archival Object page is displayed' do
-  expect(current_url).to include 'archival_objects/new'
-end
-
 Then 'the Archival Object has been spawned from Accession info message is displayed' do
   message = "This Archival Object has been spawned from Accession Accession Title #{@uuid}. This record is unsaved. You must click Save for the record to be created in the system."
 
