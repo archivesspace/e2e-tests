@@ -224,7 +224,13 @@ When 'the user unchecks {string}' do |label|
 end
 
 When 'the user changes the {string} field to {string}' do |field, value|
-  fill_in field, with: value, match: :first
+  element = find_field(field, match: :first)
+
+  if element.tag_name == 'select'
+    element.select value
+  else
+    element.fill_in with: value
+  end
 end
 
 When 'the user changes the {string} field' do |field|
