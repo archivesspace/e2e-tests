@@ -10,7 +10,7 @@ Then 'the Generate Bulk Archival Object Spreadsheet page is displayed' do
   expect(current_url).to include @resource_id
 end
 
-Then 'the user selects the Archival Object' do
+Then 'the user selects the Archival Object on the Generate Bulk Archival Object Spreadsheet page' do
   input_fields = all('#bulk_archival_object_updater_table input')
 
   expect(input_fields.length).to eq 2

@@ -9,6 +9,6 @@ Feature: Resource generate bulk spreadsheet
      Then the Generate Bulk Archival Object Spreadsheet page is displayed
   Scenario: Resource Bulk Archival Object Spreadsheet is downloaded
     Given the user is on the Generate Bulk Archival Object Spreadsheet page
-     When the user selects the Archival Object
+     When the user selects the Archival Object on the Generate Bulk Archival Object Spreadsheet page
       And the user clicks on 'Download Spreadsheet'
      Then the Bulk Update Resource spreadsheet is downloaded
