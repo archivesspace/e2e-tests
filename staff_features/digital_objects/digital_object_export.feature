@@ -6,7 +6,7 @@ Feature: Digital Object Export
   Scenario: Digital Object export MODS
      When the user clicks on 'Export'
       And the user clicks on 'Download MODS' in the dropdown menu
-     Then an MODS XML file is downloaded
+     Then a MODS XML file is downloaded
   Scenario: Digital Object export METS
      When the user clicks on 'Export'
       And the user clicks on 'Download METS' in the dropdown menu
