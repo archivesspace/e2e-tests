@@ -5,6 +5,7 @@ Given 'a Digital Object has been created' do
 
   fill_in 'digital_object_digital_object_id_', with: "Digital Object Identifier #{@uuid}"
   fill_in 'digital_object_title_', with: "Digital Object Title #{@uuid}"
+  check 'digital_object_publish_'
 
   click_on 'Add Date'
   select 'Single', from: 'digital_object_dates__0__date_type_'
@@ -56,4 +57,25 @@ Then 'the Digital Object Identifier field has the original value' do
   visit "#{STAFF_URL}/digital_objects/#{@digital_object_id}/edit"
 
   expect(page).to have_field('Identifier', with: "Digital Object Identifier #{@uuid}")
+end
+
+Given 'the Digital Object is published' do
+  expect(find('#digital_object_publish_').value).to eq '1'
+end
+
+Then 'the Digital Object opens on a new tab in the public interface' do
+  expect(page.windows.size).to eq 2
+  switch_to_window(page.windows[1])
+
+  tries = 0
+
+  while current_url == 'about:blank'
+    break if tries == 3
+
+    tries += 1
+    sleep 1
+  end
+
+  expect(current_url).to eq "#{PUBLIC_URL}/repositories/#{@repository_id}/digital_objects/#{@digital_object_id}"
+  expect(page).to have_text "Digital Object Title #{@uuid}"
 end

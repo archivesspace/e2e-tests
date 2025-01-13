@@ -19,4 +19,3 @@ Feature: Digital Object Publish
       And the Digital Object is published
      When the user clicks on 'View Published'
      Then the Digital Object opens on a new tab in the public interface
-    
