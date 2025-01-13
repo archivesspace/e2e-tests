@@ -5,7 +5,7 @@ Feature: Digital Object Event Create
       And the Digital Object is opened in edit mode
   Scenario: Digital Object Event create page
      When the user clicks on 'Add Event'
-      And the user clicks on 'Add Event' in the modal
+      And the user clicks on 'Add Event' in the dropdown menu
      Then the New Event page is displayed with the Digital Object linked
   Scenario: Digital Object Event is created
     Given the New Event page is open for a Digital Object
