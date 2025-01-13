@@ -224,7 +224,13 @@ When 'the user unchecks {string}' do |label|
 end
 
 When 'the user changes the {string} field to {string}' do |field, value|
-  fill_in field, with: value, match: :first
+  element = find_field(field, match: :first)
+
+  if element.tag_name == 'select'
+    element.select value
+  else
+    element.fill_in with: value
+  end
 end
 
 When 'the user changes the {string} field' do |field|
@@ -240,7 +246,7 @@ Then('the {string} created message is displayed') do |string|
 end
 
 Then('the {string} updated message is displayed') do |string|
-  wait_for_ajax if current_url.include? 'resources'
+  wait_for_ajax if current_url.include?('resources') || current_url.include?('digital_objects')
 
   expect(find('.alert.alert-success.with-hide-alert').text).to match(/^#{string}.*updated$/i)
 end
