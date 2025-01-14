@@ -57,3 +57,16 @@ Then 'the Digital Object Identifier field has the original value' do
 
   expect(page).to have_field('Identifier', with: "Digital Object Identifier #{@uuid}")
 end
+
+Then 'the Assessment is linked to the Digital Object in the {string} form' do |form_title|
+  section_title = find('h3', text: form_title)
+  section = section_title.ancestor('section')
+  expect(section[:id]).to_not eq nil
+
+  related_accessions_elements = section.all('li.token-input-token')
+
+  expect(related_accessions_elements.length).to eq 1
+  related_accession = related_accessions_elements[0].find('.digital_object')
+
+  expect(related_accession[:'data-content']).to include "digital_objects/#{@digital_object_id}"
+end
