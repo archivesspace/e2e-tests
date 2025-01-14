@@ -8,4 +8,3 @@ Feature: Digital Object create Assessment
       And the user clicks on 'Create Assessment'
      Then the New Assessment page is displayed
       And the Assessment is linked to the Digital Object in the 'Basic Information' form
-    
