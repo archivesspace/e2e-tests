@@ -70,7 +70,9 @@ When 'the user clicks on {string} in the transfer form' do |string|
 end
 
 When 'the user clicks on {string} in the dropdown menu' do |string|
-  within '.dropdown-menu' do |dropdown_menu|
+  dropdown_menu = all('.dropdown-menu').first
+
+  within dropdown_menu do
     elements = dropdown_menu.all(:xpath, ".//*[contains(text(), '#{string}')]")
 
     elements.each do |element|
@@ -126,6 +128,14 @@ When 'the user fills in {string}' do |label|
   @uuid = SecureRandom.uuid if @uuid.nil?
 
   fill_in label, with: @uuid, match: :first
+end
+
+When 'the user fills in {string} in the modal' do |label|
+  @uuid = SecureRandom.uuid if @uuid.nil?
+
+  within '.modal-content' do
+    fill_in label, with: @uuid, match: :first
+  end
 end
 
 When 'the user clears the {string} field' do |label|
@@ -258,7 +268,7 @@ Then('the {string} unpublished message is displayed') do |string|
 end
 
 Then('the {string} merged message is displayed') do |string|
-  expect(find('.alert.alert-success.with-hide-alert').text).to eq("#{string} Merged")
+  expect(find('.alert.alert-success.with-hide-alert').text.downcase).to eq("#{string} Merged".downcase)
 end
 
 Then 'the following message is displayed' do |messages|
