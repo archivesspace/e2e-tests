@@ -158,15 +158,49 @@ Then 'the Digital Object opens on a new tab in the public interface' do
   expect(page).to have_text "Digital Object Title #{@uuid}"
 end
 
-Then 'the Assessment is linked to the Digital Object in the {string} form' do |form_title|
-  section_title = find('h3', text: form_title)
-  section = section_title.ancestor('section')
-  expect(section[:id]).to_not eq nil
+Then 'the Digital Object Component with Label {string} is saved as a child of the Digital Object' do |text|
+  records = all('#tree-container .table-row', text:)
 
-  related_accessions_elements = section.all('li.token-input-token')
+  expect(records.length).to eq 1
+  expect(records[0][:class]).to include 'indent-level-1 current'
 
-  expect(related_accessions_elements.length).to eq 1
-  related_accession = related_accessions_elements[0].find('.digital_object')
+  expect(page).to have_css "#tree-container #digital_object_#{@digital_object_id} + .table-row-group #digital_object_component_#{@created_record_id}"
+end
 
-  expect(related_accession[:'data-content']).to include "digital_objects/#{@digital_object_id}"
+Then 'the Digital Object Component with Title {string} is saved as a sibling of the selected Digital Object Component' do |title|
+  records = all('#tree-container .table-row', text: title)
+
+  expect(records.length).to eq 1
+  expect(records[0][:class]).to include 'indent-level-1 current'
+  expect(page).to have_css "#tree-container #digital_object_#{@digital_object_id} + .table-row-group #digital_object_component_#{@created_record_id}"
+end
+
+Given 'a Digital Object with a Digital Object Component has been created' do
+  visit "#{STAFF_URL}/digital_objects/new"
+
+  fill_in 'digital_object_digital_object_id_', with: "Digital Object Identifier #{@uuid}"
+  fill_in 'digital_object_title_', with: "Digital Object Title #{@uuid}"
+
+  click_on 'Add Date'
+  select 'Single', from: 'digital_object_dates__0__date_type_'
+  fill_in 'digital_object_dates__0__begin_', with: '2000-01-01'
+
+  click_on 'Save'
+
+  wait_for_ajax
+  expect(find('.alert.alert-success.with-hide-alert').text).to have_text "Digital Object Digital Object Title #{@uuid} Created"
+  @digital_object_id = current_url.split('::digital_object_').pop
+
+  click_on 'Add Child'
+  wait_for_ajax
+
+  fill_in 'Label', with: "Digital Object Component Label #{@uuid}"
+  click_on 'Save'
+  wait_for_ajax
+
+  expect(find('.alert.alert-success.with-hide-alert').text).to eq "Digital Object Component created on Digital Object Digital Object Title #{@uuid}"
+end
+
+And 'the user selects the Digital Object Component' do
+  click_on "Digital Object Component Label #{@uuid}"
 end

@@ -329,5 +329,9 @@ def wait_for_ajax
 end
 
 def extract_created_record_id(string)
-  current_url.split(':archival_object_').pop if string.include?('Archival Object')
+  return current_url.split(':archival_object_').pop if string.include?('Archival Object')
+
+  return current_url.split(':digital_object_component_').pop if string.include?('Digital Object Component')
+
+  current_url.split(':digital_object_').pop if string.include?('Digital Object')
 end
