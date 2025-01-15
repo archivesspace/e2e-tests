@@ -112,7 +112,7 @@ Then 'the Archival Object with Title {string} is saved as a child of the Resourc
 
   expect(archival_objects.length).to eq 1
   expect(archival_objects[0][:class]).to include 'indent-level-1 current'
-  expect(page).to have_css "#tree-container #resource_#{@resource_id} + .table-row-group #archival_object_#{@created_archival_object_id}"
+  expect(page).to have_css "#tree-container #resource_#{@resource_id} + .table-row-group #archival_object_#{@created_record_id}"
 end
 
 Then 'the Archival Object with Title {string} is saved as a sibling of the selected Archival Object' do |title|
@@ -120,7 +120,7 @@ Then 'the Archival Object with Title {string} is saved as a sibling of the selec
 
   expect(archival_objects.length).to eq 1
   expect(archival_objects[0][:class]).to include 'indent-level-1 current'
-  expect(page).to have_css "#tree-container #resource_#{@resource_id} + .table-row-group #archival_object_#{@created_archival_object_id}"
+  expect(page).to have_css "#tree-container #resource_#{@resource_id} + .table-row-group #archival_object_#{@created_record_id}"
 end
 
 Then 'the New Archival Object page is displayed' do
