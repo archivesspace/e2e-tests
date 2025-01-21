@@ -225,6 +225,16 @@ When 'the user selects {string} from {string} in the {string} form' do |option, 
   end
 end
 
+When 'the user clears {string} in the {string} form' do |label, form_title|
+  section_title = find('h3', text: form_title)
+  section = section_title.ancestor('section')
+  expect(section[:id]).to_not eq nil
+
+  within section do
+    select '', from: label
+  end
+end
+
 When 'the user checks {string}' do |label|
   check label, match: :first
 end
@@ -234,7 +244,13 @@ When 'the user unchecks {string}' do |label|
 end
 
 When 'the user changes the {string} field to {string}' do |field, value|
-  fill_in field, with: value, match: :first
+  field = find_field(field, match: :first)
+
+  if field.tag_name == 'select'
+    field.select value.strip
+  else
+    field.fill_in with: value
+  end
 end
 
 When 'the user changes the {string} field' do |field|
@@ -253,6 +269,12 @@ Then('the {string} updated message is displayed') do |string|
   wait_for_ajax if current_url.include? 'resources'
 
   expect(find('.alert.alert-success.with-hide-alert').text).to match(/^#{string}.*updated$/i)
+end
+
+Then('the {string} saved message is displayed') do |string|
+  wait_for_ajax if current_url.include? 'resources'
+
+  expect(find('.alert.alert-success.with-hide-alert').text).to match(/^#{string}.*saved$/i)
 end
 
 Then('the {string} deleted message is displayed') do |string|
