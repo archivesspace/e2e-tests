@@ -79,11 +79,9 @@ When 'the user clicks on {string} in the transfer form' do |string|
 end
 
 When 'the user clicks on {string} in the dropdown menu' do |string|
-  dropdown_menu = all('.dropdown-menu').first
-
   dropdown_menus = all('.dropdown-menu')
 
-  within dropdown_menus.first do |dropdown_menu|
+  within dropdown_menus.first do
     elements = dropdown_menu.all(:xpath, ".//*[contains(text(), '#{string}')]")
 
     elements.each do |element|
@@ -245,12 +243,12 @@ When 'the user unchecks {string}' do |label|
 end
 
 When 'the user changes the {string} field to {string}' do |field, value|
-  element = find_field(field, match: :first)
+  field = find_field(field, match: :first)
 
-  if element.tag_name == 'select'
-    element.select value
+  if field.tag_name == 'select'
+    field.select value.strip
   else
-    element.fill_in with: value
+    field.fill_in with: value
   end
 end
 
@@ -270,6 +268,12 @@ Then('the {string} updated message is displayed') do |string|
   wait_for_ajax if current_url.include?('resources') || current_url.include?('digital_objects')
 
   expect(find('.alert.alert-success.with-hide-alert').text).to match(/^#{string}.*updated$/i)
+end
+
+Then('the {string} saved message is displayed') do |string|
+  wait_for_ajax if current_url.include? 'resources'
+
+  expect(find('.alert.alert-success.with-hide-alert').text).to match(/^#{string}.*saved$/i)
 end
 
 Then('the {string} deleted message is displayed') do |string|
@@ -383,4 +387,14 @@ Given 'the Pre-populate Records option is checked in Repository Preferences' do
   find('#preference_defaults__default_values_').check
 
   click_on 'Save'
+end
+
+When 'the user clears {string} in the {string} form' do |label, form_title|
+  section_title = find('h3', text: form_title)
+  section = section_title.ancestor('section')
+  expect(section[:id]).to_not eq nil
+
+  within section do
+    select '', from: label
+  end
 end
