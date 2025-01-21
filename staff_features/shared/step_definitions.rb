@@ -48,6 +48,14 @@ When 'the user clicks on {string}' do |string|
                    current_url.include?("digital_objects/#{@digital_object_id}/edit")
 end
 
+When 'the user hovers on {string} in the dropdown menu' do |string|
+  within '.dropdown-menu' do
+    element = find(:xpath, "//button[contains(text(), '#{string}')] | //a[contains(text(), '#{string}')]")
+
+    element.hover
+  end
+end
+
 When 'the user clicks on {string} in the record toolbar' do |string|
   within '.record-toolbar' do
     click_on_string string
@@ -73,7 +81,9 @@ end
 When 'the user clicks on {string} in the dropdown menu' do |string|
   dropdown_menu = all('.dropdown-menu').first
 
-  within dropdown_menu do
+  dropdown_menus = all('.dropdown-menu')
+
+  within dropdown_menus.first do |dropdown_menu|
     elements = dropdown_menu.all(:xpath, ".//*[contains(text(), '#{string}')]")
 
     elements.each do |element|
