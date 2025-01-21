@@ -9,7 +9,7 @@ Feature: Subject Delete
       And the user checks the checkbox of the Subject
       And the user clicks on 'Delete'
       And the user clicks on 'Delete Records'
-     Then the 'Records' deleted message is displayed
+     Then the 'Subjects' deleted message is displayed
       And the Subject is deleted
   Scenario: Subject is deleted from the view page
     Given the user is on the Subject view page
