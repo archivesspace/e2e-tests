@@ -52,3 +52,16 @@ Then 'the Subject does not have Metadata Rights Declarations' do
 
   expect(elements.length).to eq 0
 end
+
+Then 'a new External Document is added to the Subject with the following values' do |form_values_table|
+  records = all('#subject_external_documents_ .subrecord-form-list li')
+
+  expect(records.length).to eq @subject_number_of_external_documents + 1
+
+  created_record = records.last
+
+  form_values_hash = form_values_table.rows_hash
+  form_values_hash.each do |field, value|
+    expect(created_record.find_field(field).value.downcase.gsub(' ', '_')).to eq value.downcase.gsub(' ', '_')
+  end
+end

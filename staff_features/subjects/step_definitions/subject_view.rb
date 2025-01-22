@@ -7,6 +7,8 @@ Given 'a Subject has been created' do
   select 'Art & Architecture Thesaurus', from: 'subject_source_'
   select 'Cultural context', from: 'subject_terms__0__term_type_'
 
+  @subject_number_of_external_documents = 0
+
   click_on 'Save'
   expect(find('.alert.alert-success.with-hide-alert').text).to eq 'Subject Created'
 
