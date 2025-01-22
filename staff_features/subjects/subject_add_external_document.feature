@@ -9,7 +9,7 @@ Feature: Subject External Documemt
       And the user fills in 'Title' with 'Test title'
       And the user fills in 'Location' with 'Test location'
       And the user clicks on 'Save Subject'
-     Then the 'Subject' updated message is displayed
+     Then the 'Subject' saved message is displayed
       And a new External Document is added to the Subject with the following values
        | Title    | Test title    |
        | Location | Test location |
