@@ -12,6 +12,7 @@ Feature: Digital Object Rapid Data Entry
   Scenario: Validate row succeeds
      When the user clicks on 'Rapid Data Entry'
       And the user fills in 'Title' with 'Default Test Title' in the first row of the Rapid Data Entry table
+      And the user clicks on 'Validate Rows' in the modal
      Then the following message is displayed
        | All rows are valid |
   Scenario: Validate row fails
