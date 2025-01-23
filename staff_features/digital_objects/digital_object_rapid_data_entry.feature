@@ -12,6 +12,7 @@ Feature: Digital Object Rapid Data Entry
   Scenario: Validate row succeeds
      When the user clicks on 'Rapid Data Entry'
       And the user fills in 'Title' with 'Default Test Title' in the first row of the Rapid Data Entry table
+      And the user clicks on 'Validate Rows' in the modal
      Then the following message is displayed
        | All rows are valid |
   Scenario: Validate row fails
@@ -39,15 +40,15 @@ Feature: Digital Object Rapid Data Entry
       And the user clicks on 'Save as Template' in the modal
       And the user fills in 'Template name' with 'Test Template'
       And the user clicks on 'Save Template'
-     Then a new template with name 'Test Template' with the following data is added to the Rapid Data Entry templates
+     Then a new template with name 'Test Template' with the following data is added to the Digital Object Rapid Data Entry templates
        | Title                | Default Test Title |
        | Date Type            | Single             |
        | Begin                | 2021               |
   Scenario: Remove a Rapid Data Entry Template
-    Given a Rapid Data Entry template has been created
+    Given a Digital Object Rapid Data Entry template has been created
       And the Digital Object is opened in edit mode
      When the user clicks on 'Rapid Data Entry'
       And the user clicks on 'Remove Templates' in the modal
       And the user checks the created Rapid Data Entry template
       And the user clicks on 'Confirm Removal'
-     Then the template is removed from the Rapid Data Entry templates
+     Then the template is removed from the Digital Object Rapid Data Entry templates
