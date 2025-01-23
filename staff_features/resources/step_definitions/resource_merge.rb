@@ -93,18 +93,6 @@ Given 'the Resource A is opened in edit mode' do
   visit "#{STAFF_URL}/resources/#{@resource_first_id}/edit"
 end
 
-When 'the user clicks on the dropdown in the merge dropdown form' do
-  within '#merge-dropdown .dropdown-menu.merge-form' do
-    find('.btn.btn-default.dropdown-toggle').click
-  end
-end
-
-When 'the user clicks on {string} in the merge dropdown form' do |string|
-  within '#merge-dropdown .dropdown-menu.merge-form' do
-    click_on string
-  end
-end
-
 When 'the user selects the Resource B from the search results in the modal' do
   within '.modal-content' do
     within '#tabledSearchResults' do

@@ -320,3 +320,15 @@ end
 Then 'the {string} section is displayed' do |section_heading|
   expect(all('section > h3').map(&:text)).to include(section_heading)
 end
+
+When 'the user clicks on the dropdown in the merge dropdown form' do
+  within '#merge-dropdown .dropdown-menu.merge-form' do
+    find('.btn.btn-default.dropdown-toggle').click
+  end
+end
+
+When 'the user clicks on {string} in the merge dropdown form' do |string|
+  within '#merge-dropdown .dropdown-menu.merge-form' do
+    click_on string
+  end
+end
