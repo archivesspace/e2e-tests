@@ -11,14 +11,28 @@ When 'the user adds {string} as a file' do |file_path|
 end
 
 Then 'the Import Job page is displayed' do
-  expect(find('h2').text).to start_with 'Import Job'
+  tries = 0
+
+  loop do
+    expect(find('h2').text).to start_with 'Import Job'
+
+    break
+  rescue RSpec::Expectations::ExpectationNotMetError => e
+    tries += 1
+    sleep 3
+
+    raise e if tries == 5
+  end
 end
 
 Then 'the job completes' do
   tries = 0
-  begin
+
+  loop do
     expect(page).to_not have_text 'This job is next in the queue.'
     expect(page).to have_text 'The job has completed.'
+
+    break
   rescue RSpec::Expectations::ExpectationNotMetError => e
     tries += 1
     sleep 3
@@ -34,4 +48,11 @@ end
 
 Then 'the record links do not display {string}' do |string|
   expect(all('span.badge.badge-warning').map(&:text)).not_to include(string)
+end
+
+Then 'the Subject is listed in the New & Modified Records form' do
+  visit current_url
+
+  element = find('#generated_uris .subrecord-form-fields')
+  expect(element.text).to eq 'Subject headings'
 end
