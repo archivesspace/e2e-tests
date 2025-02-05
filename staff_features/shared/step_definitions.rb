@@ -44,7 +44,8 @@ end
 When 'the user clicks on {string}' do |string|
   click_on_string string
 
-  wait_for_ajax if current_url.include? "resources/#{@resource_id}/edit"
+  wait_for_ajax if current_url.include?("resources/#{@resource_id}/edit") ||
+                   current_url.include?("digital_objects/#{@digital_object_id}/edit")
 end
 
 When 'the user clicks on {string} in the record toolbar' do |string|
@@ -248,11 +249,11 @@ When 'the user changes the {string} field' do |field|
 end
 
 Then('the {string} created message is displayed') do |string|
-  wait_for_ajax if current_url.include?('resources' || 'digital_objects')
+  wait_for_ajax if current_url.include?('resources') || current_url.include?('digital_objects')
 
   expect(find('.alert.alert-success.with-hide-alert').text).to match(/^#{string}.*created.*$/i)
 
-  @created_archival_object_id = extract_created_record_id(string)
+  @created_record_id = extract_created_record_id(string)
 end
 
 Then('the {string} updated message is displayed') do |string|
