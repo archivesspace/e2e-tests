@@ -9,6 +9,7 @@ Given 'a Digital Object has been created' do
   click_on 'Add Date'
   select 'Single', from: 'digital_object_dates__0__date_type_'
   fill_in 'digital_object_dates__0__begin_', with: '2000-01-01'
+  check 'Publish'
 
   @digital_object_number_of_file_versions = 0
 
@@ -134,4 +135,25 @@ Then 'the File Version is removed from the Digital Object' do
   subrecords = all('#digital_object_file_versions_ .subrecord-form-list li')
 
   expect(subrecords.length).to eq @digital_object_number_of_file_versions - 1
+end
+
+Given 'the Digital Object is published' do
+  expect(find('#digital_object_publish_').checked?).to eq true
+end
+
+Then 'the Digital Object opens on a new tab in the public interface' do
+  expect(page.windows.size).to eq 2
+  switch_to_window(page.windows[1])
+
+  tries = 0
+
+  while current_url == 'about:blank'
+    break if tries == 3
+
+    tries += 1
+    sleep 1
+  end
+
+  expect(current_url).to eq "#{PUBLIC_URL}/repositories/#{@repository_id}/digital_objects/#{@digital_object_id}"
+  expect(page).to have_text "Digital Object Title #{@uuid}"
 end
