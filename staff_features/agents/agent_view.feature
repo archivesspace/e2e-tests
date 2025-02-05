@@ -14,7 +14,7 @@ Feature: Agent View
       And the user filters by text with the Agent name
       And the user clicks on 'View'
      Then the Agent view page is displayed
-  Scenario: Sort Agents by title
+  Scenario: Sort Agents by name
     Given two Agents have been created with a common keyword in their name
       And the two Agents are displayed sorted by ascending name
      When the user clicks on 'Name'
@@ -28,7 +28,7 @@ Feature: Agent View
     Given two Agents have been created with a common keyword in their name
       And the two Agents are displayed sorted by ascending name
      When the user clicks on 'Authority ID'
-     Then the two Agents are displayed sorted by ascending authority ID
+     Then the two Agents are displayed sorted by ascending Authority ID
   Scenario: Sort Agents by Source
     Given two Agents have been created with a common keyword in their name
       And the two Agents are displayed sorted by ascending name
@@ -53,4 +53,3 @@ Feature: Agent View
       And the user hovers on 'Modified' in the dropdown menu
       And the user clicks on 'Ascending' in the dropdown menu
      Then the two Agents are displayed sorted by ascending modified date
-    

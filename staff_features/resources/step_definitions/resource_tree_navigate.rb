@@ -72,10 +72,6 @@ Given 'only the first-level Archival Objects are displayed' do
   expect(rows[1].text).to include "Archival Object 1 #{@uuid}"
 end
 
-Then 'the button has text {string}' do |button_text|
-  expect(page).to have_text button_text
-end
-
 Then 'the expand arrows are disabled' do
   arrows = all('.expandme')
 
