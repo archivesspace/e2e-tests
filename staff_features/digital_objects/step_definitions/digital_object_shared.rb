@@ -10,6 +10,8 @@ Given 'a Digital Object has been created' do
   select 'Single', from: 'digital_object_dates__0__date_type_'
   fill_in 'digital_object_dates__0__begin_', with: '2000-01-01'
 
+  @digital_object_number_of_file_versions = 0
+
   click_on 'Save'
 
   wait_for_ajax
@@ -99,4 +101,37 @@ Then 'the Digital Object Identifier field has the original value' do
   visit "#{STAFF_URL}/digital_objects/#{@digital_object_id}/edit"
 
   expect(page).to have_field('Identifier', with: "Digital Object Identifier #{@uuid}")
+end
+
+Then 'a new File Version is added to the Digital Object with the following values' do |form_values_table|
+  subrecords = all('#digital_object_file_versions_ .subrecord-form-list li')
+
+  expect(subrecords.length).to eq @digital_object_number_of_file_versions + 1
+
+  created_subrecord = subrecords.last
+
+  form_values_hash = form_values_table.rows_hash
+  form_values_hash.each do |field, value|
+    expect(created_subrecord.find_field(field).value).to eq value.downcase.gsub(' ', '_')
+  end
+end
+
+Given 'the user has added a File Version to the Digital Object with the following values' do |form_values_table|
+  click_on 'Add File Version'
+
+  form_values_hash = form_values_table.rows_hash
+  form_values_hash.each do |field, value|
+    fill_in field, with: value
+  end
+
+  click_on 'Save'
+  wait_for_ajax
+
+  @digital_object_number_of_file_versions += 1
+end
+
+Then 'the File Version is removed from the Digital Object' do
+  subrecords = all('#digital_object_file_versions_ .subrecord-form-list li')
+
+  expect(subrecords.length).to eq @digital_object_number_of_file_versions - 1
 end
