@@ -203,6 +203,8 @@ def find_user_table_row_in_manage_user_access_page(username)
 end
 
 def create_resource(uuid)
+  visit "#{STAFF_URL}/resources/new"
+
   fill_in 'resource_title_', with: "Resource #{uuid}"
   fill_in 'resource_id_0_', with: "Resource #{uuid}"
   find('#resource_publish_').check
