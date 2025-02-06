@@ -16,11 +16,11 @@ Feature: Agent Edit
       And the user clicks on 'Save'
      Then the 'Agent' saved message is displayed
       And the field '<Field>' has value '<NewValue>'
-       Examples:
-       | Field                | NewValue |
-       | Authority ID         | Test     |
+        Examples:
+          | Field                | NewValue         |
+          | Prefix               | Test             |
   Scenario: Agent is not updated after changes are reverted
     Given the Agent is opened in edit mode
-     When the user changes the 'Authority ID' field
+     When the user fills in 'Primary Part of Name' with 'New Agent Name'
       And the user clicks on 'Revert Changes'
-     Then the Authority ID has the original value
+     Then the Primary Part of Name has the original value
