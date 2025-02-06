@@ -81,7 +81,7 @@ end
 When 'the user clicks on {string} in the dropdown menu' do |string|
   dropdown_menus = all('.dropdown-menu')
 
-  within dropdown_menus.first do
+  within dropdown_menus.first do |dropdown_menu|
     elements = dropdown_menu.all(:xpath, ".//*[contains(text(), '#{string}')]")
 
     elements.each do |element|
