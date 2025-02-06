@@ -70,6 +70,14 @@ When 'the user clicks on {string} in the modal' do |string|
   end
 end
 
+When 'the user hovers on {string} in the dropdown menu' do |string|
+  within '.dropdown-menu' do
+    element = find(:xpath, "//button[contains(text(), '#{string}')] | //a[contains(text(), '#{string}')]")
+
+    element.hover
+  end
+end
+
 When 'the user clicks on {string} in the transfer form' do |string|
   dropdown_menu = find('.transfer-form')
 
@@ -180,11 +188,21 @@ end
 
 When 'the user fills in {string} with {string} in the {string} form' do |label, value, form_title|
   section_title = find('h3', text: form_title)
-  section = section_title.ancestor('section')
+  section = section_title.ancestor('section', match: :first)
   expect(section[:id]).to_not eq nil
 
   within section do
     fill_in label, with: value
+  end
+end
+
+When 'the user fills in {string} in the {string} form' do |label, form_title|
+  section_title = find('h3', text: form_title)
+  section = section_title.ancestor('section', match: :first)
+  expect(section[:id]).to_not eq nil
+
+  within section do
+    fill_in label, with: @uuid
   end
 end
 
