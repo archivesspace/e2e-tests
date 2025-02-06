@@ -82,10 +82,6 @@ When 'the user selects the first Digital Object Component' do
   wait_for_ajax
 end
 
-Then 'the button has text {string}' do |text|
-  expect(page).to have_text text
-end
-
 Then 'the second Digital Object Component is pasted as a child of the Digital Object Component' do
   expect(page).to have_css "#digital_object_component_#{@digital_object_component_first_id}.indent-level-1"
   expect(page).to have_css "#digital_object_component_#{@digital_object_component_second_id}.indent-level-2"
