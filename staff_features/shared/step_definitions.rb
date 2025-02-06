@@ -398,3 +398,15 @@ When 'the user clears {string} in the {string} form' do |label, form_title|
     select '', from: label
   end
 end
+
+When 'the user clicks on the dropdown in the merge dropdown form' do
+  within '#merge-dropdown .dropdown-menu.merge-form' do
+    find('.btn.btn-default.dropdown-toggle').click
+  end
+end
+
+When 'the user clicks on {string} in the merge dropdown form' do |string|
+  within '#merge-dropdown .dropdown-menu.merge-form' do
+    click_on string
+  end
+end
