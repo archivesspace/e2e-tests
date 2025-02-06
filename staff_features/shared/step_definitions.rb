@@ -79,9 +79,9 @@ When 'the user clicks on {string} in the transfer form' do |string|
 end
 
 When 'the user clicks on {string} in the dropdown menu' do |string|
-  dropdown_menus = all('.dropdown-menu')
+  dropdown_menu = find('.dropdown-menu', match: :first)
 
-  within dropdown_menus.first do
+  within dropdown_menu do
     elements = dropdown_menu.all(:xpath, ".//*[contains(text(), '#{string}')]")
 
     elements.each do |element|

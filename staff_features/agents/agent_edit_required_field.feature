@@ -3,14 +3,19 @@ Feature: Agent Edit required fields
     Given an administrator user is logged in
       And the user is on Agents page
   Scenario: Edit required fields for person
-     When the user clicks on 'Edit required fields'
+     When the user clicks on 'Edit Required Fields'
       And the user clicks on 'Person' in the dropdown menu
-      And the user clicks on 'Name forms'
-      And the user checks the checkbox of 'Source'
+      And the user checks Source in the Name Forms form
       And the user clicks on 'Save Person'
-     Then the 'Source' field in 'Name forms' is required when creating a new 'Person' type agent
+      And the user clicks on 'Create'
+      And the user hovers on 'Agent' in the dropdown menu
+      And the user clicks on 'Person'
+      And the user clicks on 'Save'
+     Then the following error messages are displayed
+       | Primary Part of Name - Property is required but was missing |
+       | Source - Property is required but was missing               |
   Scenario: Edit required fields for family
-     When the user clicks on 'Edit required fields'
+     When the user clicks on 'Edit Required Fields'
       And the user clicks on 'Family' in the dropdown menu
       And the user clicks on 'Name forms'
       And the user checks the checkbox of 'Rules'
@@ -30,4 +35,3 @@ Feature: Agent Edit required fields
       And the user checks the checkbox of 'Version'
       And the user clicks on 'Save Software'
      Then the 'Version' field in 'Name forms' is required when creating a new 'Software' type agent
-    
