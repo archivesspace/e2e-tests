@@ -355,29 +355,25 @@ end
 Given 'the Pre-populate Records option is checked in Repository Preferences' do
   visit "#{STAFF_URL}/repositories/new"
 
-  fill_in 'repository_repository__repo_code_', with: 'repository_test_default_values'
-  fill_in 'repository_repository__name_', with: 'Repository Test Default Values'
+  fill_in 'repository_repository__repo_code_', with: "repository_test_default_values_#{@uuid}"
+  fill_in 'repository_repository__name_', with: "Repository Test Default Values #{@uuid}"
   find('#repository_repository__publish_').check
   click_on 'Save'
 
   message = find('.alert')
 
-  repository_exists = message.text == 'Repository Short Name - The repository short name must be unique within this ArchivesSpace'
-  repository_created = message.text == 'Repository Created'
-  agent_records_message = message.text == 'Agent records cannot be identical'
-
-  expect(repository_exists || repository_created || agent_records_message).to eq true
+  expect(message.text).to eq 'Repository Created'
 
   visit STAFF_URL
 
   click_on 'Select Repository'
   within '.dropdown-menu' do
-    find('select').select 'repository_test_default_values'
+    find('select').select "repository_test_default_values_#{@uuid}"
 
     click_on 'Select Repository'
   end
 
-  expect(page).to have_text 'The Repository repository_test_default_values is now active'
+  expect(page).to have_text "The Repository repository_test_default_values_#{@uuid} is now active"
 
   find('#user-menu-dropdown').click
   within '.dropdown-menu' do
