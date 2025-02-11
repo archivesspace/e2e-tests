@@ -4,9 +4,6 @@ Given 'the user is on Agents page' do
   visit "#{STAFF_URL}/agents"
 end
 
-When 'the user checks Source in the Name Forms form' do
-  byebug
-
-  find('#required_fields__source_').click
-  check '#required_fields__source_'
+When 'the user checks Rest of Name in the Name Forms form' do
+  check 'required_fields__rest_of_name_'
 end
