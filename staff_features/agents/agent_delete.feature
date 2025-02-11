@@ -9,7 +9,7 @@ Feature: Agent Delete
       And the user checks the checkbox of the Agent
       And the user clicks on 'Delete'
       And the user clicks on 'Delete Records'
-     Then the 'Records' deleted message is displayed
+     Then the 'Agents' deleted message is displayed
       And the Agent is deleted
   Scenario: Agent is deleted from the view page
     Given the user is on the Agent view page
