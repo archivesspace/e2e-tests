@@ -5,6 +5,7 @@ Given 'an Agent has been created' do
 
   fill_in 'Primary Part of Name', with: "Agent #{@uuid}"
   select 'Local sources', from: 'Source'
+  check 'Publish'
   click_on 'Save'
 
   expect(find('.alert.alert-success.with-hide-alert').text).to eq 'Agent Created'

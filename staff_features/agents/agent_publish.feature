@@ -12,7 +12,7 @@ Feature: Agent Publish
     Given the Agent is opened in edit mode
      When the user checks 'Publish'
       And the user clicks on 'Save'
-     Then the 'Agent' updated message is displayed
+     Then the 'Agent' saved message is displayed
       And the 'View Published' button is displayed
   Scenario: View a published Agent Record in the public interface
     Given the Agent is opened in edit mode
