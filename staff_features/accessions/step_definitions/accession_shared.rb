@@ -91,6 +91,8 @@ Given 'an Accession has been created' do
   dropdown_items = all('li.token-input-dropdown-item2')
   dropdown_items.first.click
 
+  @accession_number_of_instances = 0
+
   click_on 'Save'
   expect(page).to have_text "Accession Accession Title #{@uuid} created"
 end
@@ -127,4 +129,12 @@ Then 'a new Extent is added to the Accession with the following values' do |form
   form_values_hash.each do |field, value|
     expect(created_extent.find_field(field).value).to eq value.downcase.gsub(' ', '_')
   end
+end
+
+When 'the user selects the Top Container from the search results in the modal' do
+  results = all('table.table-search-results tbody tr')
+
+  expect(results.length > 0).to eq true
+
+  results[0].click
 end

@@ -159,3 +159,20 @@ Then 'User B sees the following conflict message' do |messages|
     expect(@user_b_session).to have_text message[0]
   end
 end
+
+Then 'a new Instance is added to the Accession with the following values' do |form_values_table|
+  instances = all('#accession_instances_ .subrecord-form-list li.subrecord-form-wrapper')
+
+  expect(instances.length).to eq @accession_number_of_instances + 1
+
+  instance = instances.last
+
+  form_values_hash = form_values_table.rows_hash
+  form_values_hash.each do |field, value|
+    if field == 'Top Container'
+      expect(find('.top_container').text).to eq value
+    else
+      expect(instance.find_field(field, visible: true).value).to eq value.downcase.gsub(' ', '_')
+    end
+  end
+end
