@@ -398,3 +398,9 @@ When 'the user clears {string} in the {string} form' do |label, form_title|
     select '', from: label
   end
 end
+
+When 'the user clicks on the gear icon' do
+  within '.repo-container' do
+    find('.btn.btn-default.navbar-btn.dropdown-toggle').click
+  end
+end
