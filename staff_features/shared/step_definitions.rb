@@ -421,3 +421,9 @@ end
 Then 'the button has text {string}' do |text|
   expect(page).to have_text text
 end
+
+When 'the user clicks on the gear icon' do
+  within '.repo-container' do
+    find('.btn.btn-default.navbar-btn.dropdown-toggle').click
+  end
+end
