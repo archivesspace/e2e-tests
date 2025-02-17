@@ -15,6 +15,7 @@ Given 'an administrator user is logged in' do
   ensure_test_subject_exists
   ensure_test_accession_exists
   ensure_test_classification_exists
+  ensure_test_location_exists
 end
 
 Given 'an archivist user is logged in' do
@@ -243,6 +244,8 @@ When 'the user unchecks {string}' do |label|
 end
 
 When 'the user changes the {string} field to {string}' do |field, value|
+  byebug
+
   field = find_field(field, match: :first)
 
   if field.tag_name == 'select'

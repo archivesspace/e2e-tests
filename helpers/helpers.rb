@@ -186,6 +186,14 @@ def ensure_test_classification_exists
   end
 end
 
+def ensure_test_location_exists
+  visit "#{STAFF_URL}/locations/new"
+  fill_in 'Building', with: 'test_location'
+  fill_in 'Barcode', with: 'test_location'
+  fill_in 'Classification', with: 'test_location'
+  click_on 'Save', match: :first
+end
+
 def find_user_table_row_in_manage_user_access_page(username)
   loop do
     begin
