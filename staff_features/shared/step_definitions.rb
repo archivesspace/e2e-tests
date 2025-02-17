@@ -15,6 +15,7 @@ Given 'an administrator user is logged in' do
   ensure_test_subject_exists
   ensure_test_accession_exists
   ensure_test_classification_exists
+  ensure_test_location_exists
 end
 
 Given 'an archivist user is logged in' do
