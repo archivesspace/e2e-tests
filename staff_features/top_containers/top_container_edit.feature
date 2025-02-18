@@ -16,7 +16,7 @@ Feature: Top Container Edit
     Given the Top Container is opened in edit mode
      When the user changes the '<Field>' field to '<NewValue>'
       And the user clicks on 'Save'
-     Then the 'Top Container' updated message is displayed
+      And the user clicks on 'Edit'
      Then the field '<Field>' has value '<NewValue>'
        Examples:
          | Field          | NewValue      |
@@ -63,5 +63,5 @@ Feature: Top Container Edit
   Scenario: Cancel Top Container delete from the edit page
     Given the Top Container is opened in edit mode
      When the user clicks on 'Delete'
-      And the user clicks on 'Cancel'
+      And the user clicks on 'Cancel' in the modal
      Then the user is still on the Top Container edit page

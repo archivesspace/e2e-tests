@@ -244,8 +244,6 @@ When 'the user unchecks {string}' do |label|
 end
 
 When 'the user changes the {string} field to {string}' do |field, value|
-  byebug
-
   field = find_field(field, match: :first)
 
   if field.tag_name == 'select'
