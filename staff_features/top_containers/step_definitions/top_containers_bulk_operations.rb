@@ -295,3 +295,13 @@ Then 'the Top Container A is deleted' do
   expect(page).to have_text 'Record Not Found'
   expect(page).to have_text "The record you've tried to access may no longer exist or you may not have permission to view it."
 end
+
+Then 'the two Top Containers are deleted' do
+  visit "#{STAFF_URL}/top_containers/#{@top_container_first_id}/edit"
+  expect(page).to have_text 'Record Not Found'
+  expect(page).to have_text "The record you've tried to access may no longer exist or you may not have permission to view it."
+
+  visit "#{STAFF_URL}/top_containers/#{@top_container_second_id}/edit"
+  expect(page).to have_text 'Record Not Found'
+  expect(page).to have_text "The record you've tried to access may no longer exist or you may not have permission to view it."
+end

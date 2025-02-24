@@ -102,4 +102,4 @@ Feature: Top Containers Bulk Operations
       And the user clicks on 'Delete Top Containers' in the dropdown menu
       And the user clicks on 'Delete 2 records' in the modal
      Then the 'Top Containers' deleted message is displayed
-      And the Top Containers A&B are deleted
+      And the two Top Containers are deleted
