@@ -157,6 +157,22 @@ def ensure_test_location_exists
   click_on 'Save', match: :first
 end
 
+def ensure_test_container_profile_exists
+  visit STAFF_URL
+
+  fill_in 'global-search-box', with: 'test_classification'
+  find('#global-search-button').click
+
+  begin
+    find 'tr', text: 'test_classification'
+  rescue Capybara::ElementNotFound
+    visit "#{STAFF_URL}/classifications/new"
+    fill_in 'classification_identifier_', with: 'test_classification'
+    fill_in 'classification_title_', with: 'test_classification'
+    click_on 'Save'
+  end
+end
+
 def find_user_table_row_in_manage_user_access_page(username)
   loop do
     begin

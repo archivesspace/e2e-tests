@@ -1,9 +1,5 @@
 # frozen_string_literal: true
 
-When 'the user fills in {string} with the Resource title' do |label|
-  fill_in label, with: @uuid
-end
-
 When 'the user fills in {string} with the Accession title' do |label|
   fill_in label, with: @uuid
 end
