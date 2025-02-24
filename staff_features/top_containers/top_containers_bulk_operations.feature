@@ -1,120 +1,105 @@
-Feature: Top Container bulk operations
+Feature: Top Containers Bulk Operations
   Background:
     Given an administrator user is logged in
-      And a Resource with 2 Top Containers has been created
+      And a Resource with two Top Containers has been created
       And the user is on the Top Containers page
-      And the user fills in 'Keyword' with the Resource title
-      And the user clicks on 'Search'
+      And the the two Top Containers are displayed in the search results
   Scenario: Select all Top Containers
      When the user checks the checkbox in the header row
-     Then all Top Containers are selected
-      And the 'Bulk Operations' button is active
+     Then all the Top Containers are selected
+      And the 'Bulk Operations' button is enabled
   Scenario: Unselect all Top Containers
     Given all Top Containers are selected
      When the user checks the checkbox in the header row
-     Then all Top Containers are unselected
-      And the 'Bulk Operations' button is not active
-  Scenario: Select Top Container
-     When the user checks the checkbox in the left-hand column of Top container
-     Then the Top Container is selected
-      And the 'Bulk Operations' button is active
+     Then all the Top Containers are not selected
+      And the 'Bulk Operations' button is disabled
   Scenario: Update ILS holdings IDs of a Top Container
-    Given a Top Container is selected
+    Given the Top Container A is selected
      When the user clicks on 'Bulk Operations'
-      And the user clicks on 'Update ILS holdings IDs' in the dropdown menu
+      And the user clicks on 'Update ILS Holding IDs' in the dropdown menu
       And the user fills in 'ILS Holding ID' with '123456789'
-      And the user clicks on 'Update 1 records' button
+      And the user clicks on 'Update 1 records'
      Then the 'Top Containers' updated message is displayed
-      And the 'ILS Holding ID' has value '123456789'
   Scenario: Update Container Profile of a Top Container by browsing
-    Given a Top Container is selected
-      And a Container Profile has been created
+    Given the Top Container A is selected
      When the user clicks on 'Bulk Operations'
-      And the user clicks on 'Update Container Profile' in the dropdown menu
+      And the user clicks on 'Update Container Profiles' in the dropdown menu
+      And the user clicks on the dropdown in the Bulk Update form
       And the user clicks on 'Browse' in the dropdown menu
       And the user selects Container Profile in the modal
-      And the user clicks on 'Link' in the modal
-      And the user clicks on 'Update 1 records' button
-     Then the 'Top Containers' updated message is displayed
-      And the Top Container profile is linked to the selected Container Profile
+      And the user clicks on 'Link' in the Browse Container Profiles modal
+      And the user clicks on 'Update 1 records'
+      And the Top Container A profile is linked to the Container Profile
   Scenario: Update Container Profile of a Top Container by creating Container Profile
-    Given a Top Container is selected
+    Given the Top Container A is selected
      When the user clicks on 'Bulk Operations'
-      And the user clicks on 'Update Container Profile' in the dropdown menu
+      And the user clicks on 'Update Container Profiles' in the dropdown menu
+      And the user clicks on the dropdown in the Bulk Update form
       And the user clicks on 'Create' in the dropdown menu
-      And the user fills in 'Name' with 'Test Container Profile' in the modal
-      And the user fills in 'Depth' with '90' in the modal
-      And the user fills in 'Height' with '90' in the modal
-      And the user fills in 'Width' with '90' in the modal
-      And the user clicks on 'Create and Link' in the modal
-      And the user clicks on 'Update 1 records' button
-     Then the 'Top Containers' updated message is displayed
-      And the 'Top Container Profile' has Name 'Test Container Profile'
+      And the user fills in 'Name' in the Create Container Profiles modal
+      And the user fills in 'Depth' with '1.1' in the Create Container Profiles modal
+      And the user fills in 'Height' with '1.2' in the Create Container Profiles modal
+      And the user fills in 'Width' with '1.3' in the Create Container Profiles modal
+      And the user clicks on 'Create and Link'
+      And the user clicks on 'Update 1 records'
+      And the Top Container A profile is linked to the created Container Profile
   Scenario: Update Single Location of a Top Container by browsing
-    Given a Top Container is selected
-      And a Location has been created
+    Given the Top Container A is selected
      When the user clicks on 'Bulk Operations'
       And the user clicks on 'Update Locations: Single Location' in the dropdown menu
+      And the user clicks on the dropdown in the Bulk Update form
       And the user clicks on 'Browse' in the dropdown menu
       And the user selects Location in the modal
-      And the user clicks on 'Link' in the modal
-      And the user clicks on 'Update 1 records' button
-     Then the 'Top Containers' updated message is displayed
-      And the Top Container profile is linked to the selected Location
+      And the user clicks on 'Link' in the Browse Locations modal
+      And the user clicks on 'Update 1 records'
+      And the Top Container profile is linked to the Location
   Scenario: Update Single Location of a Top Container by creating Location
-    Given a Top Container is selected
+    Given the Top Container A is selected
      When the user clicks on 'Bulk Operations'
       And the user clicks on 'Update Locations: Single Location' in the dropdown menu
+      And the user clicks on the dropdown in the Bulk Update form
       And the user clicks on 'Create' in the dropdown menu
-      And the user fills in 'Building' with 'test building' in the modal
-      And the user fills in 'Barcode' with '1234543' in the modal
-      And the user clicks on 'Create and Link' in the modal
-      And the user clicks on 'Update 1 records' button
-     Then the 'Top Containers' updated message is displayed
+      And the user fills in 'Building' with 'Test Building' in the Create Location modal
+      And the user fills in 'Barcode' with '123456789' in the Create Location modal
+      And the user clicks on 'Create and Link' in the Create Location modal
+      And the user clicks on 'Update 1 records'
       And the Top Container profile is linked to the created Location
   Scenario: Remove Locations from Top Containers without replacing the Locations
-    Given two Top Containers A&B are created with Locations are created
       And the two Top Containers are selected
      When the user clicks on 'Bulk Operations'
       And the user clicks on 'Update Locations: Multiple Locations' in the dropdown menu
-      And the user clicks on 'Update 2 records' button
-     Then the 'Top Containers' updated message is displayed
-      And the Locations are removed from the Top Containers
-    Scenario: Add Barcodes associated with Top Containers successfully
-      Given two Top Containers A&B are created
-        And the two Top Containers are selected
-       When the user clicks on 'Bulk Operations'
-        And the user clicks on 'Rapid Barcode Entry' in the dropdown menu
-        And the user fills in 'New Barcode' with '123456' for A Top Container
-        And the user fills in 'New Barcode' with '678901' for B Top Container
-        And the user clicks on 'Update 2 records' button
-       Then the 'Top Containers' updated message is displayed
-        And the Top Containers have new Barcodes
-  Scenario: Barcodes associated with Top Containers are not added
-    Given two Top Containers A&B are created
+      And the user clicks on 'Update 2 records'
+     Then the Locations are removed from the Top Containers
+  Scenario: Add Barcodes associated with Top Containers successfully
       And the two Top Containers are selected
      When the user clicks on 'Bulk Operations'
       And the user clicks on 'Rapid Barcode Entry' in the dropdown menu
-      And the user fills in 'New Barcode' with '123456' for A Top Container
-      And the user fills in 'New Barcode' with '123456' for B Top Container
-      And the user clicks on 'Update 2 records' button
+      And the user fills in New Barcode for Top Container A
+      And the user fills in New Barcode for Top Container B
+      And the user clicks on 'Update 2 records'
+      And the Top Containers have new Barcodes
+  Scenario: Barcodes associated with Top Containers are not added
+    Given the two Top Containers are selected
+     When the user clicks on 'Bulk Operations'
+      And the user clicks on 'Rapid Barcode Entry' in the dropdown menu
+      And the user fills in New Barcode for Top Container A with '123456789'
+      And the user fills in New Barcode for Top Container B with '123456789'
+      And the user clicks on 'Update 2 records'
      Then the following error message is displayed
        |Barcode - A barcode must be unique within a repository|
   Scenario: Merge two Top Containers
-    Given two Top Containers A&B are created
-      And the two Top Containers are selected
+    Given the two Top Containers are selected
      When the user clicks on 'Bulk Operations'
       And the user clicks on 'Merge Top Containers' in the dropdown menu
-      And the user selects the Top Container B in the modal
-      And the user clicks on 'Select merge target' in the modal
-      And the user clicks on 'Merge 2 records' in the modal
-     Then the 'Top Containers' merged message is displayed
+      And the user selects the Top Container B in the Merge Top Containers modal
+      And the user clicks on 'Select merge destination' in the modal
+      And the user clicks on 'Merge 2 records' in the Confirm Merge Top Containers modal
+     Then the 'Top Container(s)' merged message is displayed
       And the Top Container A is deleted
   Scenario: Delete two Top Containers
-    Given two Top Containers A&B are created
-      And the two Top Containers are selected
+    Given the two Top Containers are selected
      When the user clicks on 'Bulk Operations'
       And the user clicks on 'Delete Top Containers' in the dropdown menu
       And the user clicks on 'Delete 2 records' in the modal
      Then the 'Top Containers' deleted message is displayed
-      And the Top Containers A&B are deleted
+      And the two Top Containers are deleted
