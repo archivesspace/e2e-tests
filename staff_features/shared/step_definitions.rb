@@ -180,11 +180,21 @@ end
 
 When 'the user fills in {string} with {string} in the {string} form' do |label, value, form_title|
   section_title = find('h3', text: form_title)
-  section = section_title.ancestor('section')
+  section = section_title.ancestor('section', match: :first)
   expect(section[:id]).to_not eq nil
 
   within section do
     fill_in label, with: value
+  end
+end
+
+When 'the user fills in {string} in the {string} form' do |label, form_title|
+  section_title = find('h3', text: form_title)
+  section = section_title.ancestor('section', match: :first)
+  expect(section[:id]).to_not eq nil
+
+  within section do
+    fill_in label, with: @uuid
   end
 end
 
