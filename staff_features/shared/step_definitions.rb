@@ -420,3 +420,7 @@ When 'the user clicks on {string} in the merge dropdown form' do |string|
     click_on string
   end
 end
+
+Then 'the button has text {string}' do |text|
+  expect(page).to have_text text
+end
