@@ -11,6 +11,34 @@ Given 'a Digital Object has been created' do
   fill_in 'digital_object_dates__0__begin_', with: '2000-01-01'
   check 'Publish'
 
+  @digital_object_number_of_agents = 0
+  @digital_object_number_of_file_versions = 0
+
+  click_on 'Save'
+
+  wait_for_ajax
+  expect(find('.alert.alert-success.with-hide-alert').text).to have_text "Digital Object Digital Object Title #{@uuid} Created"
+  @digital_object_id = current_url.split('::digital_object_').pop
+end
+
+Given 'a Digital Object with a Linked Agent has been created' do
+  visit "#{STAFF_URL}/digital_objects/new"
+
+  fill_in 'digital_object_digital_object_id_', with: "Digital Object Identifier #{@uuid}"
+  fill_in 'digital_object_title_', with: "Digital Object Title #{@uuid}"
+
+  click_on 'Add Date'
+  select 'Single', from: 'digital_object_dates__0__date_type_'
+  fill_in 'digital_object_dates__0__begin_', with: '2000-01-01'
+  check 'Publish'
+
+  click_on 'Add Agent Link'
+  select 'Creator', from: 'digital_object_linked_agents__0__role_'
+  fill_in 'token-input-digital_object_linked_agents__0__ref_', with: 'test_agent'
+  dropdown_items = all('li.token-input-dropdown-item2')
+  dropdown_items.first.click
+
+  @digital_object_number_of_agents = 1
   @digital_object_number_of_file_versions = 0
 
   click_on 'Save'
@@ -216,4 +244,22 @@ Then 'the Assessment is linked to the Digital Object in the {string} form' do |f
   related_accession = related_accessions_elements[0].find('.digital_object')
 
   expect(related_accession[:'data-content']).to include "digital_objects/#{@digital_object_id}"
+end
+
+When 'the user searches and selects an Agent' do
+  fill_in 'token-input-digital_object_linked_agents__0__ref_', with: 'test_agent'
+  dropdown_items = all('li.token-input-dropdown-item2')
+  dropdown_items.first.click
+end
+
+Then 'a new Linked Agent is added to the Digital Object' do
+  agent_links = all('#digital_object_linked_agents_ .subrecord-form-container li.sort-enabled.initialised.linked_agent_initialised')
+
+  expect(agent_links.length).to eq @digital_object_number_of_agents + 1
+end
+
+Then 'the Linked Agent is removed from the Digital Object' do
+  agent_links = all('#digital_object_linked_agents_ .subrecord-form-container li.sort-enabled.initialised.linked_agent_initialised')
+
+  expect(agent_links.length).to eq @digital_object_number_of_agents - 1
 end
