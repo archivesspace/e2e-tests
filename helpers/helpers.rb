@@ -171,6 +171,23 @@ def ensure_test_accession_exists
 end
 
 def ensure_test_classification_exists
+  visit "#{STAFF_URL}/container_profiles/new"
+
+  fill_in 'Name', with: 'test_container_profile'
+  fill_in 'Depth', with: '1.1'
+  fill_in 'Height', with: '1.2'
+  fill_in 'Width', with: '1.3'
+
+  click_on 'Save'
+
+  message = find('.alert').text
+  error_message = message == 'Name - Container Profile name must be unique'
+  success_message = message == 'Container Profile Created'
+
+  expect(success_message || error_message).to eq true
+end
+
+def ensure_test_container_profile_exists
   visit STAFF_URL
 
   fill_in 'global-search-box', with: 'test_classification'
