@@ -15,6 +15,7 @@ Given 'an administrator user is logged in' do
   ensure_test_subject_exists
   ensure_test_accession_exists
   ensure_test_classification_exists
+  ensure_test_container_profile_exists
 end
 
 Given 'an archivist user is logged in' do
@@ -86,7 +87,7 @@ When 'the user clicks on {string} in the dropdown menu' do |string|
     elements = dropdown_menu.all(:xpath, ".//*[contains(text(), '#{string}')]")
 
     elements.each do |element|
-      if (element.tag_name == 'button' || element.tag_name == 'a') && element.text == string
+      if (element.tag_name == 'button' || element.tag_name == 'a' || element.tag_name == 'span') && element.text == string
         element.click
         break
       end
@@ -276,9 +277,11 @@ Then('the {string} created message is displayed') do |string|
 end
 
 Then('the {string} updated message is displayed') do |string|
-  wait_for_ajax if current_url.include?('resources') || current_url.include?('digital_objects')
+  wait_for_ajax if current_url.include?('resources') ||
+                   current_url.include?('digital_objects') ||
+                   current_url.include?('top_containers')
 
-  expect(find('.alert.alert-success.with-hide-alert').text).to match(/^#{string}.*updated$/i)
+  expect(find('.alert.alert-success', match: :first).text).to match(/^#{string}.*updated$/i)
 end
 
 Then('the {string} saved message is displayed') do |string|
@@ -425,5 +428,21 @@ end
 When 'the user clicks on the gear icon' do
   within '.repo-container' do
     find('.btn.btn-default.navbar-btn.dropdown-toggle').click
+  end
+end
+
+Then 'the {string} button is enabled' do |text|
+  buttons = all('button', text: text)
+
+  buttons.each do |button|
+    expect(button.disabled?).to eq false
+  end
+end
+
+Then 'the {string} button is disabled' do |text|
+  buttons = all('button', text: text)
+
+  buttons.each do |button|
+    expect(button.disabled?).to eq true
   end
 end
