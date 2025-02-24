@@ -95,6 +95,30 @@ Given 'an Accession has been created' do
   expect(page).to have_text "Accession Accession Title #{@uuid} created"
 end
 
+Given 'an Accession with a Top Container has been created' do
+  visit "#{STAFF_URL}/accessions/new"
+
+  fill_in 'accession_id_0_', with: "Accession #{@uuid}"
+  fill_in 'Title', with: "Accession Title #{@uuid}"
+  fill_in 'Accession Date', with: ORIGINAL_ACCESSION_DATE
+  check 'Publish?'
+
+  click_on 'Add Container Instance'
+  select 'Accession', from: 'accession_instances__0__instance_type_'
+
+  within '#accession_instances__0__sub_container__top_container__ref__combobox' do
+    find('button').click
+
+    click_on 'Create'
+  end
+
+  fill_in 'top_container_indicator_', with: @uuid
+  click_on 'Create and Link'
+
+  click_on 'Save'
+  expect(page).to have_text "Accession Accession Title #{@uuid} created"
+end
+
 Given 'the Accession is opened in edit mode' do
   visit "#{STAFF_URL}/accessions"
 

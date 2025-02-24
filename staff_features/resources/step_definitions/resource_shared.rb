@@ -1,5 +1,58 @@
 # frozen_string_literal: true
 
+Given 'a Resource with a Top Container has been created' do
+  visit "#{STAFF_URL}/resources/new"
+
+  visit "#{STAFF_URL}/resources/new"
+
+  fill_in 'resource_title_', with: "Resource #{@uuid}"
+  fill_in 'resource_id_0_', with: "Resource #{@uuid}"
+  find('#resource_publish_').check
+  select 'Class', from: 'resource_level_'
+
+  click_on 'Add Container Instance'
+  select 'Accession', from: 'resource_instances__0__instance_type_'
+
+  within '#resource_instances__0__sub_container__top_container__ref__combobox' do
+    find('button').click
+
+    click_on 'Create'
+  end
+
+  fill_in 'top_container_indicator_', with: @uuid
+  click_on 'Create and Link'
+
+  languages = all('#resource_lang_materials_ .subrecord-form-list li')
+  click_on 'Add Language' if languages.length == 0
+  element = find('#resource_lang_materials__0__language_and_script__language_')
+  element.send_keys(ORIGINAL_LANGUAGE)
+  element.send_keys(:tab)
+
+  select 'Single', from: 'resource_dates__0__date_type_'
+  fill_in 'resource_dates__0__begin_', with: ORIGINAL_RESOURCE_DATE
+  @resource_number_of_dates = 1
+
+  fill_in 'resource_extents__0__number_', with: '10'
+  select 'Cassettes', from: 'resource_extents__0__extent_type_'
+  @resource_number_of_extents = 1
+
+  element = find('#resource_finding_aid_language_')
+  element.send_keys('ENG')
+  element.send_keys(:tab)
+
+  element = find('#resource_finding_aid_script_')
+  element.send_keys('Latin')
+  element.send_keys(:tab)
+
+  click_on 'Save'
+
+  expect(find('.alert.alert-success.with-hide-alert').text).to have_text "Resource Resource #{@uuid} created"
+
+  uri_parts = current_url.split('/')
+  uri_parts.pop
+  @resource_id = uri_parts.pop
+end
+
 Given 'the Resource is opened in the view mode' do
   visit "#{STAFF_URL}/resources/#{@resource_id}"
 end
