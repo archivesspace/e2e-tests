@@ -1,26 +1,5 @@
 # frozen_string_literal: true
 
-When 'the user filters by text with the Agent name' do
-  fill_in 'Filter by text', with: @uuid
-
-  find('#filter-text').send_keys(:enter)
-
-  rows = []
-  checks = 0
-
-  while checks < 5
-    checks += 1
-
-    begin
-      rows = all('tr', text: @uuid)
-    rescue Selenium::WebDriver::Error::JavascriptError
-      sleep 1
-    end
-
-    break if rows.length == 1
-  end
-end
-
 When 'the user checks the checkbox of the Agent' do
   find('#multiselect-item').check
 end
