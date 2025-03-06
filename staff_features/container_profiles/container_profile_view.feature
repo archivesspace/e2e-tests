@@ -17,7 +17,7 @@ Feature: Container Profile View
   Scenario: Sort Container Profiles by name
     Given two Container Profiles have been created with a common keyword in their name
       And the two Container Profiles are displayed sorted by ascending name
-     When the user clicks on 'Name'
+     When the user clicks on 'Title'
      Then the two Container Profiles are displayed sorted by descending name
   Scenario: Container Profiles table download CSV
     Given two Container Profiles have been created with a common keyword in their name
