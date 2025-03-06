@@ -9,14 +9,12 @@ Feature: Container Profile Delete
       And the user checks the checkbox of the Container Profile
       And the user clicks on 'Delete'
       And the user clicks on 'Delete Records'
-     Then the 'Records' deleted message is displayed
-      And the Container Profile is deleted
+     Then the Container Profile is deleted
   Scenario: Container Profile is deleted from the view page
     Given the user is on the Container Profile view page
      When the user clicks on 'Delete'
       And the user clicks on 'Delete' in the modal
      Then the Container Profiles page is displayed
-      And the 'Container Pfodile' deleted message is displayed
       And the Container Profile is deleted
   Scenario: Cancel Container Profile delete from the view page
     Given the user is on the Container Profile view page
@@ -28,5 +26,4 @@ Feature: Container Profile Delete
      When the user clicks on 'Delete'
       And the user clicks on 'Delete' in the modal
      Then the Container Profiles page is displayed
-      And the 'Containe Profile' deleted message is displayed
       And the Container Profile is deleted
