@@ -14,28 +14,23 @@ Feature: Location View
       And the user filters by text with the Location building
       And the user clicks on 'View'
      Then the Location view page is displayed
-  Scenario: Sort Location by description
+  Scenario: Sort Location by building
     Given two Locations have been created with a common keyword in their building
-      And the two Locations are displayed sorted by ascending description
+      And the two Locations are displayed sorted by ascending building
      When the user clicks on 'Location'
-     Then the two Locations are displayed sorted by descending description
-  Scenario: Sort Locations by building
-    Given two Locations have been created with a common keyword in their building
-      And the two Locations are displayed sorted by ascending description
-     When the user clicks on 'Building'
-     Then the two Locations are displayed sorted by ascending building
+     Then the two Locations are displayed sorted by descending building
   Scenario: Sort Locations by floor
     Given two Locations have been created with a common keyword in their building
-      And the two Locations are displayed sorted by ascending description
+      And the two Locations are displayed sorted by ascending building
      When the user clicks on 'Floor'
      Then the two Locations are displayed sorted by ascending floor
   Scenario: Sort Locations by room
     Given two Locations have been created with a common keyword in their building
-      And the two Locations are displayed sorted by ascending description
+      And the two Locations are displayed sorted by ascending building
      When the user clicks on 'Room'
      Then the two Locations are displayed sorted by ascending room
   Scenario: Sort Locations by area
     Given two Locations have been created with a common keyword in their building
-      And the two Locations are displayed sorted by ascending description
+      And the two Locations are displayed sorted by ascending building
      When the user clicks on 'Area'
-      Then the two Locations are displayed sorted by ascending area
+     Then the two Locations are displayed sorted by ascending area
