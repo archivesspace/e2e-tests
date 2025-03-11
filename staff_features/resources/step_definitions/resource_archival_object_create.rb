@@ -69,7 +69,7 @@ Given 'a Resource with an Archival Object has been created' do
   dropdown_items.first.click
 
   click_on 'Add Accession Link'
-  fill_in 'token-input-accession_links_', with: 'test_accession'
+  fill_in 'token-input-archival_object_accession_links__0__ref_', with: 'test_accession'
   dropdown_items = all('li.token-input-dropdown-item2')
   dropdown_items.first.click
 
