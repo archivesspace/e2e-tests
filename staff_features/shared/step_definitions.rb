@@ -393,6 +393,8 @@ Given 'the Pre-populate Records option is checked in Repository Preferences' do
 
   find('#preference_defaults__default_values_').check
 
+  expect(find('#preference_defaults__default_values_').checked?).to eq true
+
   click_on 'Save'
 end
 
