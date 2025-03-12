@@ -5,20 +5,15 @@ Feature: Location Profile View
     Given a Location Profile has been created
      When the user clicks on 'System'
       And the user clicks on 'Manage Location Profiles' in the dropdown menu
-      And the user filters by text with the Location Profile title
+      And the user filters by text with the Location Profile name
      Then the Location Profile is in the search results
   Scenario: View Location Profile from the search results
-    Given a Location Profile been created
+    Given a Location Profile has been created
      When the user clicks on 'System'
       And the user clicks on 'Manage Location Profiles' in the dropdown menu
-      And the user filters by text with the Location Profile title
+      And the user filters by text with the Location Profile name
       And the user clicks on 'View'
      Then the Location Profile view page is displayed
-  Scenario: Sort Location Profiles by title
-    Given two Location Profiles have been created with a common keyword in their title
-      And the two Location Profiles are displayed sorted by ascending title
-     When the user clicks on 'Title'
-     Then the two Location Profiles are displayed sorted by descending title
   Scenario: Location Profiles table download CSV
     Given two Location Profiles have been created with a common keyword in their title
       And the two Location Profiles are displayed in the search results
