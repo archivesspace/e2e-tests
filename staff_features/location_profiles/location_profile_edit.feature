@@ -19,10 +19,10 @@ Feature: Location Profile Edit
       Examples:
        | Field | NewValue |
        | Name  | New Name |
-  Scenario: Location Profile is not updated after changes are reverted
+  Scenario: Location Profile is not updated after changes are canceled
     Given the Location Profile is opened in edit mode
      When the user changes the 'Name' field
-      And the user clicks on 'Revert Changes'
+      And the user clicks on 'Cancel'
      Then the Location Profile Name field has the original value
   Scenario: Location Profile update fails due to missing required field
     Given the Location Profile is opened in edit mode
