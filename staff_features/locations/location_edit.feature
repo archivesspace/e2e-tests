@@ -7,7 +7,7 @@ Feature: Location Edit
      When the user clicks on 'Edit'
      Then the Location is opened in the edit mode
   Scenario: Location is opened in the edit mode from the view mode
-    Given the Location is opened in the view mode
+    Given the Location is opened in view mode
      When the user clicks on 'Edit'
      Then the Location is opened in the edit mode
   Scenario Outline: Location is successfully updated
@@ -23,4 +23,4 @@ Feature: Location Edit
     Given the Location is opened in edit mode
      When the user fills in 'Building' with 'New Building'
       And the user clicks on 'Revert Changes'
-     Then the Building has the original value
+     Then the Location Building field has the original value
