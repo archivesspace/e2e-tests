@@ -7,18 +7,16 @@ Feature: Location Profile Edit
      When the user clicks on 'Edit'
      Then the Location Profile is opened in the edit mode
   Scenario: Location Profile is opened in the edit mode from the view mode
-    Given the Location Profile is opened in the view mode
+    Given the Location Profile is opened in view mode
      When the user clicks on 'Edit'
      Then the Location Profile is opened in the edit mode
-  Scenario Outline: Location Profile is successfully updated
-    Given the Location Profile is opened in the view mode
+  Scenario: Location Profile is successfully updated
+    Given the Location Profile is opened in view mode
      When the user clicks on 'Edit'
-      And the user changes the '<Field>' field to '<NewValue>'
+      And the user fills in 'Name'
       And the user clicks on 'Save'
-     Then the field '<Field>' has value '<NewValue>'
-      Examples:
-       | Field | NewValue |
-       | Name  | New Name |
+      And the user clicks on 'Edit'
+     Then the 'Name' has a unique value
   Scenario: Location Profile is not updated after changes are canceled
     Given the Location Profile is opened in edit mode
      When the user changes the 'Name' field
