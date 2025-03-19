@@ -51,6 +51,13 @@ Given 'a Resource with a Top Container has been created' do
   uri_parts = current_url.split('/')
   uri_parts.pop
   @resource_id = uri_parts.pop
+
+  top_container = find('.top_container')
+  data_content = top_container[:'data-content']
+  split = data_content.split('/')
+  split.pop
+  text_containing_id = split.pop
+  @top_container_id = text_containing_id.scan(/\d+/).first
 end
 
 Given 'the Resource is opened in the view mode' do
