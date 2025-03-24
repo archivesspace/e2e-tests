@@ -5,7 +5,7 @@ Feature: Assessment Delete
   Scenario: Assessment is deleted from the search results
      When the user clicks on 'Browse'
       And the user clicks on 'Assessments'
-      And the user filters by text with the Assessment Record
+      And the user filters by text with the Assessment record
       And the user checks the checkbox of the Assessment
       And the user clicks on 'Delete'
       And the user clicks on 'Delete Records'
