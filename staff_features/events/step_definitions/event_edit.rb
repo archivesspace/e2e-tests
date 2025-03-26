@@ -17,7 +17,7 @@ Given 'an Event has been created' do
   dropdown_items.first.click
 
   select 'Outcome', from: 'event_linked_records__0__role_'
-  fill_in 'token-input-event_linked_records__0__ref_', with: 'test_agent'
+  fill_in 'token-input-event_linked_records__0__ref_', with: 'test_accession'
   dropdown_items = all('li.token-input-dropdown-item2')
   dropdown_items.first.click
 
