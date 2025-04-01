@@ -27,7 +27,7 @@ Feature: Location Create
       And the user clicks on 'Create Location'
      Then the '3 Locations' created message is displayed
   Scenario: Batch Location is not created because required fields are missing
-    Given the user is on the New Batch Location page
+    Given the New Batch Location page is displayed
      When the user clicks on 'Create Locations'
      Then the following error messages are displayed
        | Building - Property is required but was missing           |
