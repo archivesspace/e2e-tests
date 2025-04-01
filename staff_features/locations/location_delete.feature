@@ -14,7 +14,7 @@ Feature: Location Delete
     Given the Location view page is displayed
      When the user clicks on 'Delete'
       And the user clicks on 'Delete' in the modal
-     Then the Locations page is displayed
+     Then the user is on the Locations page
       And the 'Location' deleted message is displayed
       And the Location is deleted
   Scenario: Cancel Location delete from the view page
