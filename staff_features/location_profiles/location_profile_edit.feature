@@ -10,7 +10,7 @@ Feature: Location Profile Edit
     Given the Location Profile is opened in view mode
      When the user clicks on 'Edit'
      Then the Location Profile is opened in the edit mode
-  Scenario Outline: Location Profile is successfully updated
+  Scenario: Location Profile is successfully updated
     Given the Location Profile is opened in view mode
      When the user clicks on 'Edit'
       And the user fills in 'Name'
