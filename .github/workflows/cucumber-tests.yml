@@ -1,41 +1,27 @@
 name: Cucumber
 on: push
 jobs:
-  cucumber:
-    name: Run Tests
-    runs-on: ubuntu-latest
-    concurrency:
-      group: ci-${{ github.ref }}
-      cancel-in-progress: true
-    steps:
-    - name: Checkout repository
-      uses: actions/checkout@v2
-    - name: Set up Docker
-      run: |
-        docker compose -f docker-compose.yml up --quiet-pull --detach
-    - name: Wait until the web server is ready
-      run: until curl -s -f -o /dev/null "http://localhost:8080"; do sleep 5; done
-    - name: Set up Ruby
-      uses: ruby/setup-ruby@v1
-      with:
-        ruby-version: '3.2.0'
-    - name: Cache gems
-      uses: actions/cache@v3
-      with:
-        path: vendor/bundle
-        key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
-        restore-keys: |
-          ${{ runner.os }}-gems-
-    - name: Install gems
-      run: |
-        bundle config path vendor/bundle
-        bundle install --quiet --jobs 4 --retry 3
-    - name: Run rubocop
-      run: |
-        bundle exec rubocop
-    - name: Cucumber strict dry run to check for not implemented steps
-      run: |
-        bundle exec cucumber --dry-run --strict
-    - name: Run tests
-      run: |
-        bundle exec cucumber --strict HEADLESS=true HOST=localhost staff_features
+  cucumber_a:
+    name: Run Tests Group A
+    uses: './.github/workflows/cucumber-tests-job.yml'
+    with:
+      run-cmd: |
+        bundle exec cucumber --strict HEADLESS=true HOST=localhost staff_features/accessions staff_features/agents
+  cucumber_b:
+    name: Run Tests Group B
+    uses: './.github/workflows/cucumber-tests-job.yml'
+    with:
+      run-cmd: |
+        bundle exec cucumber --strict HEADLESS=true HOST=localhost staff_features/digital_objects staff_features/jobs staff_features/locations staff_features/repositories
+  cucumber_c:
+    name: Run Tests Group C
+    uses: './.github/workflows/cucumber-tests-job.yml'
+    with:
+      run-cmd: |
+        bundle exec cucumber --strict HEADLESS=true HOST=localhost staff_features/resources
+  cucumber_d:
+    name: Run Tests Group D
+    uses: './.github/workflows/cucumber-tests-job.yml'
+    with:
+      run-cmd: |
+        bundle exec cucumber --strict HEADLESS=true HOST=localhost staff_features/top_containers staff_features/users staff_features/subjects staff_features/container_profiles
