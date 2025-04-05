@@ -41,3 +41,9 @@ jobs:
         bundle exec cucumber --dry-run --strict
     - name: Run tests ${{ inputs.run-cmd }}
       run: ${{ inputs.run-cmd }}
+    - name: Upload screenshots on failure
+      if: failure()
+      uses: actions/upload-artifact@v4
+      with:
+        name: screenshots
+        path: /tmp/screenshots/

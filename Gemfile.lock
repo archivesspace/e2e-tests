@@ -17,6 +17,11 @@ GEM
       rack-test (>= 0.6.3)
       regexp_parser (>= 1.5, < 3.0)
       xpath (~> 3.2)
+    capybara-screenshot (1.0.26)
+      capybara (>= 1.0, < 4)
+      launchy
+    childprocess (5.1.0)
+      logger (~> 1.5)
     cucumber (9.2.0)
       builder (~> 3.2)
       cucumber-ci-environment (> 9, < 11)
@@ -50,6 +55,9 @@ GEM
     ffi (1.17.0-x86_64-linux-gnu)
     json (2.7.2)
     language_server-protocol (3.17.0.3)
+    launchy (3.0.1)
+      addressable (~> 2.8)
+      childprocess (~> 5.0)
     logger (1.6.0)
     matrix (0.4.2)
     mini_mime (1.1.5)
@@ -110,6 +118,7 @@ PLATFORMS
 DEPENDENCIES
   byebug
   capybara
+  capybara-screenshot
   cucumber
   cuke_linter
   rspec-expectations
