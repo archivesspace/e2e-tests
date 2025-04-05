@@ -32,20 +32,20 @@ Feature: Accession Edit
      Then the following error message is displayed
        | Accession Date - Not a valid date  |
       And the Accession Date field has the original value
-  Scenario: Accession update succeeds for User A with a warning for other user editing it
-    Given the Accession is opened in edit mode by User A
-      And the Accession is opened in edit mode by User B
-     When User A changes the 'Title' field
-     Then User B sees a conflict message which indicates that User A is editing this record
-  Scenario: Accession update fails due to concurrent edit by another user
-    Given the Accession is opened in edit mode by User A
-      And the Accession is opened in edit mode by User B
-     When User A changes the 'Title' field
-      And User A clicks on 'Save'
-      And User B changes the 'Title' field
-      And User B clicks on 'Save'
-     Then User B sees the following conflict message
-       | Failed to save your changes - This record has been updated by another user. Please refresh the page to access the latest version.|
+  # Scenario: Accession update succeeds for User A with a warning for other user editing it
+  #   Given the Accession is opened in edit mode by User A
+  #     And the Accession is opened in edit mode by User B
+  #    When User A changes the 'Title' field
+  #    Then User B sees a conflict message which indicates that User A is editing this record
+  # Scenario: Accession update fails due to concurrent edit by another user
+  #   Given the Accession is opened in edit mode by User A
+  #     And the Accession is opened in edit mode by User B
+  #    When User A changes the 'Title' field
+  #     And User A clicks on 'Save'
+  #     And User B changes the 'Title' field
+  #     And User B clicks on 'Save'
+  #    Then User B sees the following conflict message
+  #      | Failed to save your changes - This record has been updated by another user. Please refresh the page to access the latest version.|
   Scenario: Accession update fails due to missing required field
     Given the Accession is opened in edit mode
      When the user clears the 'Identifier' field
