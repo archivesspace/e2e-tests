@@ -20,3 +20,4 @@ Feature: Subject External Documemt
      Then the following error messages are displayed
         | Title - Property is required but was missing    |
         | Location - Property is required but was missing |
+
