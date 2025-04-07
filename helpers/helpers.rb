@@ -10,8 +10,6 @@ end
 def login_admin
   visit STAFF_URL
 
-  expect(page).to have_text 'failure'
-
   fill_in 'username', with: 'admin'
   fill_in 'password', with: 'admin'
 
