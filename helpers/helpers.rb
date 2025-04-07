@@ -69,9 +69,10 @@ end
 
 # Ensure the system has at least one repository
 def ensure_test_repository_exists
-  element = find('.alert.alert-info.with-hide-alert')
+  menu_items = all('.global-header .global-header-nav li')
 
-  if element.text == 'To create your first Repository, click the System menu above and then Manage Repositories.'
+  # Three items on the header menu means no repository has been created yet.
+  if menu_items.length == 3
     click_on 'System'
     click_on 'Manage Repositories'
     click_on 'Create Repository'
@@ -87,8 +88,6 @@ def ensure_test_repository_exists
     visit STAFF_URL
   end
 
-  select_test_repository
-rescue Capybara::ElementNotFound
   select_test_repository
 end
 
@@ -122,68 +121,32 @@ def ensure_test_user_exists
 end
 
 def ensure_test_agent_exists
-  visit STAFF_URL
-
-  fill_in 'global-search-box', with: 'test_agent'
-  find('#global-search-button').click
-
-  begin
-    find 'tr', text: 'test_agent'
-  rescue Capybara::ElementNotFound
-    visit "#{STAFF_URL}/agents/agent_person/new"
-    check 'Publish'
-    fill_in 'Primary Part of Name', with: 'test_agent'
-    click_on 'Save'
-  end
+  visit "#{STAFF_URL}/agents/agent_person/new"
+  check 'Publish'
+  fill_in 'Primary Part of Name', with: 'test_agent'
+  click_on 'Save'
 end
 
 def ensure_test_subject_exists
-  visit STAFF_URL
-
-  fill_in 'global-search-box', with: 'test_subject'
-  find('#global-search-button').click
-
-  begin
-    find 'tr', text: 'test_subject'
-  rescue Capybara::ElementNotFound
-    visit "#{STAFF_URL}/subjects/new"
-    select 'Art & Architecture Thesaurus', from: 'subject_source_'
-    fill_in 'subject_terms__0__term_', with: 'test_subject_term'
-    select 'Cultural context', from: 'subject_terms__0__term_type_'
-    click_on 'Save'
-  end
+  visit "#{STAFF_URL}/subjects/new"
+  select 'Art & Architecture Thesaurus', from: 'subject_source_'
+  fill_in 'subject_terms__0__term_', with: 'test_subject_term'
+  select 'Cultural context', from: 'subject_terms__0__term_type_'
+  click_on 'Save'
 end
 
 def ensure_test_accession_exists
-  visit STAFF_URL
-
-  fill_in 'global-search-box', with: 'test_accession'
-  find('#global-search-button').click
-
-  begin
-    find 'tr', text: 'test_accession'
-  rescue Capybara::ElementNotFound
-    visit "#{STAFF_URL}/accessions/new"
-    fill_in 'accession_id_0_', with: 'test_accession'
-    fill_in 'accession_title_', with: 'test_accession'
-    click_on 'Save'
-  end
+  visit "#{STAFF_URL}/accessions/new"
+  fill_in 'accession_id_0_', with: 'test_accession'
+  fill_in 'accession_title_', with: 'test_accession'
+  click_on 'Save'
 end
 
 def ensure_test_classification_exists
-  visit STAFF_URL
-
-  fill_in 'global-search-box', with: 'test_classification'
-  find('#global-search-button').click
-
-  begin
-    find 'tr', text: 'test_classification'
-  rescue Capybara::ElementNotFound
-    visit "#{STAFF_URL}/classifications/new"
-    fill_in 'classification_identifier_', with: 'test_classification'
-    fill_in 'classification_title_', with: 'test_classification'
-    click_on 'Save'
-  end
+  visit "#{STAFF_URL}/classifications/new"
+  fill_in 'classification_identifier_', with: 'test_classification'
+  fill_in 'classification_title_', with: 'test_classification'
+  click_on 'Save'
 end
 
 def ensure_test_location_exists
