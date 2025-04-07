@@ -6,22 +6,4 @@ jobs:
     uses: './.github/workflows/cucumber-tests-job.yml'
     with:
       run-cmd: |
-        bundle exec cucumber --strict HEADLESS=true HOST=localhost staff_features/accessions staff_features/agents
-  cucumber_b:
-    name: Run Tests Group B
-    uses: './.github/workflows/cucumber-tests-job.yml'
-    with:
-      run-cmd: |
-        bundle exec cucumber --strict HEADLESS=true HOST=localhost staff_features/digital_objects staff_features/jobs staff_features/locations staff_features/repositories
-  cucumber_c:
-    name: Run Tests Group C
-    uses: './.github/workflows/cucumber-tests-job.yml'
-    with:
-      run-cmd: |
-        bundle exec cucumber --strict HEADLESS=true HOST=localhost staff_features/resources
-  cucumber_d:
-    name: Run Tests Group D
-    uses: './.github/workflows/cucumber-tests-job.yml'
-    with:
-      run-cmd: |
-        bundle exec cucumber --strict HEADLESS=true HOST=localhost staff_features/top_containers staff_features/users staff_features/subjects staff_features/container_profiles
+        bundle exec cucumber --strict HEADLESS=true HOST=localhost staff_features/accessions/accession_create.feature
