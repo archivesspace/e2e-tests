@@ -3,6 +3,7 @@
 require 'byebug'
 require 'capybara/cucumber'
 require 'selenium-webdriver'
+require 'capybara-screenshot/cucumber'
 
 case ENV.fetch('HOST', nil)
 when 'localhost', 'http://localhost:8080'
@@ -21,6 +22,8 @@ when 'true'
 else
   HEADLESS = ''
 end
+
+SCREENSHOTS_PATH = '/tmp/screenshots'
 
 Capybara.register_driver :firefox do |app|
   options = Selenium::WebDriver::Firefox::Options.new
@@ -57,5 +60,24 @@ BeforeAll do
     raise connection_error if response.code != '200'
   rescue Errno::ECONNREFUSED, Errno::ECONNRESET
     raise connection_error
+  end
+end
+
+Capybara.save_path = SCREENSHOTS_PATH
+
+After do |scenario|
+  if scenario.failed?
+    @uuid = SecureRandom.uuid
+
+    scenario_name = scenario.name.downcase.gsub(' ', '_')
+
+    Capybara::Screenshot.register_filename_prefix_formatter(:cucumber) do |_example|
+      scenario_name
+    end
+
+    timestamp = Time.now.strftime('%Y-%m-%d_%H-%M-%S')
+    filename = "#{scenario_name}-screenshot-#{timestamp}-#{@uuid}.png"
+    filepath = File.join(SCREENSHOTS_PATH, filename)
+    page.save_screenshot(filepath) # rubocop:disable Lint/Debugger
   end
 end
