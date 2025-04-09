@@ -15,7 +15,7 @@ Feature: Event Delete
       And the user clicks on 'Cancel'
      Then the user is still on the Event view page
   Scenario: Event is deleted from the edit page
-    Given the user is on the Event edit page
+    Given the Event edit page is displayed
      When the user clicks on 'Delete'
       And the user clicks on 'Delete' in the modal
      Then the Events page is displayed
