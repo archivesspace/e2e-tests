@@ -2,7 +2,6 @@ Feature: Event Edit Default Values
   Background:
     Given an administrator user is logged in
       And the Pre-populate Records option is checked in Repository Preferences
-      And an Event has been created
       And the user is on the Events page
   Scenario: Edit Default Values
      When the user clicks on 'Edit Default Values'
