@@ -67,7 +67,7 @@ Capybara.save_path = SCREENSHOTS_PATH
 
 After do |scenario|
   if scenario.failed?
-    @uuid = SecureRandom.uuid
+    uuid = SecureRandom.uuid
 
     scenario_name = scenario.name.downcase.gsub(' ', '_')
 
@@ -76,7 +76,7 @@ After do |scenario|
     end
 
     timestamp = Time.now.strftime('%Y-%m-%d_%H-%M-%S')
-    filename = "#{scenario_name}-screenshot-#{timestamp}-#{@uuid}.png"
+    filename = "#{scenario_name}-screenshot-#{timestamp}-#{uuid}.png"
     filepath = File.join(SCREENSHOTS_PATH, filename)
     page.save_screenshot(filepath) # rubocop:disable Lint/Debugger
   end
