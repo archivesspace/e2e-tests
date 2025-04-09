@@ -75,4 +75,3 @@ Then 'the new Event form has the following default values' do |form_values_table
 
   expect_form_values(form_values_table)
 end
-
