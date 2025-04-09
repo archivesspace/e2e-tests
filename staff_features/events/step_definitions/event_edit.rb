@@ -17,7 +17,7 @@ Given 'an Event has been created' do
   dropdown_items.first.click
 
   select 'Outcome', from: 'event_linked_records__0__role_'
-  fill_in 'token-input-event_linked_records__0__ref_', with: 'test_accession'
+  fill_in 'token-input-event_linked_records__0__ref_', with: 'test_agent'
   dropdown_items = all('li.token-input-dropdown-item2')
   dropdown_items.first.click
 
@@ -65,3 +65,14 @@ Then 'the Event Type field has the original value' do
 
   expect(field.value).to eq 'accession'
 end
+
+Given 'the user is on the Events page' do
+  visit "#{STAFF_URL}/events"
+end
+
+Then 'the new Event form has the following default values' do |form_values_table|
+  visit "#{STAFF_URL}/events/new"
+
+  expect_form_values(form_values_table)
+end
+
