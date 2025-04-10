@@ -4,7 +4,7 @@ Given 'a Repository has been created' do
   visit "#{STAFF_URL}/repositories/new"
 
   fill_in 'Repository Short Name', with: "repository_test_#{@uuid}"
-  fill_in 'Repository Name', with: "repository_test_#{@uuid}"
+  fill_in 'Repository Name', with: "Repository Test #{@uuid}"
 
   click_on 'Save'
 
