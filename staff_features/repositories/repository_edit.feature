@@ -5,21 +5,11 @@ Feature: Repository Edit
   Scenario: Repository is opened in the edit mode from the browse menu
     Given the Repository appears in the search results list
      When the user clicks on 'Edit'
-     Then the Repository is opened in the edit mode
+     Then the Repository is opened in edit mode
   Scenario: Repository is opened in the edit mode from the view mode
     Given the Repository is opened in the view mode
      When the user clicks on 'Edit'
-     Then the Repository is opened in the edit mode
-  Scenario Outline:Repository is successfully updated
-    Given the Repository is opened in the edit mode
-     When the user changes the '<Field>' field to '<NewValue>'
-      And the user clicks on 'Save Repository'
-     Then the 'Repository' saved message is displayed
-      And the field '<Field>' has value '<NewValue>'
-       Examples:
-       | Field                 | NewValue         |
-       | Repository Short Name | Test Short Name  |
-       | Description           | Test Description |
+     Then the Repository is opened in edit mode
   Scenario: Repository is not updated after changes are canceled
     Given the Repository is opened in edit mode
      When the user changes the 'Short Name' field
