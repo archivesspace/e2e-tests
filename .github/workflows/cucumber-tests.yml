@@ -1,27 +1,30 @@
 name: Cucumber
 on: push
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 jobs:
   cucumber_a:
     name: Run Tests Group A
     uses: './.github/workflows/cucumber-tests-job.yml'
     with:
       run-cmd: |
-        bundle exec cucumber --strict HEADLESS=true HOST=localhost staff_features/accessions staff_features/agents
+        bundle exec cucumber --strict HEADLESS=true HOST=localhost $(find ./staff_features -maxdepth 1 -type d -iname '[a-g]*' | tr '\n' ' ')
   cucumber_b:
     name: Run Tests Group B
     uses: './.github/workflows/cucumber-tests-job.yml'
     with:
       run-cmd: |
-        bundle exec cucumber --strict HEADLESS=true HOST=localhost staff_features/digital_objects staff_features/jobs staff_features/locations staff_features/repositories
+        bundle exec cucumber --strict HEADLESS=true HOST=localhost $(find ./staff_features -maxdepth 1 -type d -iname '[h-n]*' | tr '\n' ' ')
   cucumber_c:
     name: Run Tests Group C
     uses: './.github/workflows/cucumber-tests-job.yml'
     with:
       run-cmd: |
-        bundle exec cucumber --strict HEADLESS=true HOST=localhost staff_features/resources
+        bundle exec cucumber --strict HEADLESS=true HOST=localhost $(find ./staff_features -maxdepth 1 -type d -iname '[o-u]*' | tr '\n' ' ')
   cucumber_d:
     name: Run Tests Group D
     uses: './.github/workflows/cucumber-tests-job.yml'
     with:
       run-cmd: |
-        bundle exec cucumber --strict HEADLESS=true HOST=localhost staff_features/top_containers staff_features/users staff_features/subjects staff_features/container_profiles
+        bundle exec cucumber --strict HEADLESS=true HOST=localhost $(find ./staff_features -maxdepth 1 -type d -iname '[v-z]*' | tr '\n' ' ')
