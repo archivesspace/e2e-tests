@@ -157,6 +157,16 @@ def ensure_test_location_exists
   click_on 'Save', match: :first
 end
 
+def ensure_test_container_profile_exists
+  visit "#{STAFF_URL}/container_profiles/new"
+
+  fill_in 'Name', with: 'test_container_profile'
+  fill_in 'Depth', with: '1.1'
+  fill_in 'Height', with: '2.2'
+  fill_in 'Width', with: '3.3'
+  click_on 'Save', match: :first
+end
+
 def find_user_table_row_in_manage_user_access_page(username)
   loop do
     begin
