@@ -22,3 +22,7 @@ end
 Then 'the Assessments page is displayed' do
   expect(current_url).to include "#{STAFF_URL}/assessments"
 end
+
+Then 'the user is still on the Assessment view page' do
+  expect(current_url).to eq "#{STAFF_URL}/assessments/#{@assessment_id}"
+end
