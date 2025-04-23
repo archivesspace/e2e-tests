@@ -142,5 +142,5 @@ Then 'the Agent is in the search results' do
 end
 
 Then 'the Agent view page is displayed' do
-  expect(find('h2').text).to eq "Agent #{@uuid} Agent"
+  expect(current_url).to eq "#{STAFF_URL}/agents/agent_person/#{@agent_id}"
 end

@@ -34,5 +34,5 @@ Then 'a MARC XML file is downloaded' do
 
   load_file = File.read(downloaded_file)
   expect(load_file).to include '<collection'
-  expect(load_file).to include "<subfield code=\"a\">Agent #{@uuid}</subfield>"
+  expect(load_file).to include "<subfield code=\"a\">Agent #{@uuid}, Agent Rest of Name #{@uuid}</subfield>"
 end

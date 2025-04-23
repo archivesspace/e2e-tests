@@ -5,9 +5,9 @@ Given 'an Agent has been created' do
 
   fill_in 'Primary Part of Name', with: "Agent #{@uuid}"
   select 'Local sources', from: 'Source'
+  fill_in 'Rest of Name', with: "Agent Rest of Name #{@uuid}"
   check 'Publish'
   click_on 'Save'
-
   expect(find('.alert.alert-success.with-hide-alert').text).to eq 'Agent Created'
   url_parts = current_url.split('agents/agent_person').pop.split('/')
   url_parts.pop
