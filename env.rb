@@ -65,13 +65,17 @@ end
 
 Capybara.save_path = SCREENSHOTS_PATH
 
+Capybara::Screenshot.register_driver(:firefox) do |driver, path|
+  driver.browser.save_screenshot(path)
+end
+
 After do |scenario|
   if scenario.failed?
     uuid = SecureRandom.uuid
 
     scenario_name = scenario.name.downcase.gsub(' ', '_')
 
-    Capybara::Screenshot.register_filename_prefix_formatter(:cucumber) do |_example|
+    Capybara::Screenshot.register_filename_prefix_formatter(:firefox) do |_example|
       scenario_name
     end
 
