@@ -4,27 +4,48 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 jobs:
-  cucumber_a:
-    name: Run Tests Group A
+  cucumber_a_g:
+    name: Run Tests Group A - G
     uses: './.github/workflows/cucumber-tests-job.yml'
     with:
       run-cmd: |
-        bundle exec cucumber --strict HEADLESS=true HOST=localhost $(find ./staff_features -maxdepth 1 -type d -iname '[a-g]*' | tr '\n' ' ')
-  cucumber_b:
-    name: Run Tests Group B
+        dirs=$(find ./staff_features -maxdepth 1 -type d -iname '[a-g]*' | tr '\n' ' ')
+        if [ -n "$dirs" ]; then
+          bundle exec cucumber --strict HEADLESS=true HOST=localhost $dirs
+        fi
+  cucumber_h_m:
+    name: Run Tests Group H - M
     uses: './.github/workflows/cucumber-tests-job.yml'
     with:
       run-cmd: |
-        bundle exec cucumber --strict HEADLESS=true HOST=localhost $(find ./staff_features -maxdepth 1 -type d -iname '[h-n]*' | tr '\n' ' ')
-  cucumber_c:
-    name: Run Tests Group C
+        dirs=$(find ./staff_features -maxdepth 1 -type d -iname '[h-m]*' | tr '\n' ' ')
+        if [ -n "$dirs" ]; then
+          bundle exec cucumber --strict HEADLESS=true HOST=localhost $dirs
+        fi
+  cucumber_n_s:
+    name: Run Tests Group N - S
     uses: './.github/workflows/cucumber-tests-job.yml'
     with:
       run-cmd: |
-        bundle exec cucumber --strict HEADLESS=true HOST=localhost $(find ./staff_features -maxdepth 1 -type d -iname '[o-u]*' | tr '\n' ' ')
-  cucumber_d:
-    name: Run Tests Group D
+        dirs=$(find ./staff_features -maxdepth 1 -type d -iname '[n-s]*' | tr '\n' ' ')
+        if [ -n "$dirs" ]; then
+          bundle exec cucumber --strict HEADLESS=true HOST=localhost $dirs
+        fi
+  cucumber_t_x:
+    name: Run Tests Group T - X
     uses: './.github/workflows/cucumber-tests-job.yml'
     with:
       run-cmd: |
-        bundle exec cucumber --strict HEADLESS=true HOST=localhost $(find ./staff_features -maxdepth 1 -type d -iname '[v-z]*' | tr '\n' ' ')
+        dirs=$(find ./staff_features -maxdepth 1 -type d -iname '[t-x]*' | tr '\n' ' ')
+        if [ -n "$dirs" ]; then
+          bundle exec cucumber --strict HEADLESS=true HOST=localhost $dirs
+        fi
+  cucumber_y_z:
+    name: Run Tests Group T - X
+    uses: './.github/workflows/cucumber-tests-job.yml'
+    with:
+      run-cmd: |
+        dirs=$(find ./staff_features -maxdepth 1 -type d -iname '[y-z]*' | tr '\n' ' ')
+        if [ -n "$dirs" ]; then
+          bundle exec cucumber --strict HEADLESS=true HOST=localhost $dirs
+        fi
