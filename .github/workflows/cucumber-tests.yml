@@ -31,21 +31,12 @@ jobs:
         if [ -n "$dirs" ]; then
           bundle exec cucumber --strict HEADLESS=true HOST=localhost $dirs
         fi
-  cucumber_t_x:
-    name: Run Tests Group T - X
+  cucumber_t_z:
+    name: Run Tests Group T - Z
     uses: './.github/workflows/cucumber-tests-job.yml'
     with:
       run-cmd: |
-        dirs=$(find ./staff_features -maxdepth 1 -type d -iname '[t-x]*' | tr '\n' ' ')
-        if [ -n "$dirs" ]; then
-          bundle exec cucumber --strict HEADLESS=true HOST=localhost $dirs
-        fi
-  cucumber_y_z:
-    name: Run Tests Group T - X
-    uses: './.github/workflows/cucumber-tests-job.yml'
-    with:
-      run-cmd: |
-        dirs=$(find ./staff_features -maxdepth 1 -type d -iname '[y-z]*' | tr '\n' ' ')
+        dirs=$(find ./staff_features -maxdepth 1 -type d -iname '[t-z]*' | tr '\n' ' ')
         if [ -n "$dirs" ]; then
           bundle exec cucumber --strict HEADLESS=true HOST=localhost $dirs
         fi
