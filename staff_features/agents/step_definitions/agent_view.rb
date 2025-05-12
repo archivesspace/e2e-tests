@@ -10,6 +10,7 @@ Given 'two Agents have been created with a common keyword in their name' do
   fill_in 'Authority ID', with: "A #{@agent_a_uuid} #{@shared_agent_uuid}"
   select 'Local sources', from: 'Source'
   select 'Anglo-American Cataloging Rules', from: 'Rules'
+  fill_in 'Rest of Name', with: 'Rest of name A'
   click_on 'Save'
   expect(find('.alert.alert-success.with-hide-alert').text).to eq 'Agent Created'
   url_parts = current_url.split('agents/agent_person').pop.split('/')
@@ -21,6 +22,7 @@ Given 'two Agents have been created with a common keyword in their name' do
   fill_in 'Authority ID', with: "B #{@agent_b_uuid} #{@shared_agent_uuid}"
   select 'NAD / ARK II Name Authority Database', from: 'Source'
   select 'Describing Archives: A Content Standard', from: 'Rules'
+  fill_in 'Rest of Name', with: 'Rest of name B'
   click_on 'Save'
   expect(find('.alert.alert-success.with-hide-alert').text).to eq 'Agent Created'
   url_parts = current_url.split('agents/agent_person').pop.split('/')
