@@ -4,8 +4,8 @@ Given 'two Agents A & B have been created' do
   visit "#{STAFF_URL}/agents/agent_person/new"
 
   fill_in 'Primary Part of Name', with: "Agent A #{@uuid}"
+  fill_in 'Rest of Name', with: 'Rest of Name A'
   find('button', text: 'Save Person', match: :first).click
-
   expect(page).to have_text 'Agent Created'
 
   uri_parts = current_url.split('/')
@@ -15,6 +15,7 @@ Given 'two Agents A & B have been created' do
   visit "#{STAFF_URL}/agents/agent_person/new"
 
   fill_in 'Primary Part of Name', with: "Agent B #{@uuid}"
+  fill_in 'Rest of Name', with: 'Rest of Name B'
   find('button', text: 'Save Person', match: :first).click
   expect(page).to have_text 'Agent Created'
 
