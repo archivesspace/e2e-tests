@@ -58,8 +58,8 @@ Then 'the two Agents are displayed sorted by ascending type' do
   search_result_rows = all('#tabledSearchResults tbody tr')
 
   expect(search_result_rows.length).to eq 2
-  expect(search_result_rows[0]).to have_text @agent_a_uuid
-  expect(search_result_rows[1]).to have_text @agent_b_uuid
+  expect(search_result_rows[0]).to have_text "A #{@agent_a_uuid} #{@shared_agent_uuid}, Rest of name A"
+  expect(search_result_rows[1]).to have_text "B #{@agent_b_uuid} #{@shared_agent_uuid}, Rest of name B"
 end
 
 Then 'the two Agents are displayed sorted by ascending level' do
