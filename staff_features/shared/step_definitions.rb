@@ -53,7 +53,7 @@ end
 
 When 'the user hovers on {string} in the dropdown menu' do |string|
   within '.dropdown-menu' do
-    element = find(:xpath, "//button[contains(text(), '#{string}')] | //a[contains(text(), '#{string}')]")
+    element = find(:xpath, "//button[contains(text(), '#{string}')] | //a[contains(text(), '#{string}')]", match: :first)
 
     element.hover
   end
