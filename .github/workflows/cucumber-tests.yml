@@ -9,7 +9,7 @@ jobs:
     uses: './.github/workflows/cucumber-tests-job.yml'
     with:
       run-cmd: |
-        dirs=$(find ./staff_features -maxdepth 1 -type d -iname '[a-g]*' | tr '\n' ' ')
+        dirs=$(find ./staff_features -mindepth 1 -maxdepth 1 -type d -iname '[a-g]*' | tr '\n' ' ')
         if [ -n "$dirs" ]; then
           bundle exec cucumber --strict HEADLESS=true HOST=localhost $dirs
         fi
@@ -18,7 +18,7 @@ jobs:
     uses: './.github/workflows/cucumber-tests-job.yml'
     with:
       run-cmd: |
-        dirs=$(find ./staff_features -maxdepth 1 -type d -iname '[h-m]*' | tr '\n' ' ')
+        dirs=$(find ./staff_features -mindepth 1 -maxdepth 1 -type d -iname '[h-m]*' | tr '\n' ' ')
         if [ -n "$dirs" ]; then
           bundle exec cucumber --strict HEADLESS=true HOST=localhost $dirs
         fi
@@ -27,7 +27,7 @@ jobs:
     uses: './.github/workflows/cucumber-tests-job.yml'
     with:
       run-cmd: |
-        dirs=$(find ./staff_features -maxdepth 1 -type d -iname '[n-s]*' | tr '\n' ' ')
+        dirs=$(find ./staff_features -mindepth 1 -maxdepth 1 -type d -iname '[n-s]*' | tr '\n' ' ')
         if [ -n "$dirs" ]; then
           bundle exec cucumber --strict HEADLESS=true HOST=localhost $dirs
         fi
@@ -36,7 +36,7 @@ jobs:
     uses: './.github/workflows/cucumber-tests-job.yml'
     with:
       run-cmd: |
-        dirs=$(find ./staff_features -maxdepth 1 -type d -iname '[t-z]*' | tr '\n' ' ')
+        dirs=$(find ./staff_features -mindepth 1 -maxdepth 1 -type d -iname '[t-z]*' | tr '\n' ' ')
         if [ -n "$dirs" ]; then
           bundle exec cucumber --strict HEADLESS=true HOST=localhost $dirs
         fi
