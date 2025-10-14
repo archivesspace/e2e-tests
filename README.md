@@ -1,3 +1,6 @@
+# NOTE: This repository is now archived
+Our End-to-End Test Suite is now maintained as part of the main archivesspace [application repository](https://github.com/archivesspace/archivesspace/tree/master/e2e-tests) This repository is kept here for archival purposes.
+
 ## Archives Space End-to-End Tests
 
 ### Setup
